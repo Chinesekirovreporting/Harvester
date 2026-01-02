@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="ncp1c1ks">
+  <resources>
+    <component id="t3dk0" name="MainUI.xml" path="/" exported="true"/>
+    <component id="ia6v1" name="Button1.xml" path="/"/>
+    <component id="ia6v2" name="HeroPickView.xml" path="/" exported="true"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

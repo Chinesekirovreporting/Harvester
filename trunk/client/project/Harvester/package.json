@@ -1,0 +1,10 @@
+{
+  "name": "Harvester",
+  "uuid": "3f53c463-cb16-43ec-afcf-7515f49c0947",
+  "creator": {
+    "version": "3.8.1"
+  },
+  "dependencies": {
+    "fairygui-cc": "^1.1.1"
+  }
+}

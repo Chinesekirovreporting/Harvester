@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <graph id="n1_ge4r" name="n1" xy="0,0" size="886,626" type="rect"/>
+    <text id="n0_ge4r" name="n0" xy="60,49" size="184,86" fontSize="12" autoSize="none" text="这是一个公共窗"/>
+    <list id="n2_ge4r" name="n2" xy="73,155" size="200,300" overflow="scroll"/>
+  </displayList>
+</component>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <text id="n0_itjo" name="label_1" xy="65,47" size="25,19" fontSize="12" text="111"/>
+    <text id="n1_itjo" name="label_2" xy="86,115" size="25,72" fontSize="12" autoSize="none" text="222"/>
+  </displayList>
+</component>

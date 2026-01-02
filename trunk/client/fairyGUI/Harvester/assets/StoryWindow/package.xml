@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="storyw01">
+  <resources>
+    <component id="stry0" name="StoryWindow.xml" path="/" exported="true"/>
+    <component id="btnc0" name="BtnClose.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

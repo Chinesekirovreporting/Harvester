@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="17w83934">
+  <resources>
+    <component id="ge4r0" name="ComWindow.xml" path="/" exported="true"/>
+    <component id="nqrp2" name="BtnOK.xml" path="/"/>
+    <component id="nqrp4" name="Component1.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>
