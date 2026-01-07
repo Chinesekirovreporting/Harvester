@@ -3,6 +3,8 @@
   <resources>
     <component id="stry0" name="StoryWindow.xml" path="/" exported="true"/>
     <component id="btnc0" name="BtnClose.xml" path="/"/>
+    <component id="lrrb1" name="StoryRender.xml" path="/"/>
+    <component id="lrrb2" name="Button1.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

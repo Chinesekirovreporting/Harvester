@@ -4,6 +4,7 @@
     <component id="t3dk0" name="MainUI.xml" path="/" exported="true"/>
     <component id="ia6v1" name="Button1.xml" path="/"/>
     <component id="ia6v2" name="HeroPickView.xml" path="/" exported="true"/>
+    <image id="lrrb3" name="image_1767782627837.jpeg" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

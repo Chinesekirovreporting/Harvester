@@ -6,7 +6,7 @@ import { AbstractModule } from "../../../framework/managers/scene/AbstractModule
 import { ArrayUtil } from "../../../framework/utils/ArrayUtil";
 import { Method } from "../../../framework/utils/Method";
 import { GameModules } from "../GameModules";
-import { WindowGushi } from "./windows/WindowGushi";
+import { WindowGushi } from "./windows/Gushi/WindowGushi";
 import { TipWindow } from "./windows/TipWindow";
 
 export class ModuleWindow extends AbstractModule{

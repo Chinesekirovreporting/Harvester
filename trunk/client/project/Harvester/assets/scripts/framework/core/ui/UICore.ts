@@ -1,5 +1,6 @@
 import { GObject, GRoot, UIObjectFactory, UIPackage } from "fairygui-cc";
 import { Method } from "../../utils/Method";
+import { ExternalGLoader } from "./extension/ExternalGLoader";
 
 /**
  * 静态UI核心类 所有fairyGUI相关函数，使用UICore作为封装方法，不对外暴漏fairyGUI相关内容
@@ -32,8 +33,8 @@ export class UICore {
         // this._rootContainer = rootContainer;
         // this._rootContainer.addChild(this._root.displayObject);
         
-        // 设置加载器扩展
-        // UIObjectFactory.setLoaderExtension(ExternalGLoader);
+        // 设置加载器扩展  暂时使用原生的图片
+        UIObjectFactory.setLoaderExtension(ExternalGLoader);
     }
 
     /**
@@ -50,9 +51,9 @@ export class UICore {
     /**
      * 注册拓展
      */
-    // public static registerExtension(pkgName:string, resName:string, type:any):void {
-    //     UIObjectFactory.setPackageItemExtension( UIPackage.getItemURL(pkgName, resName), type);
-    // }
+    public static registerExtension(pkgName:string, resName:string, type:any):void {
+        UIObjectFactory.setExtension( UIPackage.getItemURL(pkgName, resName), type);
+    }
 
     /**
      * 创建对象

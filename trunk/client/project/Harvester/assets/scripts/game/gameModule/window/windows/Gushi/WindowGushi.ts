@@ -1,7 +1,8 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { GComponent, GObject, GList, GTextField, GButton } from "fairygui-cc";
-import { UICore } from "../../../../framework/core/ui/UICore";
+import { UICore } from "../../../../../framework/core/ui/UICore";
 import { Color } from "cc";
+import { RenderGushi } from "./RenderGushi";
 
 /**
  * 故事模式窗口
@@ -9,7 +10,8 @@ import { Color } from "cc";
 export class WindowGushi extends AbstractUIWindow {
     
     private txtTitle: GObject;
-    private storyList: GList;
+    private listStory: GList;
+    private listData:Object[] = [{a:1,b:2,c:3},{a:4,b:5,c:6},{a:7,b:8,c:9}];
     private txtTip: GObject;
     private btnClose: GObject;
     
@@ -22,7 +24,7 @@ export class WindowGushi extends AbstractUIWindow {
         if (this._view) {
             return;
         }
-        
+        UICore.registerExtension("StoryWindow", "StoryRender", RenderGushi);
         // 资源已经在 loadRes() 中加载完成，直接创建视图
         let view = UICore.createObject("StoryWindow", "StoryWindow").asCom;
         if (view) {
@@ -39,7 +41,7 @@ export class WindowGushi extends AbstractUIWindow {
     protected onInitView(): void {
         // 获取子组件
         this.txtTitle = this.getChildComp("txtTitle");
-        this.storyList = this.getChildComp("storyList") as GList;
+        this.listStory = this.getChildComp("listStory") as GList;
         this.txtTip = this.getChildComp("txtTip");
         
         // 获取关闭按钮（底部关闭按钮）
@@ -78,9 +80,8 @@ export class WindowGushi extends AbstractUIWindow {
                 }
             }
         }
-        
         // 初始化故事列表
-        // this.initStoryList();
+        this.initStoryList();
     }
 
     /**
@@ -90,6 +91,21 @@ export class WindowGushi extends AbstractUIWindow {
     protected onShow(...args: Array<any>): void {
         // 显示相关的逻辑可以在这里处理
         // 例如：刷新数据、播放动画等
+        this.updateStoryList();
+    }
+
+    private initStoryList(): void { 
+        this.listStory.setVirtual();
+        this.listStory.itemRenderer = this.listStoryItemRenderer.bind(this);
+        this.listStory.refreshVirtualList();
+    }
+
+    private updateStoryList(): void {
+        this.listStory.numItems = this.listData.length;
+    }
+
+    private listStoryItemRenderer(index: number, item: RenderGushi): void {
+        item.setData(this.listData[index]);
     }
 
     protected onClose(): void {
@@ -109,7 +125,7 @@ export class WindowGushi extends AbstractUIWindow {
         }
         
         this.txtTitle = null;
-        this.storyList = null;
+        this.listStory = null;
         this.txtTip = null;
         this.btnClose = null;
     }

@@ -9,6 +9,7 @@ import { UICore } from "./UICore";
 import { ObjectUtil } from "../../utils/ObjectUtil";
 import { GameModules } from "../../../game/gameModule/GameModules";
 import { UIPackage } from "fairygui-cc";
+import { IntUtil } from "../../utils/IntUtil";
 
 /**
  * UIWindow抽象类
@@ -25,7 +26,7 @@ export class AbstractUIWindow implements IUIWindow {
 	protected _windowData:any;
 	protected _needShowAction:boolean = false;
 	protected _autoDispose:boolean = true;
-	protected _autoDisposeTime:number = 5000;
+	protected _autoDisposeTime:number = IntUtil.MAX_VALUE;	//5000 永不销毁
 	protected _lastCloseTime:number;
 	protected _resList:Array<string>;
 	protected _loadResCallback:Method;
