@@ -18,5 +18,6 @@
       <Button title="关闭"/>
     </component>
     <text id="n6_story" name="txtTip" xy="37,457" size="720,50" fontSize="18" color="#669999" align="center" autoSize="none" text="选择你想要体验的故事章节"/>
+    <richtext id="n10_lrrb" name="n10" xy="51,191" size="605,117" fontSize="12" autoSize="none" text="点击这个章节后，弹出二级备战弹窗，核实无误后进入战斗面板。"/>
   </displayList>
 </component>

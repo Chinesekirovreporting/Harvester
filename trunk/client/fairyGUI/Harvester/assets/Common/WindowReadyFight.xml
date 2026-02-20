@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <graph id="n0_lrrb" name="n0" xy="46,40" size="695,486" type="rect"/>
+    <text id="n1_lrrb" name="n1" xy="81,65" size="76,19" fontSize="12" text="备战检查界面"/>
+    <component id="n2_lrrb" name="n2" src="nqrp2" fileName="BtnOK.xml" xy="320,285"/>
+    <component id="n3_lrrb" name="n3" src="lrrb6" fileName="Button1.xml" xy="96,162" size="160,44">
+      <Button title="道具" titleFontSize="20" selectedTitle="道具"/>
+    </component>
+    <component id="n4_lrrb" name="n4" src="lrrb6" fileName="Button1.xml" xy="294,167" size="160,44">
+      <Button title="技能" titleFontSize="20" selectedTitle="道具"/>
+    </component>
+    <component id="n5_lrrb" name="n5" src="lrrb6" fileName="Button1.xml" xy="483,173" size="160,44">
+      <Button title="装备" titleFontSize="20" selectedTitle="道具"/>
+    </component>
+  </displayList>
+</component>

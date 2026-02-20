@@ -3,13 +3,13 @@
   <displayList>
     <graph id="n1_m544" name="n1" xy="-26,-9" size="750,1334" type="rect"/>
     <text id="n0_t3dk" name="n0" xy="213,31" size="174,34" fontSize="24" autoSize="none" text="英雄传"/>
-    <component id="n4_ia6v" name="btnGushi" src="ia6v1" fileName="Button1.xml" xy="49,81" size="137,58">
+    <component id="n4_ia6v" name="btnGushi" src="ia6v1" fileName="Button1.xml" xy="35,82" size="137,58">
       <Button title="故事模式"/>
     </component>
-    <component id="n5_ia6v" name="btnRogue" src="ia6v1" fileName="Button1.xml" xy="219,83" size="145,52">
+    <component id="n5_ia6v" name="btnRogue" src="ia6v1" fileName="Button1.xml" xy="191,83" size="145,52">
       <Button title="rogue模式&#xA;"/>
     </component>
-    <component id="n7_ia6v" name="btnChallenge" src="ia6v1" fileName="Button1.xml" xy="413,82" size="137,48">
+    <component id="n7_ia6v" name="btnChallenge" src="ia6v1" fileName="Button1.xml" xy="413,80" size="137,48">
       <Button title="挑战模式&#xA;"/>
     </component>
     <component id="n8_ia6v" name="btnWalk" src="ia6v1" fileName="Button1.xml" xy="584,82" size="137,48">

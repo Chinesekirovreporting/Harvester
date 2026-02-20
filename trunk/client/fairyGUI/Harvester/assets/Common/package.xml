@@ -4,6 +4,9 @@
     <component id="ge4r0" name="ComWindow.xml" path="/" exported="true"/>
     <component id="nqrp2" name="BtnOK.xml" path="/"/>
     <component id="nqrp4" name="Component1.xml" path="/"/>
+    <component id="lrrb3" name="WindowFight.xml" path="/" exported="true"/>
+    <component id="lrrb5" name="WindowReadyFight.xml" path="/" exported="true"/>
+    <component id="lrrb6" name="Button1.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>
