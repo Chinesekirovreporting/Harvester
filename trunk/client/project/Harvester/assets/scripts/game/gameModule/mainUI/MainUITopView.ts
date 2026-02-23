@@ -3,8 +3,9 @@ import { AbstractUIView } from "../../../framework/core/ui/AbstractUIView";
 import { GameModules } from "../GameModules";
 
 export class MainUITopView extends AbstractUIView {
+    public btnTest:GComponent;
     public btnGushi:GComponent;
-    public btnRogue:GComponent;
+    public btnRogue:GComponent; 
     public btnZhuangbei:GComponent;
     public btnWupin:GComponent;
     public btnTalent:GComponent;
@@ -14,6 +15,8 @@ export class MainUITopView extends AbstractUIView {
     public btnAchievement:GComponent;
 
     public onInit(): void {
+        this.btnTest = this.view.asCom.getChild("btnTest").asCom;
+        this.btnTest.onClick(this.onTestClick, this);
         this.btnGushi = this.view.asCom.getChild("btnGushi").asCom;
         this.btnRogue = this.view.asCom.getChild("btnRogue").asCom;
         this.btnZhuangbei = this.view.asCom.getChild("btnZhuangbei").asCom;
@@ -24,6 +27,11 @@ export class MainUITopView extends AbstractUIView {
         this.btnHeroBook = this.view.asCom.getChild("btnHeroBook").asCom;
         this.btnAchievement = this.view.asCom.getChild("btnAchievement").asCom;
         this.btnGushi.onClick(this.onGushiClick, this);
+    }
+    
+    private onTestClick():void {
+        console.log("点击测试战斗按钮，打开测试战斗窗口");
+        GameModules.window.showWindowByName("WindowFight", true);
     }
 
     private onGushiClick():void {

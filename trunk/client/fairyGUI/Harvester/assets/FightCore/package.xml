@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="a7jwbx4s">
+  <resources>
+    <component id="lrrb0" name="FightCoreWindow.xml" path="/" exported="true"/>
+    <component id="lrrb1" name="ActorCom.xml" path="/"/>
+    <component id="lrrb2" name="BtnClose.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

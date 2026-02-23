@@ -1,14 +1,14 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
-import { GComponent, GText, GButton } from "fairygui-cc";
-import { UICore } from "../../../../framework/core/ui/UICore";
+import { GComponent, GTextField, GButton } from "fairygui-cc";
+import { UICore } from "../../../../../framework/core/ui/UICore";
 
 /**
  * 提示弹窗
  */
 export class TipWindow extends AbstractUIWindow {
     
-    private txtTitle: GText;
-    private txtContent: GText;
+    private txtTitle: GTextField;
+    private txtContent: GTextField;
     private btnOK: GComponent;
     private btnClose: GComponent;
     
@@ -44,8 +44,8 @@ export class TipWindow extends AbstractUIWindow {
     
     protected onInitView(): void {
         // 获取子组件
-        this.txtTitle = this.getChildComp("txtTitle") as GText;
-        this.txtContent = this.getChildComp("txtContent") as GText;
+        this.txtTitle = this.getChildComp("txtTitle") as GTextField;
+        this.txtContent = this.getChildComp("txtContent") as GTextField;
         this.btnOK = this.getChildComp("btnOK") as GComponent;
         this.btnClose = this.getChildComp("btnClose") as GComponent;
         

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <graph id="n1_lrrb" name="n1" xy="-2,1" size="801,597" type="rect"/>
+    <text id="n0_lrrb" name="n0" xy="318,36" size="76,36" fontSize="12" text="核心战斗区域&#xA;"/>
+    <component id="n2_lrrb" name="comPlayer" src="lrrb1" fileName="ActorCom.xml" xy="22,33"/>
+    <component id="n3_lrrb" name="comBoss" src="lrrb1" fileName="ActorCom.xml" xy="458,60"/>
+    <component id="n4_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="713,7" size="74,40"/>
+  </displayList>
+</component>

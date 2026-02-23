@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="227,311">
+  <displayList>
+    <graph id="n0_lrrb" name="n0" xy="-3,-4" size="227,314" type="rect"/>
+    <text id="n1_lrrb" name="txtName" xy="62,36" size="52,19" fontSize="12" text="角色名字"/>
+    <text id="n2_lrrb" name="txtLevel" xy="63,77" size="28,19" fontSize="12" text="等级"/>
+    <text id="n3_lrrb" name="txtFight" xy="64,117" size="40,19" fontSize="12" text="战斗力"/>
+    <text id="n4_lrrb" name="n4" xy="62,163" size="95,19" fontSize="12" text="1234123451234"/>
+  </displayList>
+</component>
