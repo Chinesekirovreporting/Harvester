@@ -3,6 +3,7 @@ import { GComponent, GObject, GList, GTextField, GButton } from "fairygui-cc";
 import { UICore } from "../../../../../framework/core/ui/UICore";
 import { Color } from "cc";
 import { RenderGushi } from "./RenderGushi";
+import { GameModules } from "../../../GameModules";
 
 /**
  * 故事模式窗口
@@ -90,6 +91,8 @@ export class WindowGushi extends AbstractUIWindow {
      */
     protected onShow(...args: Array<any>): void {
         // 显示相关的逻辑可以在这里处理
+        // GameModules.moduleSkill.addEventListener("STORY_DATA_UPDATED", this.onStoryDataUpdated, this);
+
         // 例如：刷新数据、播放动画等
         this.updateStoryList();
     }
@@ -108,8 +111,12 @@ export class WindowGushi extends AbstractUIWindow {
         item.setData(this.listData[index]);
     }
 
+    private onStoryDataUpdated(newData: Object[]): void {
+
+    }
+
     protected onClose(): void {
-        
+        // GameModules.moduleSkill.removeEventListener("STORY_DATA_UPDATED", this.onStoryDataUpdated, this);
     }
 
     protected onDispose(): void {

@@ -119,4 +119,9 @@ export class AbstractModule extends EventTarget implements IModule {
     protected onSceneChange():void {
 
     }
+
+    // 派发事件
+	public dispatchEventWithData(type:string, data:Object ):void {
+		this.emit(type, data);
+	}
 }

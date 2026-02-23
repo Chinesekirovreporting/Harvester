@@ -26,6 +26,8 @@ export class GameEngine{
 
     public static InitGameModules() {
         GameModules.InitBaseModules();
+        GameModules.InitFightModules();
+        GameModules.InitGameModules();
     }
 
     public static InitGameScenes() {

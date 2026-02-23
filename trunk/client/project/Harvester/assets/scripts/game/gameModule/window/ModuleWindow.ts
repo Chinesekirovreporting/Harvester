@@ -114,8 +114,4 @@ export class ModuleWindow extends AbstractModule{
 		UICore.root.removeChild(view);
 	}
 
-	// 派发事件，暂不使用
-	public dispatchEventWithData(type:string, window:IUIWindow ):void {
-		this.emit(type, window);
-	}
 }
