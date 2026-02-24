@@ -9,6 +9,7 @@ import { GameModules } from "../GameModules";
 import { WindowGushi } from "./windows/Gushi/WindowGushi";
 import { TipWindow } from "./windows/tip/TipWindow";
 import { WindowFight } from "./windows/Fight/WindowFight";
+import { WindowHeroBook } from "./windows/HeroBook/WindowHeroBook";
 
 export class ModuleWindow extends AbstractModule{
 	public static readonly SHOW_WINDOW:string = "ShowWindow";
@@ -30,6 +31,7 @@ export class ModuleWindow extends AbstractModule{
         this._windowClassDict["WindowGushi"] = WindowGushi;
         this._windowClassDict["TipWindow"] = TipWindow;
 		this._windowClassDict["WindowFight"] = WindowFight;
+		this._windowClassDict["WindowHeroBook"] = WindowHeroBook;
     } 
 
     protected show():void {

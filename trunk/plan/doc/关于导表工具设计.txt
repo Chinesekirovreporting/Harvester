@@ -1,0 +1,5 @@
+关于导表工具设计 
+设计1：思考骏佳元表设计方案，将excel数据存储于lua 文件的json格式中 
+设计2：思考canaan方案，将excel表格数据进行拆分打入二进制元文件，读取时单CFG为一个文件，通过table.getCFGById,getCFGByName，getCFGByList的方式进行获取 
+我需要的设计思路 
+元数据 

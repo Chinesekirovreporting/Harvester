@@ -25,6 +25,7 @@ export class MainUITopView extends AbstractUIView {
         this.btnSkill = this.view.asCom.getChild("btnSkill").asCom;
         this.btnHeroExchange = this.view.asCom.getChild("btnHeroExchange").asCom;
         this.btnHeroBook = this.view.asCom.getChild("btnHeroBook").asCom;
+        this.btnHeroBook.onClick(this.onHeroBookClick, this);
         this.btnAchievement = this.view.asCom.getChild("btnAchievement").asCom;
         this.btnGushi.onClick(this.onGushiClick, this);
     }
@@ -37,6 +38,11 @@ export class MainUITopView extends AbstractUIView {
     private onGushiClick():void {
         console.log("点击故事模式按钮，打开故事模式窗口");
         GameModules.window.showWindowByName("WindowGushi", true);
+    }
+
+    private onHeroBookClick():void {
+        console.log("点击英雄图鉴按钮，打开英雄图鉴窗口");
+        GameModules.window.showWindowByName("WindowHeroBook", true);
     }
 
     protected onShow(): void {

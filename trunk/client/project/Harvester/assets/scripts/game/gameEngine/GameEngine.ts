@@ -3,6 +3,7 @@ import { LayerManager } from "../gameUI/LayerManager";
 import { GameScenes } from "../gameScene/GameScenes";
 import { GameModules } from "../gameModule/GameModules";
 import { GameModels } from "../gameModel/GameModels";
+import { App } from "../../framework/managers/App";
 
 export class GameEngine{
     public static gameRoot:Scene = null
@@ -17,7 +18,8 @@ export class GameEngine{
     }
 
     public static InitGameSetting() {
-        
+        // 初始化表格
+        App.tableManager.decodeTable();
     }
 
     public static InitGameModels() {

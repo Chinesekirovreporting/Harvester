@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <list id="n0_lrrb" name="listHeroBook" xy="21,35" size="698,331" layout="row" overflow="scroll" defaultItem="ui://a7mh4a68lrrb1" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <component id="n1_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="739,4" size="40,40"/>
+  </displayList>
+</component>
