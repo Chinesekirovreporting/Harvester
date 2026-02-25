@@ -1,0 +1,4 @@
+openpyxl>=3.0.0
+
+# 打包可执行文件时额外安装
+# pip install pyinstaller
