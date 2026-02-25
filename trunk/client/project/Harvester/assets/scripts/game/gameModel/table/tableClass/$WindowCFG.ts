@@ -1,14 +1,7 @@
-// 生成文件
+/**
+ * File is automatically generated, Please do not modify
+ */
 export class $WindowCFG {
-    protected _ID:number;
-    protected _Name:string;
-
-    public get ID():number {
-		return this._ID;
-	}
-    
-    public get Name() : string {
-        return this._Name;
-    }
-    
+    public ID:string;
+    public Name:string;
 }
