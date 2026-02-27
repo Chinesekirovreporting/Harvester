@@ -27,13 +27,6 @@ except ImportError:
 DEFAULT_EXCEL_DIR = r"D:\HarvesterSvn\trunk\plan\excel"
 DEFAULT_OUTPUT_BASE = r"D:\HarvesterSvn\trunk\client\project\Harvester\assets\scripts\game\gameModel\table"
 
-# Excel 表名到 TypeScript 类名的映射 (可扩展)
-TABLE_NAME_MAP = {
-    "英雄表": "HeroBookCFG",
-    "窗口表": "WindowCFG",
-    "测试表": "TestCFG",
-}
-
 # 类型映射: Excel 类型 -> TypeScript 类型
 TYPE_MAP = {
     "int": "number",
@@ -78,20 +71,18 @@ def sanitize_class_name(name: str) -> str:
 
 def get_table_class_name(excel_name: str, sheet_name: str, config: dict) -> str:
     """
-    获取表类名，优先级：sheet_name_map > table_name_map(文件名) > 第一个页签名
+    获取表类名，优先级：table_name_map(配置覆盖) > 第一个页签名(自动映射)
+    自动映射规则：KEY=文件名(不含扩展名)，Value=该 xlsx 第一个 Sheet 名称
     """
     base_name = Path(excel_name).stem
-    # 1. 配置中按页签名映射
-    if "sheet_name_map" in config and sheet_name in config["sheet_name_map"]:
-        return config["sheet_name_map"][sheet_name]
-    # 2. 配置中按文件名映射（兼容旧逻辑）
+    # 1. 配置中按文件名映射（可覆盖自动映射）
     if "table_name_map" in config and base_name in config["table_name_map"]:
         return config["table_name_map"][base_name]
-    # 3. 使用第一个页签名作为类名
+    # 2. 使用第一个页签名作为类名（运行时自动映射）
     if sheet_name:
         return sanitize_class_name(sheet_name)
-    # 4. 回退到文件名
-    return TABLE_NAME_MAP.get(base_name, base_name.replace("表", "") + "CFG")
+    # 3. 回退：文件名转类名
+    return sanitize_class_name(base_name) or (base_name.replace("表", "") + "CFG")
 
 
 def parse_type(value: str) -> str:
@@ -429,6 +420,8 @@ def run_export(
                 log(f"  生成: ${table_name}.ts, {table_name}.ts, ${table_name}Source.ts")
             else:
                 log(f"  生成: ${table_name}.ts, ${table_name}Source.ts (跳过已存在的 {table_name}.ts)")
+
+            all_table_names.append(table_name)
 
         except Exception as e:
             log(f"  错误: {excel_path.name} - {e}")

@@ -18,6 +18,7 @@ export class GameModels {
         GameModels.tree = new ModelTree();
         GameModels.dreamPet = new ModelDreamPet();
         GameModels.tec = new ModelTec();
+        // 加载成就数据
         GameModels.achieve = new ModelAchieve();
         // 加载英雄图鉴数据
         GameModels.heroBook = new ModelHeroBook();

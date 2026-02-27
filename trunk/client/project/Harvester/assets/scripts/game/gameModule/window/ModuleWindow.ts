@@ -6,10 +6,11 @@ import { AbstractModule } from "../../../framework/managers/scene/AbstractModule
 import { ArrayUtil } from "../../../framework/utils/ArrayUtil";
 import { Method } from "../../../framework/utils/Method";
 import { GameModules } from "../GameModules";
-import { WindowGushi } from "./windows/Gushi/WindowGushi";
-import { TipWindow } from "./windows/tip/TipWindow";
+import { WindowStory } from "./windows/Gushi/WindowStory";
+import { WindowTip } from "./windows/tip/WindowTip";
 import { WindowFight } from "./windows/Fight/WindowFight";
 import { WindowHeroBook } from "./windows/HeroBook/WindowHeroBook";
+import { WindowAchieve } from "./windows/Achieve/WindowAchieve";
 
 export class ModuleWindow extends AbstractModule{
 	public static readonly SHOW_WINDOW:string = "ShowWindow";
@@ -28,10 +29,11 @@ export class ModuleWindow extends AbstractModule{
 		this._windowCloseList = new Array<IUIWindow>();
 
         // 绑定窗体
-        this._windowClassDict["WindowGushi"] = WindowGushi;
-        this._windowClassDict["TipWindow"] = TipWindow;
+        this._windowClassDict["WindowStory"] = WindowStory;
+        this._windowClassDict["WindowTip"] = WindowTip;
 		this._windowClassDict["WindowFight"] = WindowFight;
 		this._windowClassDict["WindowHeroBook"] = WindowHeroBook;
+		this._windowClassDict["WindowAchieve"] = WindowAchieve;
     } 
 
     protected show():void {
@@ -39,6 +41,7 @@ export class ModuleWindow extends AbstractModule{
     }
 
     protected remove():void {
+		
     }
     
 	/**

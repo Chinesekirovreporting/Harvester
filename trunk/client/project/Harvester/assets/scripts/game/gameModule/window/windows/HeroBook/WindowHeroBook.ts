@@ -28,9 +28,9 @@ export class WindowHeroBook extends AbstractUIWindow {
         if (this._view) {
             return;
         }
-        UICore.registerExtension("HeroBook", "HeroBookRender", RenderHeroBook);
+        UICore.registerExtension("HeroBook", "RenderHeroBook", RenderHeroBook);
         // 资源已经在 loadRes() 中加载完成，直接创建视图
-        let view = UICore.createObject("HeroBook", "HeroBookWindow").asCom;
+        let view = UICore.createObject("HeroBook", "WindowHeroBook").asCom;
         if (view) {
             this._view = view;
         } else {

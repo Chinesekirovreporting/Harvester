@@ -1,0 +1,2 @@
+build.bat 一键打包，exe 生成于工具目录
+excel_to_ts_config.json 与 exe 同目录，仅此一份配置，Python 脚本与 exe 共用

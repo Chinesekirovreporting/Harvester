@@ -18,6 +18,7 @@ export class MainUITopView extends AbstractUIView {
         this.btnTest = this.view.asCom.getChild("btnTest").asCom;
         this.btnTest.onClick(this.onTestClick, this);
         this.btnGushi = this.view.asCom.getChild("btnGushi").asCom;
+        this.btnGushi.onClick(this.onGushiClick, this);
         this.btnRogue = this.view.asCom.getChild("btnRogue").asCom;
         this.btnZhuangbei = this.view.asCom.getChild("btnZhuangbei").asCom;
         this.btnWupin = this.view.asCom.getChild("btnWupin").asCom;
@@ -27,7 +28,7 @@ export class MainUITopView extends AbstractUIView {
         this.btnHeroBook = this.view.asCom.getChild("btnHeroBook").asCom;
         this.btnHeroBook.onClick(this.onHeroBookClick, this);
         this.btnAchievement = this.view.asCom.getChild("btnAchievement").asCom;
-        this.btnGushi.onClick(this.onGushiClick, this);
+        this.btnAchievement.onClick(this.onAchievementClick, this);
     }
     
     private onTestClick():void {
@@ -43,6 +44,11 @@ export class MainUITopView extends AbstractUIView {
     private onHeroBookClick():void {
         console.log("点击英雄图鉴按钮，打开英雄图鉴窗口");
         GameModules.window.showWindowByName("WindowHeroBook", true);
+    }
+
+    private onAchievementClick():void {
+        console.log("点击成就按钮，打开成就窗口");
+        GameModules.window.showWindowByName("WindowAchieve", true);
     }
 
     protected onShow(): void {

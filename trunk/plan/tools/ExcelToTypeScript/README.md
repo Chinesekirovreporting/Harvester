@@ -109,4 +109,4 @@ python build_exe.py
 build.bat
 ```
 
-打包完成后，在 `dist` 目录下生成 `ExcelToTS.exe`，将 `excel_to_ts_config.json` 与 exe 放在同一目录即可使用。可单独分发 exe 和配置文件。
+打包完成后，在工具目录下生成 `ExcelToTS.exe`，与 `excel_to_ts_config.json` 同目录。仅此一份配置，Python 脚本与 exe 共用。

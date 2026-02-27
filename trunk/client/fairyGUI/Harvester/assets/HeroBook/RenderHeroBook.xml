@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="112,121" extention="Button">
+  <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_lrrb" name="n0" xy="4,2" size="100,100" type="rect" fillColor="#ff660066"/>
+    <text id="n1_lrrb" name="lblName" xy="14,10" size="49,23" fontSize="15" text="英雄名"/>
+    <text id="n2_109dk" name="lblType" xy="13,42" size="64,23" fontSize="15" text="英雄类型"/>
+  </displayList>
+  <Button/>
+</component>

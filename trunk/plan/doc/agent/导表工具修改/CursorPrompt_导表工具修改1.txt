@@ -1,0 +1,13 @@
+请修改 excel_to_ts.py 工具，实现以下变更：
+
+【目标】
+取消 TABLE_NAME_MAP 硬编码映射表，改为运行时自动映射。映射规则为：
+- KEY：表格目录下每个 xlsx 文件的文件名（不含扩展名）
+- Value：该 xlsx 文件中第一个 Sheet（Sheet1）的名称
+
+【具体修改】
+自行修改
+
+【补充说明】
+自动映射含义：每个 xlsx 的 TypeScript 类名由该文件的第一个 Sheet 名称决定，不再依赖硬编码的 TABLE_NAME_MAP。
+config 仍可覆盖：sheet_name_map不再需要、table_name_map 继续使用

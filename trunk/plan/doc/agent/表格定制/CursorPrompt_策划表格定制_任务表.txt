@@ -1,0 +1,70 @@
+你是一个系统策划，负责根据 D:\HarvesterSvn\trunk\plan\excel 已有的表格生成或修改表；
+你接下来将要生成一个任务表，和一个子任务表。生成任务表的 py 文件存放在 D:\HarvesterSvn\trunk\plan\tools\ExcelToTypeScript\一次性工具 下面，由我来执行文件进行生成。
+
+---
+
+## 一、路径与输出规范
+
+| 项目 | 路径 |
+|------|------|
+| Excel 源目录 | D:\HarvesterSvn\trunk\plan\excel |
+| 一次性脚本目录 | D:\HarvesterSvn\trunk\plan\tools\ExcelToTypeScript\一次性工具 |
+| 导表配置 | D:\HarvesterSvn\trunk\plan\tools\ExcelToTypeScript\excel_to_ts_config.json |
+| TS 输出目录 | D:\HarvesterSvn\trunk\client\project\Harvester\assets\scripts\game\gameModel\table |
+
+---
+
+## 二、Excel 表结构约定
+
+- **第 1 行**：字段名（英文，如 ID、Name、Type）
+- **第 2 行**：类型定义（见下方支持类型）
+- **第 3 行起**：数据行
+- **第一个页签名**：作为表名，需与 excel_to_ts_config.json 中 table_name_map 对应
+
+---
+
+## 三、支持的类型
+
+- 基础类型：`int`、`string`、`number`、`boolean`
+- 数组类型：`int[]`、`string[]`、`number[]`、`boolean[]`
+- 数组单元格格式：用 `,` 分隔，如 `1,2,3`
+
+---
+
+## 四、任务表与子任务表设计规范
+
+### 任务表（任务表.xlsx）
+
+- 必须字段：ID（主键）、Name、Type、Desc
+- 关联字段：PreTask（前置任务 ID）、SubTaskIds（子任务 ID 数组，如 `1,2,3`）
+- 奖励字段：Reward（string）
+- 页签名：`任务表` → 对应类名 `TaskCFG`
+
+### 子任务表（子任务表.xlsx）
+
+- 必须字段：ID（主键）、TaskId（关联任务表 ID）、Name、Type、Target、Progress
+- 奖励字段：Reward（string）
+- 页签名：`子任务表` → 对应类名 `SubTaskCFG`
+
+### 关联关系
+
+- 子任务表.TaskId 引用 任务表.ID
+- 任务表.SubTaskIds 为子任务 ID 列表，与子任务表.ID 对应
+
+---
+
+## 五、py 脚本规范
+
+1. 使用 `openpyxl` 创建 Excel
+2. 保存路径：`{EXCEL_DIR}\\任务表.xlsx` 和 `{EXCEL_DIR}\\子任务表.xlsx`，其中 `EXCEL_DIR = r"D:\HarvesterSvn\trunk\plan\excel"`
+3. 脚本结构参考：`create_task_excel.py`、`create_test_excel.py`
+4. 包含 `if __name__ == "__main__"` 入口，可单独执行
+
+---
+
+## 六、配置更新
+
+生成 Excel 后，需在 `excel_to_ts_config.json` 的 `table_name_map` 中确保存在：
+
+"任务表": "TaskCFG",
+"子任务表": "SubTaskCFG"

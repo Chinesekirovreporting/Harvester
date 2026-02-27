@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="twindow1">
+  <resources>
+    <component id="tipw0" name="WindowTip.xml" path="/" exported="true"/>
+    <component id="btnok0" name="BtnOK.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

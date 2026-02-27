@@ -25,6 +25,9 @@ def main():
     if not entry.exists():
         entry = script_dir / "excel_to_ts.py"
 
+    # exe 输出到 ExcelToTypeScript 目录，与 excel_to_ts_config.json 同目录，仅保留一份配置
+    output_dir = script_dir
+
     cmd = [
         sys.executable, "-m", "PyInstaller",
         "--name=ExcelToTS",
@@ -32,6 +35,7 @@ def main():
         "--windowed",                   # 无控制台窗口（GUI 程序）
         "--clean",
         "--noconfirm",                  # 覆盖已存在的输出
+        "--distpath", str(output_dir),  # exe 输出到工具目录，与 config 同目录
         "--hidden-import=openpyxl",
         "--hidden-import=openpyxl.cell._writer",
         str(entry),
@@ -42,16 +46,8 @@ def main():
     if result.returncode != 0:
         sys.exit(result.returncode)
 
-    # 复制配置文件到 dist 目录（用户可修改）
-    import shutil
-    dist_dir = script_dir / "dist"
-    if dist_dir.exists():
-        config_src = script_dir / "excel_to_ts_config.json"
-        config_dst = dist_dir / "excel_to_ts_config.json"
-        shutil.copy2(config_src, config_dst)
-        print(f"\n打包完成! 可执行文件: {dist_dir / 'ExcelToTS.exe'}")
-        print(f"配置文件已复制到: {config_dst}")
-        print("可将 dist 目录下的 exe 和 config 一起分发。")
+    print(f"\n打包完成! 可执行文件: {output_dir / 'ExcelToTS.exe'}")
+    print("exe 与 excel_to_ts_config.json 同目录，仅此一份配置。")
 
 
 if __name__ == "__main__":

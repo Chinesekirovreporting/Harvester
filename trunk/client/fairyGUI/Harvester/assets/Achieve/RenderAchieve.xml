@@ -5,10 +5,10 @@
     <graph id="n3_109dk" name="n3" xy="4,4" size="916,100" type="rect"/>
     <graph id="n0_lrrb" name="n0" xy="4,2" size="100,100" type="rect" fillColor="#ff660066"/>
     <text id="n1_lrrb" name="lblTitle" xy="343,7" size="252,25" fontSize="12" align="center" autoSize="none" text="成就标题&#xA;"/>
-    <loader id="n2_109dk" name="imgIcon" xy="12,24" size="79,74"/>
+    <loader id="n2_109dk" name="imgIcon" xy="12,25" size="79,74"/>
     <text id="n4_109dk" name="lblDes" xy="119,38" size="702,23" fontSize="12" align="center" autoSize="none" text="成就描述"/>
     <text id="n5_109dk" name="lblReward" xy="121,67" size="702,23" fontSize="12" align="center" autoSize="none" text="成就奖励"/>
-    <text id="n6_109dk" name="n6" xy="24,4" size="52,19" fontSize="12" text="成就图标"/>
+    <text id="n6_109dk" name="n6" xy="25,4" size="52,19" fontSize="12" text="成就图标"/>
   </displayList>
   <Button/>
 </component>
