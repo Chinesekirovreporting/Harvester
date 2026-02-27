@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <graph id="n0_109dk" name="btnArea" xy="6,555" size="800,50" type="rect" lineColor="#ffffffff"/>
+    <graph id="n1_109dk" name="bg" xy="6,5" size="800,600" type="rect" lineSize="2" lineColor="#ffffffff"/>
+    <graph id="n2_109dk" name="titleBg" xy="6,5" size="800,60" type="rect" lineColor="#ffffffff"/>
+    <text id="n3_109dk" name="txtTitle" xy="32,27" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="成就窗口&#xA;"/>
+    <component id="n4_109dk" name="btnCloseTop" src="109dk1" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
+    <graph id="n5_109dk" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
+    <list id="n6_109dk" name="listStory" xy="47,92" size="646,275" layout="pagination" overflow="scroll" lineGap="-17" lineItemCount="5" lineItemCount2="3" defaultItem="ui://zk0z60ix109dk2" align="center" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <component id="n7_109dk" name="btnClose" src="109dk1" fileName="BtnClose.xml" xy="355,560" size="100,40">
+      <Button title="关闭"/>
+    </component>
+  </displayList>
+</component>

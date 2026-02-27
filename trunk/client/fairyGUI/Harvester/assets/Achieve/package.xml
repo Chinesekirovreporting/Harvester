@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="zk0z60ix">
+  <resources>
+    <component id="109dk0" name="WindowAchieve.xml" path="/" exported="true"/>
+    <component id="109dk1" name="BtnClose.xml" path="/"/>
+    <component id="109dk2" name="RenderAchieve.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

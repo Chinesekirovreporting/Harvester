@@ -1,11 +1,1 @@
-{
-  "sheet_name_map": {
-  },
-  "table_name_map": {
-    "英雄表": "HeroBookCFG",
-    "窗口表": "WindowCFG",
-    "测试表": "TestCFG"
-  },
-  "excel_dir": "D:\\HarvesterSvn\\trunk\\plan\\excel",
-  "output_dir": "D:\\HarvesterSvn\\trunk\\client\\project\\Harvester\\assets\\scripts\\game\\gameModel\\table"
-}
+{"sheet_name_map":{},"table_name_map":{"英雄表":"HeroBookCFG","窗口表":"WindowCFG","测试表":"TestCFG","任务表":"TaskCFG","子任务表":"SubTaskCFG"},"excel_dir":"D:\\HarvesterSvn\\trunk\\plan\\excel","output_dir":"D:\\HarvesterSvn\\trunk\\client\\project\\Harvester\\assets\\scripts\\game\\gameModel\\table"}

@@ -1,0 +1,9 @@
+帮我写一个python脚本自动导表工具，文件夹在D:\HarvesterSvn\trunk\plan\tools\ExcelToTypeScript中，
+源文件参考D:\HarvesterSvn\trunk\plan\excel 中的 英雄表.xlsx
+生成格式要求参考：$Tables.ts $HeroBookCFG.ts $HeroBookCFG.ts HeroBookCFG.ts 格式
+脚本功能，根据D:\HarvesterSvn\trunk\plan\excel 的表格，生成出对应的ts文件
+格式类型有int string number boolean 4中类型，每种类型均支持int[],string[],number[],boolean[]嵌套
+ 
+要求格式补充:将excel中的第一个页签的名字，作为类名索引 
+生成文件补充：继承的子类文件（不带$号的）采用增量生成的方式，只有第一次生成，如果已有文件则不在重复生成 
+可执行文件补充：将改工具打包成可执行文件，每次修改工具时，都会同步更新可执行文件 
