@@ -1,0 +1,3 @@
+这里是一张草稿纸，记录我最开始想要表达的prompt种子进行记录，随后会让cursor优化一版正式的prompt进行投喂。
+我我需要写一个prompt，请帮我优化。修改一下excel_to_ts.py 代表工具，取消TABLE_NAME_MAP映射表，改为自主映射，KEY为表格目录下所有的表，Value为每个xlsx文件的Sheet1名称
+你是一名UI程序设计师，兼顾FairyGUI项目UI的创建和ts脚本的代码编写，请 依据现有表格和代码和FGUI项目目录，做出技能图鉴界面的开发。这是我的预设Prompt，请帮我完善

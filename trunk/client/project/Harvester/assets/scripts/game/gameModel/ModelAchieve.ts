@@ -1,3 +1,4 @@
+import { App } from "../../framework/managers/App";
 import { AbstractModel } from "./AbstractModel";
 import { AchieveCFG } from "./table/tableClass/AchieveCFG";
 
@@ -7,6 +8,6 @@ export class ModelAchieve extends AbstractModel {
     }
 
     public getAchieveList():AchieveCFG[] {
-        return [];
+        return App.tableManager.getTables("AchieveCFG");
     }
 }

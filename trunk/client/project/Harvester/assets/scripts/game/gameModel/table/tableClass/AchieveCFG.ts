@@ -4,4 +4,5 @@
 import { $AchieveCFG } from "./$AchieveCFG";
 
 export class AchieveCFG extends $AchieveCFG {
+    
 }
