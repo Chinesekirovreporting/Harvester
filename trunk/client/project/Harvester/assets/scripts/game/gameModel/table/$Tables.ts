@@ -15,6 +15,8 @@ import { WindowCFG } from "./tableClass/WindowCFG";
 import { $WindowCFGSource } from "./tableSource/$WindowCFGSource";
 import { HeroBookCFG } from "./tableClass/HeroBookCFG";
 import { $HeroBookCFGSource } from "./tableSource/$HeroBookCFGSource";
+import { ItemCFG } from "./tableClass/ItemCFG";
+import { $ItemCFGSource } from "./tableSource/$ItemCFGSource";
 
 export class $Tables {
     public static TaskCFG:string = "TaskCFG";
@@ -24,9 +26,10 @@ export class $Tables {
     public static TestCFG:string = "TestCFG";
     public static WindowCFG:string = "WindowCFG";
     public static HeroBookCFG:string = "HeroBookCFG";
+    public static ItemCFG:string = "ItemCFG";
 
     // 表格集合
-    public static tableNameList:string[] = ["TaskCFG", "SubTaskCFG", "AchieveCFG", "SkillCFG", "TestCFG", "WindowCFG", "HeroBookCFG"];
+    public static tableNameList:string[] = ["TaskCFG", "SubTaskCFG", "AchieveCFG", "SkillCFG", "TestCFG", "WindowCFG", "HeroBookCFG", "ItemCFG"];
     // 类映射
     public static clazzMap:Object = {
         "TaskCFG": TaskCFG,
@@ -35,7 +38,8 @@ export class $Tables {
         "SkillCFG": SkillCFG,
         "TestCFG": TestCFG,
         "WindowCFG": WindowCFG,
-        "HeroBookCFG": HeroBookCFG
+        "HeroBookCFG": HeroBookCFG,
+        "ItemCFG": ItemCFG
     }
 
     public static sourceClazzMap:Object = {
@@ -45,6 +49,7 @@ export class $Tables {
         "$SkillCFGSource": $SkillCFGSource,
         "$TestCFGSource": $TestCFGSource,
         "$WindowCFGSource": $WindowCFGSource,
-        "$HeroBookCFGSource": $HeroBookCFGSource
+        "$HeroBookCFGSource": $HeroBookCFGSource,
+        "$ItemCFGSource": $ItemCFGSource
     }
 }

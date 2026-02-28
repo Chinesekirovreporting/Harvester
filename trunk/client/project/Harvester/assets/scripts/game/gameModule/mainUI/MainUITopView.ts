@@ -13,6 +13,7 @@ export class MainUITopView extends AbstractUIView {
     public btnHeroExchange:GComponent;
     public btnHeroBook:GComponent;
     public btnAchievement:GComponent;
+    public btnSkillBook:GComponent;
 
     public onInit(): void {
         this.btnTest = this.view.asCom.getChild("btnTest").asCom;
@@ -29,6 +30,8 @@ export class MainUITopView extends AbstractUIView {
         this.btnHeroBook.onClick(this.onHeroBookClick, this);
         this.btnAchievement = this.view.asCom.getChild("btnAchievement").asCom;
         this.btnAchievement.onClick(this.onAchievementClick, this);
+        this.btnSkillBook = this.view.asCom.getChild("btnSkillBook").asCom;
+        this.btnSkillBook.onClick(this.onSkillBookClick, this);
     }
     
     private onTestClick():void {
@@ -49,6 +52,11 @@ export class MainUITopView extends AbstractUIView {
     private onAchievementClick():void {
         console.log("点击成就按钮，打开成就窗口");
         GameModules.window.showWindowByName("WindowAchieve", true);
+    }
+
+    private onSkillBookClick():void {
+        console.log("点击技能图鉴按钮，打开技能图鉴窗口");
+        GameModules.window.showWindowByName("WindowSkillBook", true);
     }
 
     protected onShow(): void {

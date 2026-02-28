@@ -26,13 +26,13 @@
     <component id="n13_ia6v" name="btnTalent" src="ia6v1" fileName="Button1.xml" xy="513,429" size="133,47">
       <Button title="天赋树"/>
     </component>
-    <component id="n14_ia6v" name="btnSkill" src="ia6v1" fileName="Button1.xml" xy="513,545" size="133,47">
+    <component id="n14_ia6v" name="btnSkill" src="ia6v1" fileName="Button1.xml" xy="514,545" size="133,47">
       <Button title="技能选择"/>
     </component>
     <component id="n15_ia6v" name="btnHeroExchange" src="ia6v1" fileName="Button1.xml" xy="121,763" size="125,38">
       <Button title="切换英雄"/>
     </component>
-    <component id="n16_ia6v" name="btnHeroBook" src="ia6v1" fileName="Button1.xml" xy="271,765" size="125,38">
+    <component id="n16_ia6v" name="btnHeroBook" src="ia6v1" fileName="Button1.xml" xy="270,765" size="125,38">
       <Button title="英雄图鉴"/>
     </component>
     <component id="n17_ia6v" name="btnSkillBook" src="ia6v1" fileName="Button1.xml" xy="425,767" size="125,38">

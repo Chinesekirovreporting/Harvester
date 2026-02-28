@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <graph id="n0_skb" name="bg" xy="6,5" size="800,600" type="rect" lineSize="2" lineColor="#ffffffff"/>
+    <graph id="n1_skb" name="titleBg" xy="6,5" size="800,60" type="rect" lineColor="#ffffffff"/>
+    <text id="n2_skb" name="lblTitle" xy="32,27" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="技能图鉴"/>
+    <component id="n3_skb" name="btnCloseTop" src="skb2" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
+    <graph id="n4_skb" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
+    <list id="n5_skb" name="listSkillBook" xy="45,87" size="710,460" overflow="scroll" lineGap="4" defaultItem="ui://skb0k001skb1" align="center" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <component id="n6_skb" name="btnClose" src="skb2" fileName="BtnClose.xml" xy="355,561" size="100,40">
+      <Button title="关闭"/>
+    </component>
+  </displayList>
+</component>

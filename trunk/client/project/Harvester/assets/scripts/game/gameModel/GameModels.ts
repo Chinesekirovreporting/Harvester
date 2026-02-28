@@ -2,6 +2,7 @@ import { ModelAchieve } from "./ModelAchieve";
 import { ModelDreamPet } from "./ModelDreamPet";
 import { ModelHeroBook } from "./ModelHeroBook";
 import { ModelRole } from "./ModelRole";
+import { ModelSkill } from "./ModelSkill";
 import { ModelTec } from "./ModelTec";
 import { ModelTree } from "./ModelTree";
 
@@ -12,6 +13,7 @@ export class GameModels {
     public static tec:ModelTec;             // 科技
     public static achieve:ModelAchieve;     // 成就
     public static heroBook:ModelHeroBook;   // 英雄图鉴
+    public static skill:ModelSkill;        // 技能图鉴
 
     public static init() {
         GameModels.role = new ModelRole();
@@ -22,5 +24,7 @@ export class GameModels {
         GameModels.achieve = new ModelAchieve();
         // 加载英雄图鉴数据
         GameModels.heroBook = new ModelHeroBook();
+        // 加载技能图鉴数据
+        GameModels.skill = new ModelSkill();
     }
 }

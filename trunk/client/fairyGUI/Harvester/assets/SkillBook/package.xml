@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="skb0k001">
+  <resources>
+    <component id="skb0" name="WindowSkillBook.xml" path="/" exported="true"/>
+    <component id="skb1" name="RenderSkillBook.xml" path="/"/>
+    <component id="skb2" name="BtnClose.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

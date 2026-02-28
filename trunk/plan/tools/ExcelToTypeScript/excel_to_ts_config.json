@@ -1,12 +1,13 @@
 {
-  "table_name_map": {
-    "英雄表": "HeroBookCFG",
-    "窗口表": "WindowCFG",
-    "测试表": "TestCFG",
-    "任务表": "TaskCFG",
-    "子任务表": "SubTaskCFG",
-    "技能表": "SkillCFG"
-  },
-  "excel_dir": "D:\\HarvesterSvn\\trunk\\plan\\excel",
-  "output_dir": "D:\\HarvesterSvn\\trunk\\client\\project\\Harvester\\assets\\scripts\\game\\gameModel\\table"
+	"table_name_map": {
+		"英雄表": "HeroBookCFG",
+		"窗口表": "WindowCFG",
+		"测试表": "TestCFG",
+		"任务表": "TaskCFG",
+		"子任务表": "SubTaskCFG",
+		"技能表": "SkillCFG",
+		"道具表": "ItemCFG"
+	},
+	"excel_dir": "D:\\HarvesterSvn\\trunk\\plan\\excel",
+	"output_dir": "D:\\HarvesterSvn\\trunk\\client\\project\\Harvester\\assets\\scripts\\game\\gameModel\\table"
 }
