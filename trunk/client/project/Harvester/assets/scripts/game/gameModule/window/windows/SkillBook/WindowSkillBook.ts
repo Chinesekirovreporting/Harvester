@@ -14,8 +14,8 @@ export class WindowSkillBook extends AbstractUIWindow {
     private btnClose: GButton;
 
     protected getResList(): Array<string> {
-        return ["ui/SkillBook"];
-    }
+        return ["ui/SkillBook", "ui/Icon"];
+    }   
 
     protected onInit(): void {
         if (this._view) {

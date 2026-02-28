@@ -33,7 +33,7 @@ export class UICore {
         // this._rootContainer = rootContainer;
         // this._rootContainer.addChild(this._root.displayObject);
         
-        // 设置加载器扩展  暂时使用原生的图片
+        // 设置加载器扩展 
         UIObjectFactory.setLoaderExtension(ExternalGLoader);
     }
 
@@ -46,6 +46,55 @@ export class UICore {
 
     public static loadPackage( path: string, onComplete?: ( error: any, pkg: UIPackage ) => void):void {
         UIPackage.loadPackage( path, onComplete );
+    }
+
+    // Promise版本暂未投入使用，待测试
+
+    /**
+     * 加载单个资源包（Promise 版本）
+     */
+    public static loadPackageAsync(path: string): Promise<UIPackage> {
+        return new Promise((resolve, reject) => {
+            UIPackage.loadPackage(path, (err: any, pkg: UIPackage) => {
+                if (err) reject(err);
+                else resolve(pkg);
+            });
+        });
+    }
+
+    /**
+     * 并行加载多个资源包，返回 Promise，全部成功后 resolve
+     * @param paths 资源路径列表
+     * @returns Promise<UIPackage[]> 成功加载的包列表，任一失败则 reject
+     */
+    public static loadPackageList(paths: string[]): Promise<UIPackage[]> {
+        if (!paths || paths.length === 0) {
+            return Promise.resolve([]);
+        }
+        return Promise.all(paths.map(path => this.loadPackageAsync(path)));
+    }
+    // 使用示例
+    // async/await
+    // const pkgs = await UICore.loadPackageList(["ui/MainUI", "ui/TipWindow", "ui/SkillBook"]);
+
+    // // .then()
+    // UICore.loadPackageList(["ui/MainUI", "ui/TipWindow"])
+    // .then(pkgs => { /* 全部成功 */ })
+    // .catch(err => { /* 任一失败 */ });
+
+
+    /**
+     * 并行加载多个资源包，全部完成后执行一次回调
+     * @param paths 资源路径列表
+     * @param onComplete 完成回调，error 为第一个错误（若有），pkgs 为成功加载的包列表
+     */
+    public static loadPackages(
+        paths: string[],
+        onComplete?: (error: any, pkgs: UIPackage[]) => void
+    ): void {
+        this.loadPackageList(paths)
+            .then(pkgs => onComplete?.(null, pkgs))
+            .catch(err => onComplete?.(err, []));
     }
 
     /**
