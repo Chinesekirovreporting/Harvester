@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="zqq8nt1o">
+  <resources>
+    <image id="itde1" name="icon1.png" path="/"/>
+    <image id="itde2" name="icon2.png" path="/"/>
+    <image id="itde3" name="icon3.png" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

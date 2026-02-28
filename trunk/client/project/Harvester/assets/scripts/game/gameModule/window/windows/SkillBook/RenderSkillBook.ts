@@ -29,7 +29,8 @@ export class RenderSkillBook extends GButton {
         this.lblCost.text = "消耗:" + (skillCFG.Cost ?? 0);
         if (skillCFG.Icon) {
             // 从cocosCreator  resource 目录中加载
-            this.loaderIcon.url = GameRes.SKILL_ICON_PATH + skillCFG.Icon;
+            // this.loaderIcon.url = GameRes.SKILL_ICON_PATH + skillCFG.Icon;   -- 确定 可以使用，接下来测试FairyGUI 资源
+            this.loaderIcon.url = GameRes.UI_ICON_PATH;
         } else {
             this.loaderIcon.url = "";
         }

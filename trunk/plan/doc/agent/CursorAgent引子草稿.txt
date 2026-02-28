@@ -2,3 +2,4 @@
 我我需要写一个prompt，请帮我优化。修改一下excel_to_ts.py 代表工具，取消TABLE_NAME_MAP映射表，改为自主映射，KEY为表格目录下所有的表，Value为每个xlsx文件的Sheet1名称
 你是一名UI程序设计师，兼顾FairyGUI项目UI的创建和ts脚本的代码编写，请 依据现有表格和代码和FGUI项目目录，做出技能图鉴界面的开发。这是我的预设Prompt，请帮我完善
 当前的UI项目中，英雄图标，道具图标，等图片都需要进行icon读取，请协助我思考一下，这些图片放到哪里读取会比较合适
+在UICore中，添加LoadPackageList函数，用于加载多个资源一个回调
