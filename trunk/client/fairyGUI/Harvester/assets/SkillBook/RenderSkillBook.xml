@@ -3,12 +3,12 @@
   <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
   <displayList>
     <graph id="n0_skb" name="n0" xy="4,2" size="392,94" type="rect" fillColor="#ff660066"/>
-    <loader id="n1_skb" name="loaderIcon" xy="12,12" size="64,64"/>
-    <text id="n2_skb" name="lblName" xy="90,10" size="200,24" fontSize="16" bold="true" text="技能名称"/>
-    <text id="n3_skb" name="lblType" xy="90,38" size="100,20" fontSize="12" text="技能类型"/>
+    <loader id="n1_skb" name="loaderIcon" xy="12,12" size="64,64" fill="scale"/>
+    <text id="n2_skb" name="lblName" xy="90,10" size="72,24" fontSize="16" bold="true" text="技能名称"/>
+    <text id="n3_skb" name="lblType" xy="90,38" size="52,19" fontSize="12" text="技能类型"/>
     <text id="n4_skb" name="lblDesc" xy="90,58" size="298,36" fontSize="12" autoSize="none" text="技能描述"/>
-    <text id="n5_skb" name="lblCooldown" xy="300,38" size="88,20" fontSize="12" text="冷却:0"/>
-    <text id="n6_skb" name="lblCost" xy="300,10" size="88,20" fontSize="12" text="消耗:0"/>
+    <text id="n5_skb" name="lblCooldown" xy="300,38" size="39,19" fontSize="12" text="冷却:0"/>
+    <text id="n6_skb" name="lblCost" xy="300,10" size="39,19" fontSize="12" text="消耗:0"/>
   </displayList>
   <Button/>
 </component>

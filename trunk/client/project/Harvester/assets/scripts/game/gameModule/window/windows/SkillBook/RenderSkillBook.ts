@@ -1,5 +1,6 @@
 import { GButton, GLoader, GTextField } from "fairygui-cc";
 import { SkillCFG } from "../../../../gameModel/table/tableClass/SkillCFG";
+import { GameRes } from "../../../../gameModel/setting/GameRes";
 
 export class RenderSkillBook extends GButton {
     private loaderIcon: GLoader;
@@ -27,7 +28,8 @@ export class RenderSkillBook extends GButton {
         this.lblCooldown.text = "冷却:" + (skillCFG.Cooldown ?? 0);
         this.lblCost.text = "消耗:" + (skillCFG.Cost ?? 0);
         if (skillCFG.Icon) {
-            this.loaderIcon.url = skillCFG.Icon;
+            // 从cocosCreator  resource 目录中加载
+            this.loaderIcon.url = GameRes.SKILL_ICON_PATH + skillCFG.Icon;
         } else {
             this.loaderIcon.url = "";
         }

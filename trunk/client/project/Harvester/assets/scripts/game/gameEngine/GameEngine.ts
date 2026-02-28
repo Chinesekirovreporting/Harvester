@@ -4,6 +4,7 @@ import { GameScenes } from "../gameScene/GameScenes";
 import { GameModules } from "../gameModule/GameModules";
 import { GameModels } from "../gameModel/GameModels";
 import { App } from "../../framework/managers/App";
+import { GameRes } from "../gameModel/setting/GameRes";
 
 export class GameEngine{
     public static gameRoot:Scene = null
@@ -23,6 +24,7 @@ export class GameEngine{
     }
 
     public static InitGameModels() {
+        GameRes.init();
         GameModels.init();
     }
 
