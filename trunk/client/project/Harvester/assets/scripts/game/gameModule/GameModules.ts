@@ -63,7 +63,7 @@ export class GameModules {
         GameModules.attr = new ModuleAttr(GameModules.MODULE_ATTR);
         GameModules.actor = new ModuleActor(GameModules.MODULE_ACTOR);
     }
-du
+
     // 初始化游戏模块(游戏内容)
     public static InitGameModules() {
         

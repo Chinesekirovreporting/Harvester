@@ -24,7 +24,7 @@ export class ModuleMainUI extends AbstractModule {
         // this.top.show();     // 此处嵌套异步代码，无法使用下面show函数，在返回中强插
     }
     
-    protected remove():void {
+    protected remove():void { 
         
-    }
+    } 
 }

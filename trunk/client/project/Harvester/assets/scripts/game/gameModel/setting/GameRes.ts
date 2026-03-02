@@ -13,6 +13,5 @@ export class GameRes {
         // fairyGUI资源获取 url: UIPackage.getItemByURL(url) 返回：UIPackageItem
         // fairyGUI目录路径 ui://pkgId/resId 例如：ui://Main/MainUI 
         this.UI_ICON_PATH = "ui://Icon/icon1";
-
     }
 }
