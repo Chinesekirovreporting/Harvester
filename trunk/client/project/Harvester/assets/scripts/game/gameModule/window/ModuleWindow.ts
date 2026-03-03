@@ -8,7 +8,7 @@ import { Method } from "../../../framework/utils/Method";
 import { GameModules } from "../GameModules";
 import { WindowStory } from "./windows/Gushi/WindowStory";
 import { WindowTip } from "./windows/tip/WindowTip";
-import { WindowFight } from "./windows/Fight/WindowFight";
+import { WindowFightCore } from "./windows/Fight/WindowFightCore";
 import { WindowHeroBook } from "./windows/HeroBook/WindowHeroBook";
 import { WindowAchieve } from "./windows/Achieve/WindowAchieve";
 import { WindowSkillBook } from "./windows/SkillBook/WindowSkillBook";
@@ -32,7 +32,7 @@ export class ModuleWindow extends AbstractModule{
         // 绑定窗体
         this._windowClassDict["WindowStory"] = WindowStory;
         this._windowClassDict["WindowTip"] = WindowTip;
-		this._windowClassDict["WindowFight"] = WindowFight;
+		this._windowClassDict["WindowFightCore"] = WindowFightCore;
         this._windowClassDict["WindowHeroBook"] = WindowHeroBook;
 		this._windowClassDict["WindowAchieve"] = WindowAchieve;
 		this._windowClassDict["WindowSkillBook"] = WindowSkillBook;

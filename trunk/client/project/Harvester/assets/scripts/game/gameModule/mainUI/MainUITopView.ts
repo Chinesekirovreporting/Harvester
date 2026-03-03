@@ -39,7 +39,7 @@ export class MainUITopView extends AbstractUIView {
     
     private onTestClick():void {
         console.log("点击测试战斗按钮，打开测试战斗窗口");
-        GameModules.window.showWindowByName("WindowFight", true);
+        GameModules.window.showWindowByName("WindowFightCore", true);
     }
 
     private onGushiClick():void {
@@ -72,12 +72,12 @@ export class MainUITopView extends AbstractUIView {
         console.log("viewShow");
     }
 
-    protected onClose(): void {
+    protected onClose(): void { 
         // GameModels.role.removeEventListener(ModelRoleEvent.UPDATE_INFO, this.onRefreshInfo, this);
     }
 
-    protected onDispose(): void {
-
+    protected onDispose(): void { 
+        
     }
 
 }

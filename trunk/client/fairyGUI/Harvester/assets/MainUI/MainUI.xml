@@ -15,7 +15,7 @@
     <component id="n8_ia6v" name="btnWalk" src="ia6v1" fileName="Button1.xml" xy="584,82" size="137,48">
       <Button title="出游"/>
     </component>
-    <loader id="n9_ia6v" name="n9" xy="30,225" size="431,422" url="ui://ncp1c1kslrrb3" fill="scale"/>
+    <loader id="n9_ia6v" name="loaderHero" xy="33,224" size="431,422" url="ui://ncp1c1kslrrb3" fill="scale"/>
     <text id="n10_ia6v" name="n10" xy="36,153" size="247,84" fontSize="24" autoSize="none" text="此处展示主体"/>
     <component id="n11_ia6v" name="btnZhuangbei" src="ia6v1" fileName="Button1.xml" xy="520,287" size="133,47">
       <Button title="装备"/>
@@ -35,7 +35,7 @@
     <component id="n16_ia6v" name="btnHeroBook" src="ia6v1" fileName="Button1.xml" xy="236,767" size="125,38">
       <Button title="英雄图鉴"/>
     </component>
-    <component id="n17_ia6v" name="btnSkillBook" src="ia6v1" fileName="Button1.xml" xy="380,767" size="125,38">
+    <component id="n17_ia6v" name="btnSkillBook" src="ia6v1" fileName="Button1.xml" xy="378,767" size="125,38">
       <Button title="技能图鉴"/>
     </component>
     <component id="n18_ia6v" name="btnAchievement" src="ia6v1" fileName="Button1.xml" xy="524,766" size="125,38">
