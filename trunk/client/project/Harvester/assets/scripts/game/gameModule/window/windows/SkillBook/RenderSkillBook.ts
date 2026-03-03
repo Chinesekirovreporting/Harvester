@@ -25,8 +25,8 @@ export class RenderSkillBook extends GButton {
         this.lblName.text = skillCFG.Name || "";
         this.lblType.text = skillCFG.Type || "";
         this.lblDesc.text = skillCFG.Desc || "";
-        this.lblCooldown.text = "冷却:" + (skillCFG.Cooldown ?? 0);
-        this.lblCost.text = "消耗:" + (skillCFG.Cost ?? 0);
+        this.lblCooldown.text = "冷却:" + (skillCFG.Cooldown == null ? 0 : skillCFG.Cooldown);
+        this.lblCost.text = "消耗:" + (skillCFG.Cost == null ? 0 : skillCFG.Cost);
         if (skillCFG.Icon) {
             // 从cocosCreator  resource 目录中加载
             // this.loaderIcon.url = GameRes.SKILL_ICON_PATH + skillCFG.Icon;   -- 确定 可以使用，接下来测试FairyGUI 资源
