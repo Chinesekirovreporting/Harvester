@@ -7,7 +7,7 @@
     <text id="n3_109dk" name="lblTitle" xy="32,27" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="成就窗口&#xA;"/>
     <component id="n4_109dk" name="btnCloseTop" src="109dk1" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
     <graph id="n5_109dk" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
-    <list id="n6_109dk" name="listAchieve" xy="45,87" size="686,324" overflow="scroll" lineGap="-17" defaultItem="ui://zk0z60ix109dk2" align="center" autoClearItems="true">
+    <list id="n6_109dk" name="listAchieve" xy="46,87" size="686,324" overflow="scroll" lineGap="-17" defaultItem="ui://zk0z60ix109dk2" align="center" autoClearItems="true">
       <item/>
       <item/>
       <item/>

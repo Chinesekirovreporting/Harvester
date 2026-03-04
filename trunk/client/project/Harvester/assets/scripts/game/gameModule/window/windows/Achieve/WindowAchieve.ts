@@ -18,13 +18,13 @@ export class WindowAchieve extends AbstractUIWindow {
      * 资源列表
      */
     protected getResList(): Array<string> {
-        return ["ui/Achieve"];
+        return ["ui/Achieve", "ui/Icon"];
     }
 
     protected onInit(): void {
         // 如果视图已存在，直接返回
         if (this._view) {
-        return;
+            return;
         }
         UICore.registerExtension("Achieve", "RenderAchieve", RenderAchieve);
         // 资源已经在 loadRes() 中加载完成，直接创建视图
@@ -42,7 +42,7 @@ export class WindowAchieve extends AbstractUIWindow {
     protected onInitView(): void {
         this.listAchieve = this.view.asCom.getChild("listAchieve") as GList;
         this.listAchieve.setVirtual();
-        this.listAchieve.itemRenderer = this.listStoryItemRenderer.bind(this);
+        this.listAchieve.itemRenderer = this.listAchieveItemRenderer.bind(this);
         this.listAchieve.refreshVirtualList();
         this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
         this.btnCloseTop.onClick(this.onCloseClick, this);
@@ -50,7 +50,7 @@ export class WindowAchieve extends AbstractUIWindow {
         this.btnClose.onClick(this.onCloseClick, this);
     }
 
-    private listStoryItemRenderer(index: number, item: RenderAchieve): void {
+    private listAchieveItemRenderer(index: number, item: RenderAchieve): void {
         item.setData(GameModels.achieve.getAchieveList()[index]);
     }
 

@@ -1,0 +1,42 @@
+# 任务：表格内容填充与扩展
+
+## 项目背景
+本项目使用 Excel 作为配置表源文件，通过 `excel_to_ts.py` 自动生成 TypeScript 文件。
+- **Excel 目录**：`trunk/plan/excel/`
+- **输出目录**：`trunk/client/project/Harvester/assets/scripts/game/gameModel/table/`
+- **配置文件**：`trunk/plan/tools/ExcelToTypeScript/excel_to_ts_config.json`
+
+## Excel 格式约定（必须遵守）
+- **第 1 行**：字段名（英文，如 ID、Name、Type、Desc、Reward、Icon）
+- **第 2 行**：类型（支持：int、string、number、boolean、int[]、string[]、number[]、boolean[]）
+- **第 3 行起**：数据行
+- **数组类型**：在单元格中用逗号分隔，如 `"1,2,3"`、`"1.11,1.12"`
+- **空数组**：留空或填 `""`
+
+## 表名映射
+新表需在 `excel_to_ts_config.json` 的 `table_name_map` 中配置：
+- Key：Excel 文件名（不含 .xlsx），如 `"成就表"`
+- Value：生成的 TS 类名或表格Sheet名称，如 `"AchieveCFG"`
+
+## 请协助完成以下操作
+
+### 1. 目标表
+- 表名：`[填写表名，如：成就表/技能表/道具表]`
+- 操作类型：`[新增字段 / 新增数据行 / 新建表 / 批量填充]`
+
+### 2. 具体需求
+[在此描述需要添加的字段、数据条数、示例内容等]
+
+示例：
+- 为成就表新增 5 条成就，包含：初出茅庐、勤劳致富、收获达人...
+- 为技能表新增字段 Icon，并补全所有技能的图标标识
+- 新建「商店表」，包含：ID、商品名、价格、库存、类型
+
+### 3. 执行要求
+1. **优先修改 Excel 源文件**：直接编辑 `trunk/plan/excel/[表名].xlsx`
+2. **若无法直接编辑 xlsx**：编写或修改 `trunk/plan/tools/ExcelToTypeScript/一次性工具/update_[表名]_excel.py`，用 openpyxl 写入数据
+3. **执行导表**：运行 `python excel_to_ts.py --cli` 重新生成 `$XXXCFG.ts`、`$XXXCFGSource.ts`
+4. **若涉及 UI 展示**：同步检查并更新对应的 Render 组件（如 RenderAchieve）以使用新字段
+
+### 4. 参考示例
+- 成就表更新脚本：`trunk/plan/tools/ExcelToTypeScript/一次性工具/update_achieve_excel.py`
