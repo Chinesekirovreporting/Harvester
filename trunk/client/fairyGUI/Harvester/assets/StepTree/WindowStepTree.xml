@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600" scroll="both">
+  <displayList>
+    <graph id="n0_itde" name="n0" xy="-1,0" size="839,907" type="rect"/>
+    <component id="n5_itde" name="n5" src="itde1" fileName="ComStepTree.xml" xy="12,101" size="781,563"/>
+    <component id="n4_itde" name="btnClose" src="itde2" fileName="BtnClose.xml" xy="615,35" size="100,40">
+      <Button title="关闭"/>
+    </component>
+    <text id="n6_itde" name="n6" xy="53,11" size="508,19" fontSize="12" text="爬塔设计思路，由单一的文字对战挑战，携带爬塔元素，设计时的每一次爬塔都会追加一些设定"/>
+  </displayList>
+</component>

@@ -6,13 +6,13 @@
     <component id="n4_ia6v" name="btnGushi" src="ia6v1" fileName="Button1.xml" xy="35,82" size="137,58">
       <Button title="故事模式"/>
     </component>
-    <component id="n5_ia6v" name="btnRogue" src="ia6v1" fileName="Button1.xml" xy="191,83" size="145,52">
+    <component id="n5_ia6v" name="btnRogue" src="ia6v1" fileName="Button1.xml" xy="189,82" size="145,52">
       <Button title="rogue模式&#xA;"/>
     </component>
-    <component id="n7_ia6v" name="btnChallenge" src="ia6v1" fileName="Button1.xml" xy="413,80" size="137,48">
+    <component id="n7_ia6v" name="btnChallenge" src="ia6v1" fileName="Button1.xml" xy="386,83" size="137,48">
       <Button title="挑战模式&#xA;"/>
     </component>
-    <component id="n8_ia6v" name="btnWalk" src="ia6v1" fileName="Button1.xml" xy="584,82" size="137,48">
+    <component id="n8_ia6v" name="btnTravel" src="ia6v1" fileName="Button1.xml" xy="569,86" size="137,48">
       <Button title="出游"/>
     </component>
     <loader id="n9_ia6v" name="loaderHero" xy="33,224" size="431,422" url="ui://ncp1c1kslrrb3" fill="scale"/>
@@ -41,11 +41,14 @@
     <component id="n18_ia6v" name="btnAchievement" src="ia6v1" fileName="Button1.xml" xy="524,766" size="125,38">
       <Button title="成就"/>
     </component>
-    <component id="n19_ia6v" name="btnTest" src="ia6v1" fileName="Button1.xml" xy="436,28">
+    <component id="n19_ia6v" name="btnTest" src="ia6v1" fileName="Button1.xml" xy="436,27">
       <Button title="测试战斗"/>
     </component>
     <component id="n20_itde" name="btnRole" src="ia6v1" fileName="Button1.xml" xy="520,210" size="133,47">
       <Button title="人物"/>
+    </component>
+    <component id="n22_itde" name="btnTestStep" src="ia6v1" fileName="Button1.xml" xy="592,27">
+      <Button title="测试节点树"/>
     </component>
   </displayList>
 </component>

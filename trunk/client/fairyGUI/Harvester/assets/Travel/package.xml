@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="z8mpy0za">
+  <resources>
+    <component id="itde0" name="WindowTravel.xml" path="/" exported="true"/>
+    <component id="itde1" name="BtnClose.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

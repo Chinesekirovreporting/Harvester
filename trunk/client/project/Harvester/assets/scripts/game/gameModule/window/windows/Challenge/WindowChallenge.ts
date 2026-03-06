@@ -1,0 +1,44 @@
+import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
+import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
+import { GButton } from "fairygui-cc";
+
+export class WindowChallenge extends AbstractUIWindow {
+    private btnClose:GButton;
+    
+    protected getResList(): Array<string> {
+        return ["ui/Challenge"];
+    }
+
+    protected onInit(): void {
+        if (this._view) {
+            return;
+        }
+        let view = UICore.createObject("Challenge", "WindowChallenge").asCom;
+        if (view) {
+            this._view = view;
+        } else {
+            console.error("创建 WindowChallenge 视图失败，请检查资源包是否已正确加载");
+        }
+    }
+
+    protected onInitView(): void {
+        this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
+        this.btnClose.onClick(this.onCloseClick, this);
+    }
+
+    private onCloseClick():void {
+        this.close();
+    }
+
+    protected onShow(...args: Array<any>): void {
+        
+    }
+
+    protected onClose(closeType?: string): void {
+        
+    }
+
+    protected onDispose(): void {
+        
+    }
+}

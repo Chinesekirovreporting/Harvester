@@ -12,6 +12,10 @@ import { WindowFightCore } from "./windows/Fight/WindowFightCore";
 import { WindowHeroBook } from "./windows/HeroBook/WindowHeroBook";
 import { WindowAchieve } from "./windows/Achieve/WindowAchieve";
 import { WindowSkillBook } from "./windows/SkillBook/WindowSkillBook";
+import { WindowRogue } from "./windows/Rogue/WindowRogue";
+import { WindowChallenge } from "./windows/Challenge/WindowChallenge";
+import { WindowTravel } from "./windows/Travel/WindowTravel";
+import { WindowStepTree } from "./windows/StepTree/WindowStepTree";
 
 export class ModuleWindow extends AbstractModule{
 	public static readonly SHOW_WINDOW:string = "ShowWindow";
@@ -31,11 +35,15 @@ export class ModuleWindow extends AbstractModule{
 
         // 绑定窗体
         this._windowClassDict["WindowStory"] = WindowStory;
+		this._windowClassDict["WindowRogue"] = WindowRogue;
+		this._windowClassDict["WindowChallenge"] = WindowChallenge;
+		this._windowClassDict["WindowTravel"] = WindowTravel;
         this._windowClassDict["WindowTip"] = WindowTip;
 		this._windowClassDict["WindowFightCore"] = WindowFightCore;
         this._windowClassDict["WindowHeroBook"] = WindowHeroBook;
 		this._windowClassDict["WindowAchieve"] = WindowAchieve;
 		this._windowClassDict["WindowSkillBook"] = WindowSkillBook;
+		this._windowClassDict["WindowStepTree"] = WindowStepTree;
     }
 
     protected show():void {

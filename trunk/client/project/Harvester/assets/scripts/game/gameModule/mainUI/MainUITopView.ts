@@ -1,40 +1,50 @@
-import { GComponent } from "fairygui-cc";
+import { GButton, GComponent } from "fairygui-cc";
 import { AbstractUIView } from "../../../framework/core/ui/AbstractUIView";
 import { GameModules } from "../GameModules";
 
 export class MainUITopView extends AbstractUIView {
-    public btnTest:GComponent;
-    public btnGushi:GComponent;
-    public btnRogue:GComponent; 
-    public btnZhuangbei:GComponent;
-    public btnWupin:GComponent;
+    public btnTest:GButton;
+    public btnGushi:GButton;
+    public btnRogue:GButton; 
+    public btnChallenge:GButton;
+    public btnZhuangbei:GButton;
+    public btnWupin:GButton;
     public btnTalent:GComponent;
-    public btnSkill:GComponent;
-    public btnHeroExchange:GComponent;
-    public btnHeroBook:GComponent;
-    public btnAchievement:GComponent;
-    public btnSkillBook:GComponent;
-    public btnRole:GComponent;
+    public btnSkill:GButton;
+    public btnHeroExchange:GButton;
+    public btnHeroBook:GButton;
+    public btnAchievement:GButton;
+    public btnSkillBook:GButton;
+    public btnRole:GButton;
+    public btnTravel:GButton;
+    public btnTestStep:GButton;
 
     public onInit(): void {
-        this.btnTest = this.view.asCom.getChild("btnTest").asCom;
+        this.btnTest = this.view.asCom.getChild("btnTest");
         this.btnTest.onClick(this.onTestClick, this);
-        this.btnGushi = this.view.asCom.getChild("btnGushi").asCom;
+        this.btnGushi = this.view.asCom.getChild("btnGushi");
         this.btnGushi.onClick(this.onGushiClick, this);
-        this.btnRogue = this.view.asCom.getChild("btnRogue").asCom;
-        this.btnZhuangbei = this.view.asCom.getChild("btnZhuangbei").asCom;
-        this.btnWupin = this.view.asCom.getChild("btnWupin").asCom;
-        this.btnTalent = this.view.asCom.getChild("btnTalent").asCom;
-        this.btnSkill = this.view.asCom.getChild("btnSkill").asCom;
-        this.btnHeroExchange = this.view.asCom.getChild("btnHeroExchange").asCom;
-        this.btnHeroBook = this.view.asCom.getChild("btnHeroBook").asCom;
+        this.btnRogue = this.view.asCom.getChild("btnRogue");
+        this.btnRogue.onClick(this.onRogueClick, this);
+        this.btnChallenge = this.view.asCom.getChild("btnChallenge");
+        this.btnChallenge.onClick(this.onChallengeClick, this);
+        this.btnZhuangbei = this.view.asCom.getChild("btnZhuangbei");
+        this.btnWupin = this.view.asCom.getChild("btnWupin");
+        this.btnTalent = this.view.asCom.getChild("btnTalent");
+        this.btnSkill = this.view.asCom.getChild("btnSkill");
+        this.btnHeroExchange = this.view.asCom.getChild("btnHeroExchange");
+        this.btnHeroBook = this.view.asCom.getChild("btnHeroBook");
         this.btnHeroBook.onClick(this.onHeroBookClick, this);
-        this.btnAchievement = this.view.asCom.getChild("btnAchievement").asCom;
+        this.btnAchievement = this.view.asCom.getChild("btnAchievement");
         this.btnAchievement.onClick(this.onAchievementClick, this);
-        this.btnSkillBook = this.view.asCom.getChild("btnSkillBook").asCom;
+        this.btnSkillBook = this.view.asCom.getChild("btnSkillBook");
         this.btnSkillBook.onClick(this.onSkillBookClick, this);
-        this.btnRole = this.view.asCom.getChild("btnRole").asCom;
+        this.btnRole = this.view.asCom.getChild("btnRole");
         this.btnRole.onClick(this.onRoleClick, this);
+        this.btnTravel = this.view.asCom.getChild("btnTravel");
+        this.btnTravel.onClick(this.onTravelClick, this);
+        this.btnTestStep = this.view.asCom.getChild("btnTestStep");
+        this.btnTestStep.onClick(this.onTestStepClick, this);
     }
     
     private onTestClick():void {
@@ -44,9 +54,19 @@ export class MainUITopView extends AbstractUIView {
 
     private onGushiClick():void {
         console.log("点击故事模式按钮，打开故事模式窗口");
-        GameModules.window.showWindowByName("WindowGushi", true);
+        GameModules.window.showWindowByName("WindowStory", true);
     }
 
+    private onRogueClick():void {
+        console.log("点击 Rogue 模式按钮，打开 Rogue 模式窗口");
+        GameModules.window.showWindowByName("WindowRogue", true);
+    }
+
+    private onChallengeClick():void {
+        console.log("点击挑战模式按钮，打开挑战模式窗口");
+        GameModules.window.showWindowByName("WindowChallenge", true);
+    }
+    
     private onHeroBookClick():void {
         console.log("点击英雄图鉴按钮，打开英雄图鉴窗口");
         GameModules.window.showWindowByName("WindowHeroBook", true);
@@ -65,6 +85,16 @@ export class MainUITopView extends AbstractUIView {
     private onRoleClick():void {
         console.log("点击打开人物面板按钮，打开人物面板");
         GameModules.window.showWindowByName("WindowRole", true);
+    }
+
+    private onTravelClick():void {
+        console.log("点击旅行按钮，打开旅行窗口");
+        GameModules.window.showWindowByName("WindowTravel", true);
+    }
+
+    private onTestStepClick():void {
+        console.log("点击测试步骤按钮，打开测试步骤窗口");
+        GameModules.window.showWindowByName("WindowStepTree", true);
     }
 
     protected onShow(): void {

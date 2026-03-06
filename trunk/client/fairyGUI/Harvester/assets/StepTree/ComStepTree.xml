@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600" overflow="scroll" scroll="both">
+  <displayList>
+    <graph id="n0_itde" name="n0" xy="1,-1" size="796,909" type="rect"/>
+    <component id="n3_itde" name="n3" src="itde5" fileName="BtnStep.xml" xy="320,692">
+      <Button title="第二层"/>
+    </component>
+    <component id="n4_itde" name="n4" src="itde5" fileName="BtnStep.xml" xy="321,819">
+      <Button title="第一层"/>
+    </component>
+    <component id="n7_itde" name="n7" src="itde5" fileName="BtnStep.xml" xy="321,539">
+      <Button title="第三层"/>
+    </component>
+    <component id="n8_itde" name="n8" src="itde5" fileName="BtnStep.xml" xy="321,442">
+      <Button title="第四层"/>
+    </component>
+    <component id="n9_itde" name="n9" src="itde5" fileName="BtnStep.xml" xy="321,323">
+      <Button title="第五层"/>
+    </component>
+    <component id="n10_itde" name="n10" src="itde5" fileName="BtnStep.xml" xy="321,239">
+      <Button title="第六层"/>
+    </component>
+    <component id="n11_itde" name="n11" src="itde5" fileName="BtnStep.xml" xy="321,120">
+      <Button title="第七层"/>
+    </component>
+  </displayList>
+</component>

@@ -31,13 +31,13 @@ export class WindowStory extends AbstractUIWindow {
         if (this._view) {
             return;
         }
-        UICore.registerExtension("StoryWindow", "StoryRender", RenderStory);
+        UICore.registerExtension("Story", "RenderStory", RenderStory);
         // 资源已经在 loadRes() 中加载完成，直接创建视图
-        let view = UICore.createObject("StoryWindow", "StoryWindow").asCom;
+        let view = UICore.createObject("Story", "WindowStory").asCom;
         if (view) {
             this._view = view;
         } else {
-            console.error("创建StoryWindow视图失败，请检查资源包是否已正确加载");
+            console.error("创建 WindowStory 视图失败，请检查资源包是否已正确加载");
         }
     }
     

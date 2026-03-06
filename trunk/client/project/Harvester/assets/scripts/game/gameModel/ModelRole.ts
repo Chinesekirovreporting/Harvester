@@ -1,7 +1,7 @@
 import { App } from "../../framework/managers/App";
 import { Dictionary } from "../../framework/utils/Dictionary";
 import { AbstractModel } from "./AbstractModel";
-import { StorageKeys } from "./data/StorageKeys";
+import { StorageKeys } from "./storage/StorageKeys";
 import { HeroBookCFG } from "./table/tableClass/HeroBookCFG";
 
 export class ModelRole extends AbstractModel{

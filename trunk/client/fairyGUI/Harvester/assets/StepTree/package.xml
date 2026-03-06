@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="z1ijwsc3">
+  <resources>
+    <component id="itde0" name="WindowStepTree.xml" path="/" exported="true"/>
+    <component id="itde1" name="ComStepTree.xml" path="/"/>
+    <component id="itde2" name="BtnClose.xml" path="/"/>
+    <component id="itde5" name="BtnStep.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>
