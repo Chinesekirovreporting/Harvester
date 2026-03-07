@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="talent001">
+<packageDescription id="tln0k001">
   <resources>
-    <component id="tl001" name="WindowTalent.xml" path="/" exported="true"/>
-    <component id="tl002" name="RenderTalentNode.xml" path="/"/>
-    <component id="tl003" name="BtnClose.xml" path="/"/>
+    <component id="tln0" name="WindowTalent.xml" path="/" exported="true"/>
+    <component id="tln1" name="RenderTalentNode.xml" path="/"/>
+    <component id="tln2" name="BtnClose.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

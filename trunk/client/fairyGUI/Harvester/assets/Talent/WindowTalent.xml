@@ -5,17 +5,17 @@
     <graph id="n1_tal" name="titleBg" xy="0,0" size="800,60" type="rect" lineColor="#ffffffff"/>
     <text id="n2_tal" name="lblTitle" xy="32,18" size="300,30" fontSize="24" color="#663333" bold="true" text="天赋"/>
     <text id="n3_tal" name="lblPoints" xy="350,18" size="150,30" fontSize="18" color="#006600" text="剩余点数: 10"/>
-    <component id="n4_tal" name="btnReset" src="tl003" fileName="BtnClose.xml" xy="520,12" size="100,40">
+    <component id="n4_tal" name="btnReset" src="tln2" fileName="BtnClose.xml" xy="520,12" size="100,40">
       <Button title="重置"/>
     </component>
-    <component id="n5_tal" name="btnCloseTop" src="tl003" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
+    <component id="n5_tal" name="btnCloseTop" src="tln2" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
     <graph id="n6_tal" name="contentBg" xy="20,70" size="760,500" type="rect" lineColor="#ff339966"/>
-    <list id="n7_tal" name="listTalent" xy="40,80" size="720,460" overflow="scroll" lineGap="10" columnGap="10" defaultItem="ui://talent001tl002" align="center" autoClearItems="true">
+    <list id="n7_tal" name="listTalent" xy="40,80" size="720,460" overflow="scroll" lineGap="10" columnGap="10" defaultItem="ui://tln0k001tln1" align="center" autoClearItems="true">
       <item/>
       <item/>
       <item/>
     </list>
-    <component id="n8_tal" name="btnClose" src="tl003" fileName="BtnClose.xml" xy="350,555" size="100,40">
+    <component id="n8_tal" name="btnClose" src="tln2" fileName="BtnClose.xml" xy="350,555" size="100,40">
       <Button title="关闭"/>
     </component>
   </displayList>
