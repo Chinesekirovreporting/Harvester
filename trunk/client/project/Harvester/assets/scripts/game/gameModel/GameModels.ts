@@ -1,6 +1,8 @@
 import { ModelAchieve } from "./ModelAchieve";
+import { ModelBackpack } from "./ModelBackpack";
 import { ModelDreamPet } from "./ModelDreamPet";
 import { ModelHeroBook } from "./ModelHeroBook";
+import { ModelItem } from "./ModelItem";
 import { ModelRole } from "./ModelRole";
 import { ModelSkill } from "./ModelSkill";
 import { ModelTec } from "./ModelTec";
@@ -14,6 +16,8 @@ export class GameModels {
     public static achieve:ModelAchieve;     // 成就
     public static heroBook:ModelHeroBook;   // 英雄图鉴
     public static skill:ModelSkill;        // 技能图鉴
+    public static item:ModelItem;          // 物品图鉴
+    public static backpack:ModelBackpack;   // 背包
 
     public static init() {
         GameModels.role = new ModelRole();
@@ -26,5 +30,9 @@ export class GameModels {
         GameModels.heroBook = new ModelHeroBook();
         // 加载技能图鉴数据
         GameModels.skill = new ModelSkill();
+        // 加载物品图鉴数据
+        GameModels.item = new ModelItem();
+        // 加载背包数据
+        GameModels.backpack = new ModelBackpack();
     }
 }

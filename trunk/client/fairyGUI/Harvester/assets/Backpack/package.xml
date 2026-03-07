@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="bpk0k001">
+  <resources>
+    <component id="bpk0" name="WindowBackpack.xml" path="/" exported="true"/>
+    <component id="bpk1" name="RenderBackpack.xml" path="/"/>
+    <component id="bpk2" name="BtnClose.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

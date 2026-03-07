@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,100" extention="Button">
+  <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_itm" name="n0" xy="4,2" size="392,94" type="rect" fillColor="#ff660066"/>
+    <loader id="n1_itm" name="loaderIcon" xy="12,12" size="64,64" fill="scale"/>
+    <text id="n2_itm" name="lblName" xy="90,10" size="72,24" fontSize="16" bold="true" text="物品名称"/>
+    <text id="n3_itm" name="lblType" xy="90,34" size="52,19" fontSize="12" text="类型"/>
+    <text id="n4_itm" name="lblSubType" xy="150,34" size="52,19" fontSize="12" text="副类型"/>
+    <text id="n5_itm" name="lblQuality" xy="220,34" size="52,19" fontSize="12" text="品质"/>
+    <text id="n6_itm" name="lblDesc" xy="90,54" size="298,36" fontSize="12" autoSize="none" text="物品描述"/>
+    <text id="n7_itm" name="lblStackMax" xy="300,10" size="80,19" fontSize="12" text="堆叠:0"/>
+    <text id="n8_itm" name="lblPrice" xy="300,34" size="80,19" fontSize="12" text="价格:0"/>
+  </displayList>
+  <Button/>
+</component>

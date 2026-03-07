@@ -3,6 +3,7 @@
   <resources>
     <component id="tipw0" name="WindowTip.xml" path="/" exported="true"/>
     <component id="btnok0" name="BtnOK.xml" path="/"/>
+    <component id="itdek1" name="Component1.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

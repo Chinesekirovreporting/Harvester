@@ -22,4 +22,7 @@ export const StorageKeys = {
 
     /** 字典结构 - 技能等级映射 */
     SKILL_LEVEL_MAP: "harvester_skill_level_map",
+
+    /** 背包物品 { itemId: count } */
+    BACKPACK: "harvester_backpack",
 } as const;

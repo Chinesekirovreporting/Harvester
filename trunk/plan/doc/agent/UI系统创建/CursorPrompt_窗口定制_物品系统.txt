@@ -1,0 +1,100 @@
+# 物品图鉴界面开发 Prompt
+
+## 角色定位
+你是一名 UI 程序设计师，负责 FairyGUI 的 UI 制作和 TypeScript 脚本编写。请基于现有表格、代码和 FGUI 项目目录，完成物品图鉴界面的开发。
+
+---
+
+## 一、项目结构参考
+
+### 1.1 FGUI 项目目录
+- **路径**: `trunk/client/fairyGUI/Harvester/assets/`
+- **参考包**: HeroBook、SkillBook、Achieve（结构类似，可复用）
+- **新建包**: 创建 `Item` 包，包含：
+  - `WindowItem.xml` - 主窗口
+  - `RenderItem.xml` - 列表项渲染器（需设置 defaultItem）
+  - `BtnClose.xml` - 可从 Common 或 SkillBook 复用
+  - `package.xml` - 包描述
+
+### 1.2 脚本目录
+- **窗口**: `trunk/client/project/Harvester/assets/scripts/game/gameModule/window/windows/`
+- **数据模型**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/`
+- **表格**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/table/`
+
+### 1.3 资源加载
+- UI 包发布到 `assets/resources/ui/`，加载路径格式：`ui/Item`
+- 物品图标若使用 FairyGUI 资源，可引用 `ui/Icon` 包
+
+---
+
+## 二、表格数据结构（ItemCFG）
+
+**路径**: `tableClass/$ItemCFG.ts` / `ItemCFG.ts`
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| ID | number | 物品ID |
+| Name | string | 物品名称 |
+| Type | string | 物品类型 |
+| SubType | string | 物品副类型 |
+| Desc | string | 物品描述 |
+| Icon | string | 图标资源名 |
+| StackMax | number | 堆叠上限 |
+| Price | number | 价格 |
+| EffectIds | number[] | 效果ID列表 |
+| Quality | string | 品质（可用于颜色区分） |
+
+**数据获取**: `App.tableManager.getTables($Tables.ItemCFG)` / `getTable($Tables.ItemCFG, id)`
+
+---
+
+## 三、开发规范（必须遵循）
+
+### 3.1 窗口类（WindowItem）
+- 继承 `AbstractUIWindow`
+- 实现 `getResList()` 返回 `["ui/Item", "ui/Icon"]`（若需图标包）
+- 在 `onInit()` 中：
+  - `UICore.registerExtension("Item", "RenderItem", RenderItem)`
+  - `UICore.createObject("Item", "WindowItem").asCom` 创建视图
+- 在 `onInitView()` 中获取 `listItem`(GList)、`btnClose`(GButton)、`btnCloseTop`(GButton)，绑定事件
+- 列表使用 `setVirtual()` + `itemRenderer` 做虚拟列表
+- 在 `onShow()` 中刷新列表数据
+- 在 `onDispose()` 中解绑事件、置空引用
+
+### 3.2 数据模型（ModelItem）
+- 继承 `AbstractModel`
+- 提供 `getItemList(): ItemCFG[]`，参考 `ModelSkill.getSkillList()`
+- 使用 `ObjectUtil.objectToArray<ItemCFG>(App.tableManager.getTables($Tables.ItemCFG))`
+- 可选：`getItemById(id: number): ItemCFG` 用于详情
+- 在 `GameModels.init()` 中初始化并挂载到 `GameModels.item`
+
+### 3.3 列表项渲染器（RenderItem）
+- 继承 `GButton` 或 `GComponent`（参考 RenderSkillBook / RenderHeroBook）
+- 重写 `onConstruct()` 获取子组件
+- 实现 `setData(itemCFG: ItemCFG)` 绑定：Name、Type、SubType、Desc、Icon、StackMax、Price、Quality 等
+- 品质可按 Quality 字段设置不同颜色（如白/绿/蓝/紫/橙）
+
+### 3.4 窗口注册
+- 在 `ModuleWindow.init()` 的 `_windowClassDict` 中注册：`"WindowItem" = WindowItem`
+- 取消注释或新增对应注册行
+
+---
+
+## 四、FGUI 设计要点
+
+### 4.1 WindowItem 布局
+- 参考 `WindowSkillBook` / `WindowHeroBook`：标题区、内容区、关闭按钮
+- GList 命名为 `listItem`，defaultItem 指向 RenderItem 的 URL
+- 可设置 `overflow="scroll"`、`layout` 等
+- 标题建议为「物品图鉴」
+
+### 4.2 RenderItem 布局
+- 建议展示：图标(loaderIcon)、名称(lblName)、类型(lblType)、副类型(lblSubType)、品质(lblQuality)、描述(lblDesc)、堆叠(lblStackMax)、价格(lblPrice)
+- 子组件命名与 Render 中 `getChild()` 使用的名称一致
+- 图标加载参考 RenderSkillBook：`loaderIcon.url = GameRes.UI_ICON_PATH` 或 `GameRes.ICON_PATH + itemCFG.Icon`
+
+---
+
+## 五、调用方式
+GameModules.window.showWindowByName("WindowItem", true, false, false, true);
+

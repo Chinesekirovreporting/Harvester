@@ -39,3 +39,8 @@ export interface IPlayerSaveData {
  * 技能等级映射 { skillId: level }，注：这行代码定义了一个类型别名，表示“以数字为键、数字为值的对象”。
  */
 export type SkillLevelMap = Record<number, number>;
+
+/**
+ * 背包物品映射 { itemId: count }
+ */
+export type BackpackItemMap = Record<number, number>;

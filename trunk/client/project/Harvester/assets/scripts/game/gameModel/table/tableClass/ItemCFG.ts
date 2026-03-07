@@ -4,4 +4,5 @@
 import { $ItemCFG } from "./$ItemCFG";
 
 export class ItemCFG extends $ItemCFG {
+    
 }
