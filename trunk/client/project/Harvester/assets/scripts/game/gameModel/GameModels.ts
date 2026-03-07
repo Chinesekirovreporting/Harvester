@@ -8,6 +8,7 @@ import { ModelRole } from "./ModelRole";
 import { ModelSkill } from "./ModelSkill";
 import { ModelTec } from "./ModelTec";
 import { ModelTree } from "./ModelTree";
+import { ModelTalent } from "./ModelTalent";
 
 export class GameModels {
     public static role:ModelRole;           // 角色战队
@@ -20,6 +21,7 @@ export class GameModels {
     public static item:ModelItem;          // 物品图鉴
     public static backpack:ModelBackpack;   // 背包
     public static equip:ModelEquip;        // 英雄装备
+    public static talent:ModelTalent;      // 天赋树
 
     public static init() {
         GameModels.role = new ModelRole();
@@ -38,5 +40,7 @@ export class GameModels {
         GameModels.backpack = new ModelBackpack();
         // 加载英雄装备数据
         GameModels.equip = new ModelEquip();
+        // 加载天赋数据
+        GameModels.talent = new ModelTalent();
     }
 }

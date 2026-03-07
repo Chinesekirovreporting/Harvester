@@ -31,6 +31,7 @@ export class MainUITopView extends AbstractUIView {
         this.btnZhuangbei = this.view.asCom.getChild("btnZhuangbei");
         this.btnWupin = this.view.asCom.getChild("btnWupin");
         this.btnTalent = this.view.asCom.getChild("btnTalent");
+        this.btnTalent.onClick(this.onTalentClick, this);
         this.btnSkill = this.view.asCom.getChild("btnSkill");
         this.btnHeroExchange = this.view.asCom.getChild("btnHeroExchange");
         this.btnHeroBook = this.view.asCom.getChild("btnHeroBook");
@@ -95,6 +96,11 @@ export class MainUITopView extends AbstractUIView {
     private onTestStepClick():void {
         console.log("点击测试步骤按钮，打开测试步骤窗口");
         GameModules.window.showWindowByName("WindowStepTree", true);
+    }
+
+    private onTalentClick():void {
+        console.log("点击天赋按钮，打开天赋树窗口");
+        GameModules.window.showWindowByName("WindowTalent", true, false, false, true);
     }
 
     protected onShow(): void {

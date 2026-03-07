@@ -19,6 +19,7 @@ import { WindowStepTree } from "./windows/StepTree/WindowStepTree";
 import { WindowItem } from "./windows/Item/WindowItem";
 import { WindowBackpack } from "./windows/Backpack/WindowBackpack";
 import { WindowEquip } from "./windows/Equip/WindowEquip";
+import { WindowTalent } from "./windows/Talent/WindowTalent";
 
 export class ModuleWindow extends AbstractModule{
 	public static readonly SHOW_WINDOW:string = "ShowWindow";
@@ -50,8 +51,7 @@ export class ModuleWindow extends AbstractModule{
 		this._windowClassDict["WindowItem"] = WindowItem;
 		this._windowClassDict["WindowBackpack"] = WindowBackpack;
 		this._windowClassDict["WindowEquip"] = WindowEquip;
-		// this._windowClassDict["WindowRole"] = WindowRole;
-		// this._windowClassDict["WindowTalent"] = WindowTalent;
+		this._windowClassDict["WindowTalent"] = WindowTalent;
     }
 
     protected show():void {

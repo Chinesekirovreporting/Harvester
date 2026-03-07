@@ -28,4 +28,7 @@ export const StorageKeys = {
 
     /** 英雄装备 { heroId: { slotType: itemId } } */
     HERO_EQUIP: "harvester_hero_equip",
+
+    /** 天赋加点 { treeId: { talentId: rank } } */
+    TALENT_POINTS: "harvester_talent_points",
 } as const;
