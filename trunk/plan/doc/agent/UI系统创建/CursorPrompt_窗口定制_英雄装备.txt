@@ -1,0 +1,188 @@
+# 英雄装备界面开发 Prompt
+
+## 角色定位
+你是一名 UI 程序设计师，负责 FairyGUI 的 UI 制作和 TypeScript 脚本编写。请基于现有表格、代码和 FGUI 项目目录，完成英雄装备界面的开发。
+
+---
+
+## 一、项目结构参考
+
+### 1.1 FGUI 项目目录
+- **路径**: `trunk/client/fairyGUI/Harvester/assets/`
+- **参考包**: HeroBook（英雄列表）、Backpack（物品展示）、Item（物品详情）
+- **新建包**: 创建 `Equip` 包，包含：
+  - `WindowEquip.xml` - 主窗口
+  - `RenderHeroEquip.xml` - 英雄列表项渲染器（需设置 defaultItem）
+  - `RenderEquipSlot.xml` - 装备槽位渲染器（可选，用于装备格子）
+  - `BtnClose.xml` - 可从 Common 或 HeroBook 复用
+  - `package.xml` - 包描述
+
+### 1.2 脚本目录
+- **窗口**: `trunk/client/project/Harvester/assets/scripts/game/gameModule/window/windows/`
+- **数据模型**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/`
+- **表格**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/table/`
+- **存储**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/storage/`
+
+### 1.3 资源加载
+- UI 包发布到 `assets/resources/ui/`，加载路径格式：`ui/Equip`
+- 物品图标需引用 `ui/Icon` 包
+
+---
+
+## 二、数据来源与结构
+
+### 2.1 英雄数据（HeroBookCFG）
+**路径**: `tableClass/$HeroBookCFG.ts` / `HeroBookCFG.ts`
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| ID | number | 英雄ID |
+| Name | string | 英雄名称 |
+| Type | string | 英雄类型 |
+| IsSuper | boolean | 是否超级英雄 |
+| ClientExe | number | 客户端扩展字段 |
+
+**数据获取**: `GameModels.heroBook.getHeroBookList()` / `getHeroById(id)`
+
+### 2.2 装备物品（ItemCFG，Type="装备"）
+**路径**: `tableClass/$ItemCFG.ts` / `ItemCFG.ts`
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| ID | number | 物品ID |
+| Name | string | 物品名称 |
+| Type | string | 必须为「装备」 |
+| SubType | string | 装备槽位类型（武器、护甲、头盔、靴子、饰品等） |
+| Desc | string | 物品描述 |
+| Icon | string | 图标资源名 |
+| StackMax | number | 堆叠上限（装备通常为 1） |
+| Price | number | 价格 |
+| Quality | string | 品质（白/绿/蓝/紫/橙/传说） |
+
+**筛选装备**: `ModelItem.getItemList().filter(item => item.Type === "装备")`
+**数据获取**: `App.tableManager.getTable($Tables.ItemCFG, id)` / `GameModels.item.getItemById(id)`
+
+### 2.3 装备槽位类型（建议）
+- `武器`、`护甲`、`头盔`、`靴子`、`饰品` 等，与 ItemCFG.SubType 对应
+- 槽位顺序可固定为数组：`["武器", "护甲", "头盔", "靴子", "饰品"]`
+
+### 2.4 装备存储结构（需新建）
+**StorageKeys**: 在 `StorageKeys.ts` 中新增 `HERO_EQUIP: "harvester_hero_equip"`
+
+**存储格式**: `Record<number, Record<string, number>>`
+- 外层 key: 英雄ID
+- 内层 key: 槽位类型（SubType）
+- 内层 value: 物品ID
+
+示例：`{ 1: { "武器": 3, "护甲": 2 }, 2: { "头盔": 5 } }`
+
+---
+
+## 三、开发规范（必须遵循）
+
+### 3.1 窗口类（WindowEquip）
+- 继承 `AbstractUIWindow`
+- 实现 `getResList()` 返回 `["ui/Equip", "ui/Icon"]`
+- 在 `onInit()` 中：
+  - `UICore.registerExtension("Equip", "RenderHeroEquip", RenderHeroEquip)`
+  - 若有装备槽渲染器：`UICore.registerExtension("Equip", "RenderEquipSlot", RenderEquipSlot)`
+  - `UICore.createObject("Equip", "WindowEquip").asCom` 创建视图
+- 在 `onInitView()` 中获取：
+  - `listHero`(GList) - 英雄列表
+  - `listEquipSlot`(GList) 或若干 `slot_xxx`(GButton) - 装备槽位
+  - `btnClose`(GButton)、`btnCloseTop`(GButton)
+  - 可选：`loaderPreview`、`lblHeroName` 等详情区组件
+- 英雄列表使用 `setVirtual()` + `itemRenderer` 做虚拟列表
+- 在 `onShow()` 中：刷新英雄列表、选中当前英雄、刷新装备槽
+- 在 `onDispose()` 中解绑事件、置空引用
+
+### 3.2 数据模型（ModelEquip）
+- 继承 `AbstractModel`
+- 使用 `App.cookieManager.get/set` 读写 `StorageKeys.HERO_EQUIP`
+- 提供方法：
+  - `getEquippedItems(heroId: number): Record<string, number>` - 英雄各槽位物品ID
+  - `equipItem(heroId: number, slotType: string, itemId: number): void` - 装备
+  - `unequipItem(heroId: number, slotType: string): void` - 卸下
+  - `getEquipItemCFG(heroId: number, slotType: string): ItemCFG | null` - 获取槽位配置
+- 在 `GameModels.init()` 中初始化并挂载到 `GameModels.equip`
+
+### 3.3 英雄列表渲染器（RenderHeroEquip）
+- 继承 `GButton` 或 `GComponent`（参考 RenderHeroBook）
+- 重写 `onConstruct()` 获取子组件
+- 实现 `setData(heroBookCFG: HeroBookCFG)` 绑定：Name、Type、Icon 等
+- 可选：选中态高亮、装备数量角标
+
+### 3.4 装备槽渲染器（RenderEquipSlot，若使用 GList）
+- 继承 `GButton` 或 `GComponent`（参考 RenderBackpack）
+- 实现 `setData(slotType: string, itemCFG: ItemCFG | null)` 绑定槽位名称、图标、品质等
+- 空槽位显示占位图或「空」文字
+- 点击事件：打开背包选择物品 / 卸下装备
+
+### 3.5 窗口注册
+- 在 `ModuleWindow.init()` 的 `_windowClassDict` 中注册：`"WindowEquip" = WindowEquip`
+- 取消注释：`// this._windowClassDict["WindowEquip"] = WindowEquip;`
+- 添加 import：`import { WindowEquip } from "./windows/Equip/WindowEquip";`
+
+---
+
+## 四、FGUI 设计要点
+
+### 4.1 WindowEquip 布局
+- 参考 WindowHeroBook + WindowBackpack：左侧英雄列表，右侧装备详情
+- **左侧**：GList 命名为 `listHero`，defaultItem 指向 RenderHeroEquip
+- **右侧**：装备槽区域，可选方案：
+  - 方案 A：多个 GLoader + GTextField 组合（slot_weapon、slot_armor 等）
+  - 方案 B：GList 命名为 `listEquipSlot`，defaultItem 指向 RenderEquipSlot
+- 标题区、关闭按钮（btnClose、btnCloseTop）
+- 标题建议为「英雄装备」
+
+### 4.2 RenderHeroEquip 布局
+- 建议展示：图标(loaderIcon)、名称(lblName)、类型(lblType)
+- 子组件命名与 `getChild()` 使用的名称一致
+- 英雄图标路径参考：`GameRes.UI_ICON_PATH` 或 HeroBookCFG 中的图标字段（若有）
+
+### 4.3 装备槽布局（RenderEquipSlot 或 slot_xxx）
+- 建议展示：槽位名称(lblSlotName)、图标(loaderIcon)、品质(lblQuality)、描述(lblDesc)
+- 空槽：loaderIcon 显示占位图，lblDesc 显示「点击装备」
+- 图标加载：`loaderIcon.url = GameRes.ICON_PATH + itemCFG.Icon`（参考 RenderItem、RenderBackpack）
+
+### 4.4 品质颜色（与现有一致）
+```typescript
+const QUALITY_COLORS: Record<string, number> = {
+    "白": 0xFFFFFF, "普通": 0xFFFFFF, "绿": 0x00FF00,
+    "蓝": 0x0080FF, "紫": 0x8000FF, "橙": 0xFF8000, "传说": 0xFF8000,
+};
+```
+
+---
+
+## 五、交互逻辑（可选扩展）
+
+### 5.1 装备流程
+1. 选中英雄 → 右侧显示该英雄装备槽
+2. 点击空槽 → 打开背包，筛选 Type="装备" 且 SubType 匹配槽位的物品
+3. 选择物品 → 调用 `ModelEquip.equipItem()`，刷新界面
+4. 点击已装备槽 → 卸下，调用 `ModelEquip.unequipItem()`
+
+### 5.2 背包联动
+- 装备时检查 `GameModels.backpack.getItemCount(itemId) >= 1`
+- 装备/卸下时同步更新背包数量（若设计为装备即消耗）
+
+---
+
+## 六、调用方式
+```typescript
+GameModules.window.showWindowByName("WindowEquip", true, false, false, true);
+```
+
+---
+
+## 七、与现有模块的关系
+
+| 模块 | 关系 |
+|------|------|
+| ModelItem | 提供装备物品配置，通过 Type="装备" 筛选 |
+| ModelBackpack | 可选：装备时检查/消耗背包物品 |
+| ModelHeroBook | 提供英雄列表 `getHeroBookList()` |
+| StorageKeys | 新增 `HERO_EQUIP` 存储 key |
+| GameModels | 新增 `GameModels.equip: ModelEquip` |

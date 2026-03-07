@@ -25,4 +25,7 @@ export const StorageKeys = {
 
     /** 背包物品 { itemId: count } */
     BACKPACK: "harvester_backpack",
+
+    /** 英雄装备 { heroId: { slotType: itemId } } */
+    HERO_EQUIP: "harvester_hero_equip",
 } as const;

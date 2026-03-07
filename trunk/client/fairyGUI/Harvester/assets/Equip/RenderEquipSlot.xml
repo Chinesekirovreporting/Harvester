@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="480,90" extention="Button">
+  <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_epq" name="n0" xy="4,2" size="472,84" type="rect" fillColor="#ff660066"/>
+    <loader id="n1_epq" name="loaderIcon" xy="12,12" size="64,64" fill="scale"/>
+    <text id="n2_epq" name="lblSlotName" xy="90,10" size="120,24" fontSize="16" bold="true" text="槽位"/>
+    <text id="n3_epq" name="lblQuality" xy="220,10" size="80,24" fontSize="14" text=""/>
+    <text id="n4_epq" name="lblDesc" xy="90,38" size="378,44" fontSize="12" autoSize="none" text="点击装备"/>
+  </displayList>
+  <Button/>
+</component>
