@@ -18,6 +18,8 @@ export class MainUITopView extends AbstractUIView {
     public btnRole:GButton;
     public btnTravel:GButton;
     public btnTestStep:GButton;
+    public btnItemBook:GButton;
+    public btnItemBag:GButton;
 
     public onInit(): void {
         this.btnTest = this.view.asCom.getChild("btnTest");
@@ -46,6 +48,11 @@ export class MainUITopView extends AbstractUIView {
         this.btnTravel.onClick(this.onTravelClick, this);
         this.btnTestStep = this.view.asCom.getChild("btnTestStep");
         this.btnTestStep.onClick(this.onTestStepClick, this);
+        this.btnItemBook = this.view.asCom.getChild("btnItemBook");
+        this.btnItemBook.onClick(this.onItemBookClick, this);
+        this.btnItemBag = this.view.asCom.getChild("btnItemBag");
+        this.btnItemBag.onClick(this.onItemBagClick, this);
+        
     }
     
     private onTestClick():void {
@@ -101,6 +108,16 @@ export class MainUITopView extends AbstractUIView {
     private onTalentClick():void {
         console.log("点击天赋按钮，打开天赋树窗口");
         GameModules.window.showWindowByName("WindowTalent", true, false, false, true);
+    }
+
+    private onItemBookClick():void {
+        console.log("点击物品按钮，打开物品窗口");
+        GameModules.window.showWindowByName("WindowItemBook", true);
+    }
+
+    private onItemBagClick():void {
+        console.log("点击物品背包按钮，打开物品背包窗口");
+        GameModules.window.showWindowByName("WindowItem", true);
     }
 
     protected onShow(): void {

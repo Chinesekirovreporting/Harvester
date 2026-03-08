@@ -20,7 +20,7 @@
     <component id="n11_ia6v" name="btnEquip" src="ia6v1" fileName="Button1.xml" xy="520,287" size="133,47">
       <Button title="装备"/>
     </component>
-    <component id="n12_ia6v" name="btnItem" src="ia6v1" fileName="Button1.xml" xy="386,685" size="133,47">
+    <component id="n12_ia6v" name="btnItemBook" src="ia6v1" fileName="Button1.xml" xy="386,685" size="133,47">
       <Button title="物品图鉴"/>
     </component>
     <component id="n13_ia6v" name="btnTalent" src="ia6v1" fileName="Button1.xml" xy="520,474" size="133,47">
@@ -50,7 +50,7 @@
     <component id="n22_itde" name="btnTestStep" src="ia6v1" fileName="Button1.xml" xy="592,27">
       <Button title="测试节点树"/>
     </component>
-    <component id="n23_itde" name="btnItem" src="ia6v1" fileName="Button1.xml" xy="518,376" size="133,47">
+    <component id="n23_itde" name="btnItemBag" src="ia6v1" fileName="Button1.xml" xy="518,376" size="133,47">
       <Button title="玩家物品"/>
     </component>
   </displayList>

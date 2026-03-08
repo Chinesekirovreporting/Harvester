@@ -1,6 +1,6 @@
 import { GButton, GLoader, GTextField } from "fairygui-cc";
 import { GameRes } from "../../../../gameModel/setting/GameRes";
-import type { IBackpackSlotVo } from "../../../../gameModel/ModelBackpack";
+import type { IBackpackSlotVo } from "../../../../gameModel/ModelItemBag";
 
 /** 品质颜色映射 (0xRRGGBB) */
 const QUALITY_COLORS: Record<string, number> = {

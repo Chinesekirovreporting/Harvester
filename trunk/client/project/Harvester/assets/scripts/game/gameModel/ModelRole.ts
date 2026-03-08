@@ -20,6 +20,8 @@ export class ModelRole extends AbstractModel{
     protected init() {
         // 初始化直接加载本地数据
         this.loadLocalRoleData();
+        // 加载用户缓存数据
+        this.loadUserData();
     }
 
     private loadLocalRoleData():void {
@@ -32,5 +34,21 @@ export class ModelRole extends AbstractModel{
 
     private saveLocalRoleData():void {
         
+    }
+
+    /** 存储用户缓存数据  类型1：number / string / boolean */
+    private saveUserData(): void {
+        App.cookieManager.set(StorageKeys.LAST_LOGIN_TIME, Date.now());
+        App.cookieManager.set(StorageKeys.USER_NAME, "玩家001");
+        App.cookieManager.set(StorageKeys.MUSIC_ENABLED, true);
+    }
+
+    /** 加载用户缓存数据 */
+    private loadUserData(): void {
+        const loginTime = App.cookieManager.getNumber(StorageKeys.LAST_LOGIN_TIME, 0);
+        const userName = App.cookieManager.getString(StorageKeys.USER_NAME, "游客");
+        const musicOn = App.cookieManager.getBoolean(StorageKeys.MUSIC_ENABLED, true);
+
+        console.log(loginTime, userName, musicOn);
     }
 }

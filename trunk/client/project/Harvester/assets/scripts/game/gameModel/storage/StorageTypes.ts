@@ -1,3 +1,5 @@
+// 此文件定义所有存储数据的类型
+
 /**
  * 游戏设置
  */
@@ -34,13 +36,19 @@ export interface IPlayerSaveData {
     completedStageIds: number[];
 }
 
-//
 /**
- * 技能等级映射 { skillId: level }，注：这行代码定义了一个类型别名，表示“以数字为键、数字为值的对象”。
+ * 技能等级映射字典 { skillId: level }，注：这行代码定义了一个类型别名，表示“以数字为键、数字为值的对象”。
  */
-export type SkillLevelMap = Record<number, number>;
+export type SkillLevelDict = Record<number, number>;
+
+/** 物品格子数据；注:在物品的持久化描述中，只有存在于格子的数据才有持久化的意义 */
+export interface IItemSlot {
+    gridId: number;
+    itemId: number;
+    count: number;
+}
 
 /**
- * 背包物品映射 { itemId: count }
+ * 背包物品字典 { itemId: IItemSlot }
  */
-export type BackpackItemMap = Record<number, number>;
+export type ItemBagDict = Record<number, IItemSlot>;

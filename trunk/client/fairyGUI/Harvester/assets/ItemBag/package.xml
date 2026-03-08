@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="bpk0k001">
+  <resources>
+    <component id="bpk0" name="WindowItemBag.xml" path="/" exported="true"/>
+    <component id="bpk1" name="RenderItemBag.xml" path="/"/>
+    <component id="bpk2" name="BtnClose.xml" path="/"/>
+    <component id="iqit0" name="BtnUse.xml" path="/"/>
+    <component id="iqit1" name="BtnAddItem.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

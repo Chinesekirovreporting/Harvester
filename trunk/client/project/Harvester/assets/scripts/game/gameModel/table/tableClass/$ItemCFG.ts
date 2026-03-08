@@ -5,11 +5,11 @@ export class $ItemCFG {
     public ID:number;
     public Name:string;
     public Type:string;
+    public SubType:string;
     public Desc:string;
     public Icon:string;
     public StackMax:number;
     public Price:number;
-    public EffectIds:number[];
+    public SkillId:number;
     public Quality:string;
-    public SubType:string;
 }

@@ -4,7 +4,7 @@ import { AbstractModel } from "./AbstractModel";
 import { $Tables } from "./table/$Tables";
 import { ItemCFG } from "./table/tableClass/ItemCFG";
 
-export class ModelItem extends AbstractModel {
+export class ModelItemBook extends AbstractModel {
     protected init() {
 
     }

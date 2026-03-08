@@ -2,7 +2,7 @@ import { sys } from "cc";
 import { Manager } from "./Manager";
 
 /** 存储 Key 前缀，便于区分和清理 */
-const PREFIX = "harvester_";
+const PREFIX = "";
 
 export class CookieManager extends Manager {
     public constructor() {

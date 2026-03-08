@@ -1,14 +1,15 @@
 import { ModelAchieve } from "./ModelAchieve";
-import { ModelBackpack } from "./ModelBackpack";
+import { ModelItemBag } from "./ModelItemBag";
 import { ModelDreamPet } from "./ModelDreamPet";
 import { ModelEquip } from "./ModelEquip";
 import { ModelHeroBook } from "./ModelHeroBook";
-import { ModelItem } from "./ModelItem";
+import { ModelItemBook } from "./ModelItemBook";
 import { ModelRole } from "./ModelRole";
 import { ModelSkill } from "./ModelSkill";
 import { ModelTec } from "./ModelTec";
 import { ModelTree } from "./ModelTree";
 import { ModelTalent } from "./ModelTalent";
+import { ModelSetting } from "./ModelSetting";
 
 export class GameModels {
     public static role:ModelRole;           // 角色战队
@@ -18,10 +19,11 @@ export class GameModels {
     public static achieve:ModelAchieve;     // 成就
     public static heroBook:ModelHeroBook;   // 英雄图鉴
     public static skill:ModelSkill;        // 技能图鉴
-    public static item:ModelItem;          // 物品图鉴
-    public static backpack:ModelBackpack;   // 背包
+    public static itemBook:ModelItemBook;          // 物品图鉴
+    public static itemBag:ModelItemBag;          // 物品背包
     public static equip:ModelEquip;        // 英雄装备
     public static talent:ModelTalent;      // 天赋树
+    public static setting:ModelSetting;    // 设置
 
     public static init() {
         GameModels.role = new ModelRole();
@@ -35,12 +37,14 @@ export class GameModels {
         // 加载技能图鉴数据
         GameModels.skill = new ModelSkill();
         // 加载物品图鉴数据
-        GameModels.item = new ModelItem();
+        GameModels.itemBook = new ModelItemBook();
         // 加载背包数据
-        GameModels.backpack = new ModelBackpack();
+        GameModels.itemBag = new ModelItemBag();
         // 加载英雄装备数据
         GameModels.equip = new ModelEquip();
         // 加载天赋数据
         GameModels.talent = new ModelTalent();
+        // 加载设置数据
+        GameModels.setting = new ModelSetting();
     }
 }

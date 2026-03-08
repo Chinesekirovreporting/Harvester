@@ -1,28 +1,28 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { RenderBackpack } from "./RenderBackpack";
+import { RenderBackpack } from "./RenderItemBag";
 import { GButton, GList } from "fairygui-cc";
 import { GameModels } from "../../../../gameModel/GameModels";
 
 /**
  * 背包窗口，用于显示玩家拥有的物品
  */
-export class WindowBackpack extends AbstractUIWindow {
+export class WindowItemBag extends AbstractUIWindow {
 
     private listBackpack: GList;
     private btnCloseTop: GButton;
     private btnClose: GButton;
 
     protected getResList(): Array<string> {
-        return ["ui/Backpack", "ui/Icon"];
+        return ["ui/ItemBag", "ui/Icon"];
     }
 
     protected onInit(): void {
         if (this._view) {
             return;
         }
-        UICore.registerExtension("Backpack", "RenderBackpack", RenderBackpack);
-        let view = UICore.createObject("Backpack", "WindowBackpack").asCom;
+        UICore.registerExtension("ItemBag", "RenderItemBag", RenderBackpack);
+        let view = UICore.createObject("ItemBag", "WindowItemBag").asCom;
         if (view) {
             this._view = view;
         } else {
@@ -42,7 +42,7 @@ export class WindowBackpack extends AbstractUIWindow {
     }
 
     private listBackpackRenderer(index: number, item: RenderBackpack): void {
-        const list = GameModels.backpack.getBackpackList();
+        const list = GameModels.itemBag.getBackpackList();
         item.setData(list[index]);
     }
 
@@ -55,7 +55,7 @@ export class WindowBackpack extends AbstractUIWindow {
     }
 
     private updateBackpackList(): void {
-        this.listBackpack.numItems = GameModels.backpack.getBackpackList().length;
+        this.listBackpack.numItems = GameModels.itemBag.getBackpackList().length;
     }
 
     protected onClose(): void {
