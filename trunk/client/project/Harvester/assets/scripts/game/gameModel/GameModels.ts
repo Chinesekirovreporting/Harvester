@@ -8,7 +8,6 @@ import { ModelRole } from "./ModelRole";
 import { ModelSkill } from "./ModelSkill";
 import { ModelTec } from "./ModelTec";
 import { ModelTree } from "./ModelTree";
-import { ModelTalent } from "./ModelTalent";
 import { ModelSetting } from "./ModelSetting";
 
 export class GameModels {

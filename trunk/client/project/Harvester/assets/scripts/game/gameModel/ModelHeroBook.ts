@@ -7,6 +7,12 @@ import { $Tables } from "./table/$Tables";
 import { HeroBookCFG } from "./table/tableClass/HeroBookCFG";
 
 export class ModelHeroBook extends AbstractModel {
+
+    constructor() {
+        super();
+        this.init();
+    }
+    
     protected init() {
         this.loadUnlockedHeroIds();
     }

@@ -4,6 +4,12 @@ import { StorageKeys } from "./storage/StorageKeys";
 import { IGameSettings } from "./storage/StorageTypes";
 
 export class ModelSetting extends AbstractModel {
+
+    constructor() {
+        super();
+        this.init();
+    }
+
     protected init() {
         this.loadSettings();
 

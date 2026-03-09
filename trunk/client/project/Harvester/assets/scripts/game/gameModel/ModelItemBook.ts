@@ -5,6 +5,12 @@ import { $Tables } from "./table/$Tables";
 import { ItemCFG } from "./table/tableClass/ItemCFG";
 
 export class ModelItemBook extends AbstractModel {
+    
+    constructor() {
+        super();
+        this.init();
+    }
+
     protected init() {
 
     }

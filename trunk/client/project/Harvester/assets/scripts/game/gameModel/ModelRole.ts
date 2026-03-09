@@ -17,6 +17,11 @@ export class ModelRole extends AbstractModel{
     // 角色英雄数据 英雄ID:英雄结构体HeroVo
     public heroDic:Record<number,HeroBookCFG> = {}; // 英雄字典
 
+    constructor() {
+        super();
+        this.init();
+    }
+
     protected init() {
         // 初始化直接加载本地数据
         this.loadLocalRoleData();

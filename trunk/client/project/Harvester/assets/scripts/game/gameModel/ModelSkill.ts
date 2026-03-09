@@ -7,6 +7,12 @@ import { $Tables } from "./table/$Tables";
 import { SkillCFG } from "./table/tableClass/SkillCFG";
 
 export class ModelSkill extends AbstractModel {
+    
+    constructor() {
+        super();
+        this.init();
+    }
+
     protected init() {
 
     }

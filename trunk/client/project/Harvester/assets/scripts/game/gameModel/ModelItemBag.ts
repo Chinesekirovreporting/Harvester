@@ -10,6 +10,11 @@ export class ModelItemBag extends AbstractModel {
     public ITEM_BAG_GRID_COUNT:number;             // 背包格子数量
     public itemGridDict:Record<number,ItemVo>;   // { gridId: ItemVo } - 物品字典
 
+    constructor() {
+        super();
+        this.init();
+    }
+
     protected init() {
         this.ITEM_BAG_GRID_COUNT = 20;
         this.itemGridDict = {};
