@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="400,100" extention="Button">
   <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <controller name="c1" pages="0,,1," selected="1"/>
   <displayList>
-    <graph id="n0_bpk" name="n0" xy="4,2" size="392,94" type="rect" fillColor="#ff660066"/>
-    <loader id="n1_bpk" name="loaderIcon" xy="12,12" size="64,64" fill="scale"/>
-    <text id="n2_bpk" name="lblName" xy="90,10" size="72,24" fontSize="16" bold="true" text="物品名称"/>
-    <text id="n3_bpk" name="lblCount" xy="250,10" size="21,24" fontSize="16" text="x0"/>
-    <text id="n4_bpk" name="lblType" xy="90,38" size="28,19" fontSize="12" text="类型"/>
-    <text id="n5_bpk" name="lblQuality" xy="200,38" size="28,19" fontSize="12" text="品质"/>
-    <text id="n6_bpk" name="lblDesc" xy="90,58" size="298,36" fontSize="12" autoSize="none" text="物品描述"/>
-    <component id="n7_iqit" name="n7" src="iqit0" fileName="BtnUse.xml" xy="288,15"/>
+    <graph id="n0_bpk" name="n0" xy="4,2" size="392,94" group="n8_iqit" type="rect" fillColor="#ff660066"/>
+    <loader id="n1_bpk" name="loaderIcon" xy="12,12" size="64,64" group="n8_iqit" fill="scale"/>
+    <text id="n2_bpk" name="lblName" xy="90,10" size="72,24" group="n8_iqit" fontSize="16" bold="true" text="物品名称"/>
+    <text id="n3_bpk" name="lblCount" xy="250,10" size="21,24" group="n8_iqit" fontSize="16" text="x0"/>
+    <text id="n4_bpk" name="lblType" xy="90,38" size="28,19" group="n8_iqit" fontSize="12" text="类型"/>
+    <text id="n5_bpk" name="lblQuality" xy="200,38" size="28,19" group="n8_iqit" fontSize="12" text="品质"/>
+    <text id="n6_bpk" name="lblDesc" xy="90,58" size="298,36" group="n8_iqit" fontSize="12" autoSize="none" text="物品描述"/>
+    <component id="n7_iqit" name="n7" src="iqit0" fileName="BtnUse.xml" xy="288,15" group="n8_iqit"/>
+    <group id="n8_iqit" name="n8" xy="4,2" size="392,94" advanced="true">
+      <gearDisplay controller="c1" pages="0"/>
+    </group>
+    <text id="n9_iqit" name="n9" xy="10,10" size="275,55" fontSize="12" autoSize="none" text="空白">
+      <gearDisplay controller="c1" pages="1"/>
+    </text>
   </displayList>
   <Button/>
 </component>

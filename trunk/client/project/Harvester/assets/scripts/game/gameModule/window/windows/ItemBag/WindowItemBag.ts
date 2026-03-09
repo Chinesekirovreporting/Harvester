@@ -3,13 +3,16 @@ import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
 import { RenderItemBag } from "./RenderItemBag";
 import { GButton, GList } from "fairygui-cc";
 import { GameModels } from "../../../../gameModel/GameModels";
+import { ModelItemBagEvent } from "../../../../gameModel/ModelItemBagEvent";
+import { ItemVo } from "../../../../gameModel/data/ItemVo";
 
 /**
  * 背包窗口，用于显示玩家拥有的物品
  */
 export class WindowItemBag extends AbstractUIWindow {
 
-    private listBackpack: GList;
+    private listItemBag: GList;
+    private btnAddItem:GButton;
     private btnCloseTop: GButton;
     private btnClose: GButton;
 
@@ -31,10 +34,12 @@ export class WindowItemBag extends AbstractUIWindow {
     }
 
     protected onInitView(): void {
-        this.listBackpack = this.view.asCom.getChild("listItemBag") as GList;
-        this.listBackpack.setVirtual();
-        this.listBackpack.itemRenderer = this.listItemBagRenderer.bind(this);
-        this.listBackpack.refreshVirtualList();
+        this.listItemBag = this.view.asCom.getChild("listItemBag") as GList;
+        this.listItemBag.setVirtual();
+        this.listItemBag.itemRenderer = this.listItemBagRenderer.bind(this);
+        this.listItemBag.refreshVirtualList();
+        this.btnAddItem = this.view.asCom.getChild("btnAddItem") as GButton;
+        this.btnAddItem.onClick(this.onAddItemClick, this);
         this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
         this.btnCloseTop.onClick(this.onCloseClick, this);
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
@@ -46,26 +51,38 @@ export class WindowItemBag extends AbstractUIWindow {
         item.setData(list[index]);
     }
 
+    private onAddItemClick(): void {
+        console.log("点击添加物品按钮");
+        GameModels.itemBag.addNewItem(1,1);
+    }
+
     private onCloseClick(): void {
         this.close();
     }
 
     protected onShow(...args: Array<any>): void {
+        // GameModels.itemBag.on(ModelItemBagEvent.ITEM_BAG_UPDATE, this.onItemBagUpdate, this);
         this.updateBackpackList();
     }
 
+    // private onItemBagUpdate(itemVo: ItemVo): void {
+    //     console.log("onItemBagUpdate", itemVo.itemCfgID.toString());
+    //     this.updateBackpackList();
+    // }
+
     private updateBackpackList(): void {
-        this.listBackpack.numItems = GameModels.itemBag.getItemBagList().length;
+        this.listItemBag.numItems = GameModels.itemBag.getItemBagList().length;
     }
 
     protected onClose(): void {
         // 关闭背包
+        // GameModels.itemBag.off(ModelItemBagEvent.ITEM_BAG_UPDATE, this.onItemBagUpdate, this);
     }
 
     protected onDispose(): void {
         this.btnCloseTop.offClick(this.onCloseClick, this);
         this.btnClose.offClick(this.onCloseClick, this);
-        this.listBackpack = null;
+        this.listItemBag = null;
         this.btnCloseTop = null;
         this.btnClose = null;
     }

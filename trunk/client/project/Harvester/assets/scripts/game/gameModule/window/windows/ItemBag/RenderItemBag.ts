@@ -1,4 +1,4 @@
-import { GButton, GLoader, GTextField } from "fairygui-cc";
+import { Controller, GButton, GLoader, GTextField } from "fairygui-cc";
 import { GameRes } from "../../../../gameModel/setting/GameRes";
 import { ItemVo } from "../../../../gameModel/data/ItemVo";
 import { ItemCFG } from "../../../../gameModel/table/tableClass/ItemCFG";
@@ -23,6 +23,7 @@ export class RenderItemBag extends GButton {
     private lblType: GTextField;
     private lblQuality: GTextField;
     private lblDesc: GTextField;
+    private c1:Controller;
 
     protected onConstruct(): void {
         super.onConstruct();
@@ -32,12 +33,15 @@ export class RenderItemBag extends GButton {
         this.lblType = this.getChild("lblType") as GTextField;
         this.lblQuality = this.getChild("lblQuality") as GTextField;
         this.lblDesc = this.getChild("lblDesc") as GTextField;
+        this.c1 = this.getController("c1") as Controller;
     }
 
     public setData(itemVo: ItemVo): void {
         if(itemVo == null || itemVo.itemCFG == null) {
+            this.c1.selectedIndex = 1;
             return;
         }
+        this.c1.selectedIndex = 0;
         var cfg:ItemCFG = itemVo.itemCFG;
         this.lblName.text = cfg.Name || "";
         this.lblCount.text = "x" + (itemVo.count ?? 0);
