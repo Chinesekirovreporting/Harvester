@@ -41,9 +41,9 @@ export interface IPlayerSaveData {
  */
 export type SkillLevelDict = Record<number, number>;
 
-/** 物品格子数据；注:在物品的持久化描述中，只有存在于格子的数据才有持久化的意义。itemId 为 ItemVo.ITEM_ID_NONE(0) 的条目存库时会被过滤 */
+
 export interface IItemSlot {
-    itemId: number;
+    gridId: number;
     count: number;
     itemCfgID: number;
 }

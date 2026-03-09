@@ -1,6 +1,9 @@
 import { GButton, GLoader, GTextField } from "fairygui-cc";
 import { GameRes } from "../../../../gameModel/setting/GameRes";
-import type { IBackpackSlotVo } from "../../../../gameModel/ModelItemBag";
+import { ItemVo } from "../../../../gameModel/data/ItemVo";
+import { ItemCFG } from "../../../../gameModel/table/tableClass/ItemCFG";
+import { Color } from "cc";
+
 
 /** 品质颜色映射 (0xRRGGBB) */
 const QUALITY_COLORS: Record<string, number> = {
@@ -13,7 +16,7 @@ const QUALITY_COLORS: Record<string, number> = {
     "传说": 0xFF8000,
 };
 
-export class RenderBackpack extends GButton {
+export class RenderItemBag extends GButton {
     private loaderIcon: GLoader;
     private lblName: GTextField;
     private lblCount: GTextField;
@@ -31,24 +34,26 @@ export class RenderBackpack extends GButton {
         this.lblDesc = this.getChild("lblDesc") as GTextField;
     }
 
-    public setData(slot: IBackpackSlotVo): void {
-        if (!slot || !slot.itemCFG) return;
-        const cfg = slot.itemCFG;
+    public setData(itemVo: ItemVo): void {
+        if(itemVo == null || itemVo.itemCFG == null) {
+            return;
+        }
+        var cfg:ItemCFG = itemVo.itemCFG;
         this.lblName.text = cfg.Name || "";
-        this.lblCount.text = "x" + (slot.count ?? 0);
+        this.lblCount.text = "x" + (itemVo.count ?? 0);
         this.lblType.text = cfg.Type || "";
         this.lblQuality.text = cfg.Quality || "";
         this.lblDesc.text = cfg.Desc || "";
 
         // 品质颜色
         const color = QUALITY_COLORS[cfg.Quality] ?? 0xFFFFFF;
-        this.lblQuality.color = color;
+        this.lblQuality.color = new Color(color);
 
         // 图标
-        if (cfg.Icon && GameRes.ICON_PATH) {
-            this.loaderIcon.url = GameRes.ICON_PATH + cfg.Icon;
-        } else {
+        // if (cfg.Icon && GameRes.ICON_PATH) {
+        //     this.loaderIcon.url = GameRes.ICON_PATH + cfg.Icon;
+        // } else {
             this.loaderIcon.url = GameRes.UI_ICON_PATH || "";
-        }
+        // }
     }
 }

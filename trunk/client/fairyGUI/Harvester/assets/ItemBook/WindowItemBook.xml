@@ -6,7 +6,7 @@
     <text id="n2_itm" name="lblTitle" xy="32,27" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="物品图鉴"/>
     <component id="n3_itm" name="btnCloseTop" src="itm2" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
     <graph id="n4_itm" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
-    <list id="n5_itm" name="listItem" xy="45,87" size="710,460" overflow="scroll" lineGap="4" defaultItem="ui://itm0k001itm1" align="center" autoClearItems="true">
+    <list id="n5_itm" name="listItem" xy="45,86" size="710,460" overflow="scroll" lineGap="4" defaultItem="ui://itm0k001itm1" align="center" autoClearItems="true">
       <item/>
       <item/>
       <item/>

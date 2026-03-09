@@ -117,7 +117,7 @@ export class MainUITopView extends AbstractUIView {
 
     private onItemBagClick():void {
         console.log("点击物品背包按钮，打开物品背包窗口");
-        GameModules.window.showWindowByName("WindowItem", true);
+        GameModules.window.showWindowByName("WindowItemBag", true);
     }
 
     protected onShow(): void {

@@ -16,8 +16,8 @@ import { WindowRogue } from "./windows/Rogue/WindowRogue";
 import { WindowChallenge } from "./windows/Challenge/WindowChallenge";
 import { WindowTravel } from "./windows/Travel/WindowTravel";
 import { WindowStepTree } from "./windows/StepTree/WindowStepTree";
-import { WindowItem } from "./windows/Item/WindowItem";
-import { WindowItemBag } from "./windows/Backpack/WindowItemBag";
+import { WindowItemBook } from "./windows/ItemBook/WindowItemBook";
+import { WindowItemBag } from "./windows/ItemBag/WindowItemBag";
 import { WindowEquip } from "./windows/Equip/WindowEquip";
 import { WindowTalent } from "./windows/Talent/WindowTalent";
 
@@ -48,8 +48,8 @@ export class ModuleWindow extends AbstractModule{
 		this._windowClassDict["WindowAchieve"] = WindowAchieve;
 		this._windowClassDict["WindowSkillBook"] = WindowSkillBook;
 		this._windowClassDict["WindowStepTree"] = WindowStepTree;
-		this._windowClassDict["WindowItem"] = WindowItem;
-		this._windowClassDict["WindowBackpack"] = WindowItemBag;
+		this._windowClassDict["WindowItemBook"] = WindowItemBook;
+		this._windowClassDict["WindowItemBag"] = WindowItemBag;
 		this._windowClassDict["WindowEquip"] = WindowEquip;
 		this._windowClassDict["WindowTalent"] = WindowTalent;
     }

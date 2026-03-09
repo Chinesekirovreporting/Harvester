@@ -1,6 +1,7 @@
 import { GButton, GLoader, GTextField } from "fairygui-cc";
 import { ItemCFG } from "../../../../gameModel/table/tableClass/ItemCFG";
 import { GameRes } from "../../../../gameModel/setting/GameRes";
+import { Color } from "cc";
 
 /** 品质颜色映射 (0xRRGGBB) */
 const QUALITY_COLORS: Record<string, number> = {
@@ -13,7 +14,7 @@ const QUALITY_COLORS: Record<string, number> = {
     "传说": 0xFF8000,
 };
 
-export class RenderItem extends GButton {
+export class RenderItemBook extends GButton {
     private loaderIcon: GLoader;
     private lblName: GTextField;
     private lblType: GTextField;
@@ -47,13 +48,13 @@ export class RenderItem extends GButton {
 
         // 品质颜色
         const color = QUALITY_COLORS[itemCFG.Quality] ?? 0xFFFFFF;
-        this.lblQuality.color = color;
+        this.lblQuality.color = new Color(color);
 
         // 图标：优先使用 Cocos 资源路径，否则使用 FairyGUI 默认图标
-        if (itemCFG.Icon && GameRes.ICON_PATH) {
-            this.loaderIcon.url = GameRes.ICON_PATH + itemCFG.Icon;
-        } else {
+        // if (itemCFG.Icon && GameRes.ICON_PATH) {
+            // this.loaderIcon.url = GameRes.ICON_PATH + itemCFG.Icon;
+        // } else {
             this.loaderIcon.url = GameRes.UI_ICON_PATH || "";
-        }
+        // }
     }
 }

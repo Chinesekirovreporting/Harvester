@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="itm0k001">
   <resources>
-    <component id="itm0" name="WindowItem.xml" path="/" exported="true"/>
-    <component id="itm1" name="RenderItem.xml" path="/"/>
+    <component id="itm0" name="WindowItemBook.xml" path="/" exported="true"/>
+    <component id="itm1" name="RenderItemBook.xml" path="/"/>
     <component id="itm2" name="BtnClose.xml" path="/"/>
   </resources>
   <publish name=""/>

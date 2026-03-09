@@ -14,16 +14,16 @@ export class ModelEquip extends AbstractModel {
     private _equipMap: HeroEquipMap = {};
 
     protected init() {
-        this.loadFromStorage();
+        // this.loadFromStorage();
     }
 
     private loadFromStorage(): void {
-        const data = App.cookieManager.get<HeroEquipMap>(StorageKeys.HERO_EQUIP);
-        this._equipMap = data || {};
+    //     const data = App.cookieManager.get<HeroEquipMap>(StorageKeys.HERO_EQUIP);
+    //     this._equipMap = data || {};
     }
 
     private saveToStorage(): void {
-        App.cookieManager.set(StorageKeys.HERO_EQUIP, this._equipMap);
+    //     App.cookieManager.set(StorageKeys.HERO_EQUIP, this._equipMap);
     }
 
     /** 获取英雄各槽位装备的物品ID */

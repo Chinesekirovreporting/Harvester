@@ -1,49 +1,48 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { RenderBackpack } from "./RenderItemBag";
+import { RenderItemBook } from "./RenderItemBook";
 import { GButton, GList } from "fairygui-cc";
 import { GameModels } from "../../../../gameModel/GameModels";
 
 /**
- * 背包窗口，用于显示玩家拥有的物品
+ * 物品图鉴窗口，用于显示物品列表
  */
-export class WindowItemBag extends AbstractUIWindow {
+export class WindowItemBook extends AbstractUIWindow {
 
-    private listBackpack: GList;
+    private listItem: GList;
     private btnCloseTop: GButton;
     private btnClose: GButton;
 
     protected getResList(): Array<string> {
-        return ["ui/ItemBag", "ui/Icon"];
+        return ["ui/ItemBook", "ui/Icon"];
     }
 
     protected onInit(): void {
         if (this._view) {
             return;
         }
-        UICore.registerExtension("ItemBag", "RenderItemBag", RenderBackpack);
-        let view = UICore.createObject("ItemBag", "WindowItemBag").asCom;
+        UICore.registerExtension("ItemBook", "RenderItemBook", RenderItemBook);
+        let view = UICore.createObject("ItemBook", "WindowItemBook").asCom;
         if (view) {
             this._view = view;
         } else {
-            console.error("创建WindowBackpack视图失败，请检查资源包是否已正确加载");
+            console.error("创建WindowItemBook视图失败，请检查资源包是否已正确加载");
         }
     }
 
     protected onInitView(): void {
-        this.listBackpack = this.view.asCom.getChild("listBackpack") as GList;
-        this.listBackpack.setVirtual();
-        this.listBackpack.itemRenderer = this.listBackpackRenderer.bind(this);
-        this.listBackpack.refreshVirtualList();
+        this.listItem = this.view.asCom.getChild("listItem") as GList;
+        this.listItem.setVirtual();
+        this.listItem.itemRenderer = this.listItemRenderer.bind(this);
+        this.listItem.refreshVirtualList();
         this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
         this.btnCloseTop.onClick(this.onCloseClick, this);
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
         this.btnClose.onClick(this.onCloseClick, this);
     }
 
-    private listBackpackRenderer(index: number, item: RenderBackpack): void {
-        const list = GameModels.itemBag.getBackpackList();
-        item.setData(list[index]);
+    private listItemRenderer(index: number, item: RenderItemBook): void {
+        item.setData(GameModels.itemBook.getItemList()[index]);
     }
 
     private onCloseClick(): void {
@@ -51,21 +50,21 @@ export class WindowItemBag extends AbstractUIWindow {
     }
 
     protected onShow(...args: Array<any>): void {
-        this.updateBackpackList();
+        this.updateItemList();
     }
 
-    private updateBackpackList(): void {
-        this.listBackpack.numItems = GameModels.itemBag.getBackpackList().length;
+    private updateItemList(): void {
+        this.listItem.numItems = GameModels.itemBook.getItemList().length;
     }
 
     protected onClose(): void {
-        // 关闭背包
+        // 关闭物品图鉴
     }
 
     protected onDispose(): void {
         this.btnCloseTop.offClick(this.onCloseClick, this);
         this.btnClose.offClick(this.onCloseClick, this);
-        this.listBackpack = null;
+        this.listItem = null;
         this.btnCloseTop = null;
         this.btnClose = null;
     }

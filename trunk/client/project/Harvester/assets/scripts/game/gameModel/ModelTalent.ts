@@ -27,12 +27,12 @@ export class ModelTalent extends AbstractModel {
     }
 
     private loadFromStorage(): void {
-        const data = App.cookieManager.get<TalentPointsMap>(StorageKeys.TALENT_POINTS);
-        this._pointsMap = data || {};
+        // const data = App.cookieManager.get<TalentPointsMap>(StorageKeys.TALENT_POINTS);
+        // this._pointsMap = data || {};
     }
 
     private saveToStorage(): void {
-        App.cookieManager.set(StorageKeys.TALENT_POINTS, this._pointsMap);
+        // App.cookieManager.set(StorageKeys.TALENT_POINTS, this._pointsMap);
     }
 
     /** 获取天赋列表，可按树筛选 */
@@ -54,7 +54,7 @@ export class ModelTalent extends AbstractModel {
     public getSpentPoints(treeId: number): number {
         const tree = this._pointsMap[treeId];
         if (!tree) return 0;
-        return Object.values(tree).reduce((sum, rank) => sum + rank, 0);
+        return 0//Object.values(tree).reduce((sum: number, rank: number) => sum + rank, 0);
     }
 
     /** 获取总可用天赋点（根据等级，每5级1点，测试用默认10点） */
