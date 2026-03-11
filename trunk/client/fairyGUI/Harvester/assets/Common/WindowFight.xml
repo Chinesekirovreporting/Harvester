@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600">
+<component size="750,1334">
   <displayList>
     <graph id="n0_lrrb" name="n0" xy="44,22" size="611,159" type="rect"/>
     <list id="n1_lrrb" name="n1" xy="51,207" size="588,49" overflow="scroll"/>

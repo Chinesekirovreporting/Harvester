@@ -14,7 +14,7 @@ export class WindowEquip extends AbstractUIWindow {
     private listHero: GList;
     private listEquipSlot: GList;
     private lblHeroName: GTextField;
-    private btnCloseTop: GButton;
+    private btnClose: GButton;
     private btnClose: GButton;
 
     /** 当前选中的英雄ID */
@@ -42,7 +42,7 @@ export class WindowEquip extends AbstractUIWindow {
         this.listHero = this.view.asCom.getChild("listHero") as GList;
         this.listEquipSlot = this.view.asCom.getChild("listEquipSlot") as GList;
         this.lblHeroName = this.view.asCom.getChild("lblHeroName") as GTextField;
-        this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
+        this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
 
         this.listHero.setVirtual();
@@ -53,7 +53,7 @@ export class WindowEquip extends AbstractUIWindow {
         this.listEquipSlot.itemRenderer = this.listEquipSlotItemRenderer.bind(this);
         this.listEquipSlot.on(Event.CLICK_ITEM, this.onEquipSlotClick, this);
 
-        this.btnCloseTop.onClick(this.onCloseClick, this);
+        this.btnClose.onClick(this.onCloseClick, this);
         this.btnClose.onClick(this.onCloseClick, this);
     }
 
@@ -127,12 +127,12 @@ export class WindowEquip extends AbstractUIWindow {
     protected onDispose(): void {
         this.listHero.off(Event.CLICK_ITEM, this.onHeroItemClick, this);
         this.listEquipSlot.off(Event.CLICK_ITEM, this.onEquipSlotClick, this);
-        this.btnCloseTop.offClick(this.onCloseClick, this);
+        this.btnClose.offClick(this.onCloseClick, this);
         this.btnClose.offClick(this.onCloseClick, this);
         this.listHero = null;
         this.listEquipSlot = null;
         this.lblHeroName = null;
-        this.btnCloseTop = null;
+        this.btnClose = null;
         this.btnClose = null;
     }
 }

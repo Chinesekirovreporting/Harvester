@@ -56,7 +56,7 @@
 - 在 `onInit()` 中：
   - `UICore.registerExtension("Item", "RenderItem", RenderItem)`
   - `UICore.createObject("Item", "WindowItem").asCom` 创建视图
-- 在 `onInitView()` 中获取 `listItem`(GList)、`btnClose`(GButton)、`btnCloseTop`(GButton)，绑定事件
+- 在 `onInitView()` 中获取 `listItem`(GList)、`btnClose`(GButton)、`btnClose`(GButton)，绑定事件
 - 列表使用 `setVirtual()` + `itemRenderer` 做虚拟列表
 - 在 `onShow()` 中刷新列表数据
 - 在 `onDispose()` 中解绑事件、置空引用

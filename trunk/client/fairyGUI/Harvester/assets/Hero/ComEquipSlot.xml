@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="90,90" extention="Button">
+  <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_epq" name="n0" xy="5,2" size="80,84" type="rect" fillColor="#ff660066"/>
+    <loader id="n1_epq" name="loaderIcon" xy="10,21" size="64,64" fill="scale"/>
+    <text id="n2_epq" name="title" xy="9,0" size="72,24" fontSize="16" bold="true" text="装备槽位"/>
+  </displayList>
+  <Button/>
+</component>

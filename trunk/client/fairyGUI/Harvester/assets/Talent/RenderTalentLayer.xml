@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="700,110">
+  <displayList>
+    <list id="n0_iqit" name="listTalent" xy="0,0" size="700,107" layout="row" lineGap="10" defaultItem="ui://tln0k001tln1" align="center">
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>

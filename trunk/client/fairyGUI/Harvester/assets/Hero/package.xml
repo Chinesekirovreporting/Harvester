@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="zru5wrs3">
+  <resources>
+    <component id="iqit0" name="WindowHero.xml" path="/" exported="true"/>
+    <component id="iqit1" name="BtnClose.xml" path="/"/>
+    <component id="iqit2" name="ComHeroEquip.xml" path="/"/>
+    <component id="iqit3" name="ComEquipSlot.xml" path="/"/>
+    <component id="iqit4" name="RenderAttr.xml" path="/"/>
+    <component id="iqit6" name="ComSkillSlot.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

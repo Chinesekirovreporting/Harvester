@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600">
+<component size="750,1334">
   <displayList>
-    <graph id="n0_itm" name="bg" xy="6,5" size="800,600" type="rect" lineSize="2" lineColor="#ffffffff"/>
-    <graph id="n1_itm" name="titleBg" xy="6,5" size="800,60" type="rect" lineColor="#ffffffff"/>
-    <text id="n2_itm" name="lblTitle" xy="32,27" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="物品图鉴"/>
-    <component id="n3_itm" name="btnCloseTop" src="itm2" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
-    <graph id="n4_itm" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
-    <list id="n5_itm" name="listItem" xy="45,86" size="710,460" overflow="scroll" lineGap="4" defaultItem="ui://itm0k001itm1" align="center" autoClearItems="true">
+    <graph id="n0_itm" name="bg" xy="0,0" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
+    <text id="n2_itm" name="lblTitle" xy="33,27" size="605,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="物品图鉴"/>
+    <component id="n3_itm" name="btnClose" src="itm2" fileName="BtnClose.xml" xy="648,22" size="100,40"/>
+    <list id="n5_itm" name="listItem" xy="25,363" size="710,460" overflow="scroll" lineGap="4" defaultItem="ui://itm0k001itm1" align="center" autoClearItems="true">
       <item/>
       <item/>
       <item/>
       <item/>
       <item/>
     </list>
-    <component id="n6_itm" name="btnClose" src="itm2" fileName="BtnClose.xml" xy="355,561" size="100,40">
-      <Button title="关闭"/>
-    </component>
   </displayList>
 </component>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_iqit" name="bg" xy="6,5" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
+    <graph id="n1_iqit" name="titleBg" xy="6,5" size="747,60" type="rect" lineColor="#ffffffff"/>
+    <text id="n2_iqit" name="lblTitle" xy="38,23" size="628,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="英雄面板"/>
+    <component id="n3_iqit" name="btnCloseTop" src="iqit1" fileName="BtnClose.xml" xy="650,16" size="91,40"/>
+    <text id="n7_iqit" name="lblHeroName" xy="224,77" size="88,29" fontSize="20" bold="true" text="英雄名字"/>
+    <component id="n10_iqit" name="ComHeroEquip1" src="iqit3" fileName="ComEquipSlot.xml" xy="39,91"/>
+    <component id="n11_iqit" name="ComHeroEquip2" src="iqit3" fileName="ComEquipSlot.xml" xy="39,194"/>
+    <component id="n12_iqit" name="ComHeroEquip3" src="iqit3" fileName="ComEquipSlot.xml" xy="39,319"/>
+    <component id="n13_iqit" name="ComHeroEquip4" src="iqit3" fileName="ComEquipSlot.xml" xy="39,436"/>
+    <component id="n14_iqit" name="ComHeroEquip5" src="iqit3" fileName="ComEquipSlot.xml" xy="444,102"/>
+    <component id="n15_iqit" name="ComHeroEquip7" src="iqit3" fileName="ComEquipSlot.xml" xy="444,323"/>
+    <component id="n16_iqit" name="ComHeroEquip6" src="iqit3" fileName="ComEquipSlot.xml" xy="444,212"/>
+    <component id="n17_iqit" name="ComHeroEquip8" src="iqit3" fileName="ComEquipSlot.xml" xy="444,438"/>
+    <loader id="n19_iqit" name="loaderHero" xy="155,114" size="268,401"/>
+    <list id="n22_iqit" name="listAttr" xy="538,118" size="217,403" overflow="scroll" defaultItem="ui://zru5wrs3iqit4">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <component id="n25_iqit" name="n25" src="iqit6" fileName="ComSkillSlot.xml" xy="87,620"/>
+    <component id="n26_iqit" name="n26" src="iqit6" fileName="ComSkillSlot.xml" xy="221,620" size="90,90"/>
+    <component id="n27_iqit" name="n27" src="iqit6" fileName="ComSkillSlot.xml" xy="351,620" size="90,90"/>
+    <component id="n28_iqit" name="n28" src="iqit6" fileName="ComSkillSlot.xml" xy="496,620" size="90,90"/>
+    <text id="n29_iqit" name="lblTitle" xy="41,544" size="628,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="技能槽位"/>
+  </displayList>
+</component>

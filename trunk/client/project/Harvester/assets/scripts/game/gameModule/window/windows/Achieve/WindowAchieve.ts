@@ -11,7 +11,6 @@ import { GameModels } from "../../../../gameModel/GameModels";
 export class WindowAchieve extends AbstractUIWindow {
 
     private listAchieve: GList;
-    private btnCloseTop:GButton;
     private btnClose:GButton;
 
     /**
@@ -44,8 +43,6 @@ export class WindowAchieve extends AbstractUIWindow {
         this.listAchieve.setVirtual();
         this.listAchieve.itemRenderer = this.listAchieveItemRenderer.bind(this);
         this.listAchieve.refreshVirtualList();
-        this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
-        this.btnCloseTop.onClick(this.onCloseClick, this);
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
         this.btnClose.onClick(this.onCloseClick, this);
     }

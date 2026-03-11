@@ -13,7 +13,6 @@ export class WindowItemBag extends AbstractUIWindow {
 
     private listItemBag: GList;
     private btnAddItem:GButton;
-    private btnCloseTop: GButton;
     private btnClose: GButton;
 
     protected getResList(): Array<string> {
@@ -40,8 +39,6 @@ export class WindowItemBag extends AbstractUIWindow {
         this.listItemBag.refreshVirtualList();
         this.btnAddItem = this.view.asCom.getChild("btnAddItem") as GButton;
         this.btnAddItem.onClick(this.onAddItemClick, this);
-        this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
-        this.btnCloseTop.onClick(this.onCloseClick, this);
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
         this.btnClose.onClick(this.onCloseClick, this);
     }
@@ -80,10 +77,8 @@ export class WindowItemBag extends AbstractUIWindow {
     }
 
     protected onDispose(): void {
-        this.btnCloseTop.offClick(this.onCloseClick, this);
         this.btnClose.offClick(this.onCloseClick, this);
-        this.listItemBag = null;
-        this.btnCloseTop = null;
         this.btnClose = null;
+        this.listItemBag = null;
     }
 }

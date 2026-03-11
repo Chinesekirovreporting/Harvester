@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600">
+<component size="750,1334">
   <displayList>
-    <graph id="n0_itde" name="n0" xy="0,0" size="800,600" type="rect"/>
-    <text id="n1_itde" name="n1" xy="264,111" size="191,42" fontSize="30" text="出游 敬请期待"/>
-    <component id="n3_itde" name="btnClose" src="itde1" fileName="BtnClose.xml" xy="544,33" size="100,40">
+    <graph id="n0_itde" name="n0" xy="0,0" size="750,1334" type="rect"/>
+    <text id="n1_itde" name="n1" xy="263,111" size="191,42" fontSize="30" text="出游 敬请期待"/>
+    <component id="n3_itde" name="btnClose" src="itde1" fileName="BtnClose.xml" xy="561,32" size="100,40">
       <Button title="关闭"/>
     </component>
   </displayList>

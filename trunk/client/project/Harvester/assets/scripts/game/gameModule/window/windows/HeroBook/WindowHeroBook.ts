@@ -94,9 +94,9 @@ export class WindowHeroBook extends AbstractUIWindow {
         }
         
         // 清理右上角关闭按钮
-        let btnCloseTop = this.getChildComp("btnCloseTop");
-        if (btnCloseTop) {
-            btnCloseTop.offClick(this.onCloseClick, this);
+        let btnClose = this.getChildComp("btnClose");
+        if (btnClose) {
+            btnClose.offClick(this.onCloseClick, this);
         }
         this.listHeroBook = null;
         this.btnClose = null;

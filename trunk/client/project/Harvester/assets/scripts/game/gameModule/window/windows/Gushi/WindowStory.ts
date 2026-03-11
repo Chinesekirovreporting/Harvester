@@ -58,14 +58,14 @@ export class WindowStory extends AbstractUIWindow {
         this.btnClose = this.getChildComp("btnClose");
         
         // 获取右上角关闭按钮
-        let btnCloseTop = this.getChildComp("btnCloseTop");
+        let btnClose = this.getChildComp("btnClose");
         
         // 绑定关闭按钮事件
         if (this.btnClose) {
             this.btnClose.onClick(this.onCloseClick, this);
         }
-        if (btnCloseTop) {
-            btnCloseTop.onClick(this.onCloseClick, this);
+        if (btnClose) {
+            btnClose.onClick(this.onCloseClick, this);
         }
         
         // 设置标题
@@ -127,9 +127,9 @@ export class WindowStory extends AbstractUIWindow {
         }
         
         // 清理右上角关闭按钮
-        let btnCloseTop = this.getChildComp("btnCloseTop");
-        if (btnCloseTop) {
-            btnCloseTop.offClick(this.onCloseClick, this);
+        let btnClose = this.getChildComp("btnClose");
+        if (btnClose) {
+            btnClose.offClick(this.onCloseClick, this);
         }
         
         this.txtTitle = null;

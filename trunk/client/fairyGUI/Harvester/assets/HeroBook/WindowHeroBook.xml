@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600">
+<component size="750,1334">
   <displayList>
-    <list id="n0_lrrb" name="listHeroBook" xy="21,35" size="698,331" layout="row" overflow="scroll" defaultItem="ui://a7mh4a68lrrb1" autoClearItems="true">
+    <graph id="n2_iqit" name="n2" xy="0,0" size="750,1334" type="rect"/>
+    <list id="n0_lrrb" name="listHeroBook" xy="26,436" size="698,331" layout="row" overflow="scroll" defaultItem="ui://a7mh4a68lrrb1" autoClearItems="true">
       <item/>
       <item/>
       <item/>
@@ -9,6 +10,6 @@
       <item/>
       <item/>
     </list>
-    <component id="n1_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="739,4" size="40,40"/>
+    <component id="n1_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="625,45" size="99,40"/>
   </displayList>
 </component>

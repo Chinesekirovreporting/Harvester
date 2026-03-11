@@ -9,6 +9,7 @@ import { ModelSkill } from "./ModelSkill";
 import { ModelTec } from "./ModelTec";
 import { ModelTree } from "./ModelTree";
 import { ModelSetting } from "./ModelSetting";
+import { ModelTalent } from "./ModelTalent";
 
 export class GameModels {
     public static role:ModelRole;           // 角色战队
@@ -21,7 +22,7 @@ export class GameModels {
     public static itemBook:ModelItemBook;          // 物品图鉴
     public static itemBag:ModelItemBag;          // 物品背包
     // public static equip:ModelEquip;        // 英雄装备
-    // public static talent:ModelTalent;      // 天赋树
+    public static talent:ModelTalent;      // 天赋树
     public static setting:ModelSetting;    // 设置
 
     public static init() {
@@ -39,7 +40,7 @@ export class GameModels {
         // // 加载英雄装备数据
         // GameModels.equip = new ModelEquip();
         // // 加载天赋数据
-        // GameModels.talent = new ModelTalent();
+        GameModels.talent = new ModelTalent();
         // 加载设置数据
         GameModels.setting = new ModelSetting();
         // 加载物品图鉴数据

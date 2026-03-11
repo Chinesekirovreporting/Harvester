@@ -2,8 +2,7 @@
 <packageDescription id="epq0e001">
   <resources>
     <component id="epq0" name="WindowEquip.xml" path="/" exported="true"/>
-    <component id="epq1" name="RenderHeroEquip.xml" path="/"/>
-    <component id="epq2" name="RenderEquipSlot.xml" path="/"/>
+    <component id="epq2" name="RenderEquip.xml" path="/"/>
     <component id="epq3" name="BtnClose.xml" path="/"/>
   </resources>
   <publish name=""/>

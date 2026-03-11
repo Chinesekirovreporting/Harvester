@@ -4,6 +4,7 @@
     <component id="tln0" name="WindowTalent.xml" path="/" exported="true"/>
     <component id="tln1" name="RenderTalentNode.xml" path="/"/>
     <component id="tln2" name="BtnClose.xml" path="/"/>
+    <component id="iqit0" name="RenderTalentLayer.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

@@ -10,7 +10,6 @@ import { GameModels } from "../../../../gameModel/GameModels";
 export class WindowSkillBook extends AbstractUIWindow {
 
     private listSkillBook: GList;
-    private btnCloseTop: GButton;
     private btnClose: GButton;
 
     protected getResList(): Array<string> {
@@ -35,8 +34,6 @@ export class WindowSkillBook extends AbstractUIWindow {
         this.listSkillBook.setVirtual();
         this.listSkillBook.itemRenderer = this.listSkillItemRenderer.bind(this);
         this.listSkillBook.refreshVirtualList();
-        this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
-        this.btnCloseTop.onClick(this.onCloseClick, this);
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
         this.btnClose.onClick(this.onCloseClick, this);
     }
@@ -62,10 +59,8 @@ export class WindowSkillBook extends AbstractUIWindow {
     }
 
     protected onDispose(): void {
-        this.btnCloseTop.offClick(this.onCloseClick, this);
         this.btnClose.offClick(this.onCloseClick, this);
         this.listSkillBook = null;
-        this.btnCloseTop = null;
         this.btnClose = null;
     }
 }

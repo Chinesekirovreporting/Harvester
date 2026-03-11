@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600" scroll="both">
+<component size="750,1334" scroll="both">
   <displayList>
-    <graph id="n0_itde" name="n0" xy="-1,0" size="839,907" type="rect"/>
-    <component id="n5_itde" name="n5" src="itde1" fileName="ComStepTree.xml" xy="12,101" size="781,563"/>
+    <graph id="n0_itde" name="n0" xy="0,0" size="750,1334" type="rect"/>
+    <component id="n5_itde" name="n5" src="itde1" fileName="ComStepTree.xml" xy="22,218" size="683,563"/>
     <component id="n4_itde" name="btnClose" src="itde2" fileName="BtnClose.xml" xy="615,35" size="100,40">
       <Button title="关闭"/>
     </component>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600">
+<component size="750,1334">
   <displayList>
-    <graph id="n0_itde" name="n0" xy="0,0" size="800,600" type="rect"/>
-    <text id="n1_itde" name="n1" xy="200,90" size="251,42" fontSize="30" text="挑战模式 敬请期待"/>
+    <graph id="n0_itde" name="n0" xy="0,0" size="750,1334" type="rect"/>
+    <text id="n1_itde" name="n1" xy="201,90" size="251,42" fontSize="30" text="挑战模式 敬请期待"/>
     <component id="n2_itde" name="btnClose" src="itde1" fileName="BtnClose.xml" xy="618,26" size="100,40">
       <Button title="关闭"/>
     </component>

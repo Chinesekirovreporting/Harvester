@@ -4,6 +4,7 @@ import { RenderTalentNode, ITalentNodeData } from "./RenderTalentNode";
 import { GButton, GList, GTextField, Event } from "fairygui-cc";
 import { GameModels } from "../../../../gameModel/GameModels";
 import { TalentCFG } from "../../../../gameModel/table/tableClass/TalentCFG";
+import { RenderTalentLayer } from "./RenderTalentLayer";
 
 const DEFAULT_TREE_ID = 1;
 
@@ -11,10 +12,9 @@ const DEFAULT_TREE_ID = 1;
  * 天赋树窗口
  */
 export class WindowTalent extends AbstractUIWindow {
-    private listTalent: GList;
+    private listTalentLayer: GList;
     private lblPoints: GTextField;
     private btnReset: GButton;
-    private btnCloseTop: GButton;
     private btnClose: GButton;
 
     protected getResList(): Array<string> {
@@ -25,6 +25,7 @@ export class WindowTalent extends AbstractUIWindow {
         if (this._view) return;
 
         UICore.registerExtension("Talent", "RenderTalentNode", RenderTalentNode);
+        UICore.registerExtension("Talent", "RenderTalentLayer", RenderTalentLayer);
         const view = UICore.createObject("Talent", "WindowTalent").asCom;
         if (view) {
             this._view = view;
@@ -34,22 +35,20 @@ export class WindowTalent extends AbstractUIWindow {
     }
 
     protected onInitView(): void {
-        this.listTalent = this.view.asCom.getChild("listTalent") as GList;
-        this.listTalent.setVirtual();
-        this.listTalent.itemRenderer = this.listTalentItemRenderer.bind(this);
-        this.listTalent.on(Event.CLICK_ITEM, this.onTalentItemClick, this);
+        this.listTalentLayer = this.view.asCom.getChild("listTalentLayer") as GList;
+        // this.listTalentLayer.setVirtual();
+        // this.listTalentLayer.itemRenderer = this.listTalentLayerItemRenderer.bind(this);
+        this.listTalentLayer.on(Event.CLICK_ITEM, this.onTalentItemClick, this);
         this.lblPoints = this.view.asCom.getChild("lblPoints") as GTextField;
         this.btnReset = this.view.asCom.getChild("btnReset") as GButton;
         const resetTitle = this.btnReset.getChild("title") as GTextField;
         if (resetTitle) resetTitle.text = "重置";
         this.btnReset.onClick(this.onResetClick, this);
-        this.btnCloseTop = this.view.asCom.getChild("btnCloseTop") as GButton;
-        this.btnCloseTop.onClick(this.onCloseClick, this);
         this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
         this.btnClose.onClick(this.onCloseClick, this);
     }
 
-    private listTalentItemRenderer(index: number, item: RenderTalentNode): void {
+    private listTalentLayerItemRenderer(index: number, item: RenderTalentLayer): void {
         const list = GameModels.talent.getTalentList(DEFAULT_TREE_ID);
         const talentCFG = list[index];
         if (!talentCFG) return;
@@ -62,7 +61,7 @@ export class WindowTalent extends AbstractUIWindow {
     }
 
     private onTalentItemClick(): void {
-        const idx = this.listTalent.selectedIndex;
+        const idx = this.listTalentLayer.selectedIndex;
         if (idx < 0) return;
         const list = GameModels.talent.getTalentList(DEFAULT_TREE_ID);
         const cfg = list[idx];
@@ -106,24 +105,23 @@ export class WindowTalent extends AbstractUIWindow {
 
     private refreshTalent(): void {
         const list = GameModels.talent.getTalentList(DEFAULT_TREE_ID);
-        this.listTalent.numItems = list.length;
-        this.listTalent.refreshVirtualList();
+        this.listTalentLayer.numItems = 4; // list.length;
+        // this.listTalentLayer.refreshVirtualList();
 
         const remaining = GameModels.talent.getRemainingPoints(DEFAULT_TREE_ID);
         this.lblPoints.text = `剩余点数: ${remaining}`;
     }
 
     protected onClose(): void {
-        if (this.listTalent) {
-            this.listTalent.off(Event.CLICK_ITEM, this.onTalentItemClick, this);
+        if (this.listTalentLayer) {
+            this.listTalentLayer.off(Event.CLICK_ITEM, this.onTalentItemClick, this);
         }
     }
 
     protected onDispose(): void {
-        this.listTalent = null;
+        this.listTalentLayer = null;
         this.lblPoints = null;
         this.btnReset = null;
-        this.btnCloseTop = null;
         this.btnClose = null;
     }
 }

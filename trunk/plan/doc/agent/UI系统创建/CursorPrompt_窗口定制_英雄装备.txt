@@ -90,7 +90,7 @@
 - 在 `onInitView()` 中获取：
   - `listHero`(GList) - 英雄列表
   - `listEquipSlot`(GList) 或若干 `slot_xxx`(GButton) - 装备槽位
-  - `btnClose`(GButton)、`btnCloseTop`(GButton)
+  - `btnClose`(GButton)、`btnClose`(GButton)
   - 可选：`loaderPreview`、`lblHeroName` 等详情区组件
 - 英雄列表使用 `setVirtual()` + `itemRenderer` 做虚拟列表
 - 在 `onShow()` 中：刷新英雄列表、选中当前英雄、刷新装备槽
@@ -133,7 +133,7 @@
 - **右侧**：装备槽区域，可选方案：
   - 方案 A：多个 GLoader + GTextField 组合（slot_weapon、slot_armor 等）
   - 方案 B：GList 命名为 `listEquipSlot`，defaultItem 指向 RenderEquipSlot
-- 标题区、关闭按钮（btnClose、btnCloseTop）
+- 标题区、关闭按钮（btnClose、btnClose）
 - 标题建议为「英雄装备」
 
 ### 4.2 RenderHeroEquip 布局

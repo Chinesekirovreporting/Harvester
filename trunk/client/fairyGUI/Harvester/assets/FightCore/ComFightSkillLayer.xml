@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="700,600">
+  <displayList>
+    <graph id="n0_iqit" name="n0" xy="0,0" size="700,600" blend="add" filter="color" filterData="0,0,0,0" type="rect"/>
+    <text id="n1_iqit" name="n1" xy="7,1" size="109,35" fontSize="12" autoSize="none" text="这里是战斗的核心图层"/>
+    <text id="n2_iqit" name="n2" xy="5,35" size="697,35" fontSize="12" autoSize="none" text="战斗的核心思路：每一个Tick回合会产生一定数量的缓动气泡，每个回合有能量，每点击一个气泡Skill会消耗一点能量并施加技能效果"/>
+    <text id="n3_iqit" name="n3" xy="5,72" size="409,35" fontSize="12" autoSize="none" text="随着回合的进展，可设计气泡的数量髓回合数增加，能量也随之增加，时间缩减"/>
+    <text id="n4_iqit" name="n4" xy="7,115" size="376,19" fontSize="12" text="可设计出不同的牌型，基础牌，技能牌，状态牌，诅咒牌，敌对技能牌"/>
+    <component id="n5_iqit" name="n5" src="iqit5" fileName="ComFightSkill.xml" xy="104,194"/>
+    <component id="n7_iqit" name="n7" src="iqit5" fileName="ComFightSkill.xml" xy="271,207"/>
+    <component id="n8_iqit" name="n8" src="iqit5" fileName="ComFightSkill.xml" xy="75,339"/>
+    <component id="n9_iqit" name="n9" src="iqit5" fileName="ComFightSkill.xml" xy="223,391"/>
+    <component id="n10_iqit" name="n10" src="iqit5" fileName="ComFightSkill.xml" xy="296,295"/>
+  </displayList>
+</component>

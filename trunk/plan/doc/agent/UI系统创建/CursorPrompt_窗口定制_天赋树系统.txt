@@ -126,7 +126,7 @@ TALENT_POINTS: "harvester_talent_points",
   - `graphTalent`(GGraph) 或 `containerNodes`(GComponent) - 天赋节点容器
   - `lblPoints`(GTextField) - 剩余天赋点显示
   - `btnReset`(GButton) - 重置按钮
-  - `btnClose`(GButton)、`btnCloseTop`(GButton)
+  - `btnClose`(GButton)、`btnClose`(GButton)
 - 天赋树布局：根据 TalentCFG 的 Layer、PreReqIds 计算节点坐标，或用配置的 X、Y 字段
 - 在 `onShow()` 中：刷新天赋树显示、更新点数
 - 在 `onDispose()` 中解绑事件、置空引用

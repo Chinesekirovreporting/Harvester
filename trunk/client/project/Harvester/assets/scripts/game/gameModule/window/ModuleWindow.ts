@@ -20,6 +20,7 @@ import { WindowItemBook } from "./windows/ItemBook/WindowItemBook";
 import { WindowItemBag } from "./windows/ItemBag/WindowItemBag";
 import { WindowEquip } from "./windows/Equip/WindowEquip";
 import { WindowTalent } from "./windows/Talent/WindowTalent";
+import { WindowHero } from "./windows/Hero/WindowHero";
 
 export class ModuleWindow extends AbstractModule{
 	public static readonly SHOW_WINDOW:string = "ShowWindow";
@@ -45,6 +46,7 @@ export class ModuleWindow extends AbstractModule{
         this._windowClassDict["WindowTip"] = WindowTip;
 		this._windowClassDict["WindowFightCore"] = WindowFightCore;
         this._windowClassDict["WindowHeroBook"] = WindowHeroBook;
+        this._windowClassDict["WindowHero"] = WindowHero;
 		this._windowClassDict["WindowAchieve"] = WindowAchieve;
 		this._windowClassDict["WindowSkillBook"] = WindowSkillBook;
 		this._windowClassDict["WindowStepTree"] = WindowStepTree;

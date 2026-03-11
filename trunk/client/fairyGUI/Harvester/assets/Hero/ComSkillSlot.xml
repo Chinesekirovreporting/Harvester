@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="90,90" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n1_iqit" name="n1" xy="0,0" size="90,90" touchable="false" type="rect" lineSize="0" fillColor="#fffafafa">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n2_iqit" name="n2" xy="0,0" size="90,90" touchable="false" type="rect" lineSize="0" fillColor="#ffcccccc">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n3_iqit" name="n3" xy="0,2" size="80,84" type="rect" fillColor="#ff660066"/>
+    <loader id="n4_iqit" name="loaderIcon" xy="5,21" size="64,64" fill="scale"/>
+    <text id="n5_iqit" name="title" xy="4,0" size="72,24" fontSize="16" bold="true" text="技能槽位"/>
+  </displayList>
+  <Button/>
+</component>

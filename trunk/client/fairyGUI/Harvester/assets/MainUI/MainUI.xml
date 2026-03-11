@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334">
   <displayList>
-    <graph id="n1_m544" name="n1" xy="0,0" size="750,1334" type="rect"/>
-    <text id="n0_t3dk" name="n0" xy="213,31" size="174,34" fontSize="24" autoSize="none" text="英雄传"/>
-    <component id="n4_ia6v" name="btnGushi" src="ia6v1" fileName="Button1.xml" xy="35,82" size="137,58">
+    <graph id="n1_m544" name="n1" xy="0,-1" size="750,1334" type="rect"/>
+    <text id="n0_t3dk" name="n0" xy="96,26" size="304,34" fontSize="24" autoSize="none" text="奇妙故事物语之墨战嘉年华"/>
+    <component id="n4_ia6v" name="btnGushi" src="ia6v1" fileName="Button1.xml" xy="36,73" size="137,42">
       <Button title="故事模式"/>
     </component>
-    <component id="n5_ia6v" name="btnRogue" src="ia6v1" fileName="Button1.xml" xy="189,82" size="145,52">
+    <component id="n5_ia6v" name="btnRogue" src="ia6v1" fileName="Button1.xml" xy="208,76" size="145,52">
       <Button title="rogue模式&#xA;"/>
     </component>
-    <component id="n7_ia6v" name="btnChallenge" src="ia6v1" fileName="Button1.xml" xy="386,83" size="137,48">
+    <component id="n7_ia6v" name="btnChallenge" src="ia6v1" fileName="Button1.xml" xy="383,80" size="137,48">
       <Button title="挑战模式&#xA;"/>
     </component>
     <component id="n8_ia6v" name="btnTravel" src="ia6v1" fileName="Button1.xml" xy="569,86" size="137,48">
       <Button title="出游"/>
     </component>
     <loader id="n9_ia6v" name="loaderHero" xy="33,224" size="431,422" url="ui://ncp1c1kslrrb3" fill="scale"/>
-    <text id="n10_ia6v" name="n10" xy="36,153" size="247,84" fontSize="24" autoSize="none" text="此处展示主体"/>
+    <text id="n10_ia6v" name="n10" xy="34,150" size="425,84" fontSize="24" autoSize="none" text="此处展示主体。墨战英雄传脱离等级限制，直接设为满级状态，开放大环境"/>
     <component id="n11_ia6v" name="btnEquip" src="ia6v1" fileName="Button1.xml" xy="520,287" size="133,47">
-      <Button title="装备"/>
+      <Button title="装备附魔"/>
     </component>
-    <component id="n12_ia6v" name="btnItemBook" src="ia6v1" fileName="Button1.xml" xy="386,685" size="133,47">
+    <component id="n12_ia6v" name="btnItemBook" src="ia6v1" fileName="Button1.xml" xy="379,687" size="133,47">
       <Button title="物品图鉴"/>
     </component>
     <component id="n13_ia6v" name="btnTalent" src="ia6v1" fileName="Button1.xml" xy="520,474" size="133,47">
       <Button title="天赋树"/>
     </component>
-    <component id="n14_ia6v" name="btnSkill" src="ia6v1" fileName="Button1.xml" xy="520,577" size="133,47">
-      <Button title="技能选择"/>
+    <component id="n14_ia6v" name="btnSkill" src="ia6v1" fileName="Button1.xml" xy="520,577" size="186,47">
+      <Button title="技能符文养成"/>
     </component>
     <component id="n15_ia6v" name="btnHeroExchange" src="ia6v1" fileName="Button1.xml" xy="90,766" size="125,38">
       <Button title="切换英雄"/>
@@ -41,17 +41,31 @@
     <component id="n18_ia6v" name="btnAchievement" src="ia6v1" fileName="Button1.xml" xy="524,766" size="125,38">
       <Button title="成就"/>
     </component>
-    <component id="n19_ia6v" name="btnTest" src="ia6v1" fileName="Button1.xml" xy="436,27">
+    <component id="n19_ia6v" name="btnTest" src="ia6v1" fileName="Button1.xml" xy="412,27">
       <Button title="测试战斗"/>
     </component>
-    <component id="n20_itde" name="btnRole" src="ia6v1" fileName="Button1.xml" xy="520,210" size="133,47">
-      <Button title="人物"/>
+    <component id="n20_itde" name="btnHero" src="ia6v1" fileName="Button1.xml" xy="520,210" size="133,47">
+      <Button title="英雄界面"/>
     </component>
-    <component id="n22_itde" name="btnTestStep" src="ia6v1" fileName="Button1.xml" xy="592,27">
+    <component id="n22_itde" name="btnTestStep" src="ia6v1" fileName="Button1.xml" xy="589,25">
       <Button title="测试节点树"/>
     </component>
     <component id="n23_itde" name="btnItemBag" src="ia6v1" fileName="Button1.xml" xy="518,376" size="133,47">
       <Button title="玩家物品"/>
     </component>
+    <text id="n24_iqit" name="n24" xy="506,629" size="244,19" fontSize="12" text="技能镶嵌符文包含红黄蓝等不同属性符文功能"/>
+    <text id="n25_iqit" name="n25" xy="519,650" size="160,19" fontSize="12" text="用于添加不同的技能特殊效果"/>
+    <text id="n26_iqit" name="n26" xy="569,135" size="124,19" fontSize="12" text="资源获取以及专业培养"/>
+    <text id="n27_iqit" name="n27" xy="504,520" size="244,19" fontSize="12" text="待定：可适当参考85级WOW 的三选一模块化"/>
+    <text id="n28_iqit" name="n28" xy="475,342" size="273,19" fontSize="12" text="装备附魔可参考Dota可简可繁附魔，属性++或其他"/>
+    <text id="n29_iqit" name="n29" xy="518,422" size="211,53" fontSize="12" autoSize="none" text="账号级别的功能池。包含药剂，任务物品，交易物品，特殊功能物品等。药剂可给战斗上站前BUFF，限时场次"/>
+    <text id="n30_iqit" name="n30" xy="522,258" size="172,19" fontSize="12" text="备战环节，负责装备和技能选择"/>
+    <text id="n31_iqit" name="n31" xy="416,63" size="338,19" fontSize="12" text="负责管理章节内战斗，为一组战斗到BOSS的闭环 参考杀戮尖塔"/>
+    <text id="n32_iqit" name="n32" xy="84,8" size="592,19" fontSize="12" text="测试战斗为一种牌斗游戏，通过文字冒险的形式播放，玩家负责备战和结果展示，不参与过程。参考：文字冒险"/>
+    <text id="n33_iqit" name="n33" xy="9,114" size="217,39" fontSize="12" autoSize="none" text="计划梳理3-6个章节（不同副本）提供入门级游戏内容"/>
+    <text id="n34_iqit" name="n34" xy="392,125" size="64,19" fontSize="12" text="高温度章节"/>
+    <text id="n35_iqit" name="n35" xy="231,122" size="76,19" fontSize="12" text="随机章节管理"/>
+    <text id="n36_iqit" name="n36" xy="53,659" size="172,19" fontSize="12" text="选择 奇遇 弱联机 交互 物品传递"/>
+    <text id="n37_iqit" name="n37" xy="39,242" size="112,19" fontSize="12" text="德鲁伊设计定位法坦"/>
   </displayList>
 </component>

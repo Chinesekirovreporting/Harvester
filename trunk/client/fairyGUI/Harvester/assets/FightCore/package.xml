@@ -5,6 +5,8 @@
     <component id="lrrb1" name="ActorCom.xml" path="/"/>
     <component id="lrrb2" name="BtnClose.xml" path="/"/>
     <movieclip id="itde3" name="MovieClip1.jta" path="/"/>
+    <component id="iqit4" name="ComFightSkillLayer.xml" path="/"/>
+    <component id="iqit5" name="ComFightSkill.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

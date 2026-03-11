@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_iqit" name="n0" xy="21,38" size="707,116" type="rect"/>
+    <graph id="n1_iqit" name="n1" xy="10,269" size="725,596" type="rect"/>
+    <graph id="n2_iqit" name="n2" xy="132,1162" size="416,127" type="rect"/>
+    <richtext id="n3_iqit" name="n3" xy="70,387" size="530,264" fontSize="30" autoSize="none" text="技能符文石磁条养成，敬请期待"/>
+  </displayList>
+</component>

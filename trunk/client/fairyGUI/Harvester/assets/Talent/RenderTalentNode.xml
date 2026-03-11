@@ -2,11 +2,10 @@
 <component size="120,100" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
-    <graph id="n0_tln" name="bg" xy="0,0" size="120,100" type="rect" fillColor="#ff333333" lineSize="2" lineColor="#ff666666"/>
+    <graph id="n0_tln" name="bg" xy="0,0" size="120,100" type="rect" lineSize="2" lineColor="#ff666666" fillColor="#ff333333"/>
     <loader id="n1_tln" name="loaderIcon" xy="36,8" size="48,48" fill="scale"/>
     <text id="n2_tln" name="lblName" xy="8,60" size="104,20" fontSize="12" align="center" autoSize="none" text="天赋名称"/>
     <text id="n3_tln" name="lblRank" xy="8,80" size="104,16" fontSize="10" align="center" autoSize="none" text="0/1"/>
-    <image id="n4_tln" name="imgLocked" xy="50,30" size="20,20" pivot="0.5,0.5" icon="ui://Icon/icon1" visible="false"/>
   </displayList>
   <Button/>
 </component>

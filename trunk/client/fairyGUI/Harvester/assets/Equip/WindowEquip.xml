@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,600">
+<component size="750,1334">
   <displayList>
-    <graph id="n0_epq" name="bg" xy="6,5" size="800,600" type="rect" lineSize="2" lineColor="#ffffffff"/>
-    <graph id="n1_epq" name="titleBg" xy="6,5" size="800,60" type="rect" lineColor="#ffffffff"/>
-    <text id="n2_epq" name="lblTitle" xy="32,27" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="英雄装备"/>
-    <component id="n3_epq" name="btnCloseTop" src="epq3" fileName="BtnClose.xml" xy="755,15" size="40,40"/>
-    <graph id="n4_epq" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
-    <list id="n5_epq" name="listHero" xy="35,90" size="200,460" layout="vertical" overflow="scroll" lineGap="4" defaultItem="ui://epq0e001epq1" autoClearItems="true">
+    <graph id="n0_epq" name="bg" xy="0,0" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
+    <text id="n2_epq" name="lblTitle" xy="17,4" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="英雄装备"/>
+    <component id="n3_epq" name="btnCloseTop" src="epq3" fileName="BtnClose.xml" xy="626,10" size="91,40"/>
+    <list id="n6_epq" name="listEquipSlot" xy="21,814" size="694,436" layout="vertical" overflow="scroll" lineGap="8" defaultItem="ui://epq0e001epq2" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
       <item/>
       <item/>
       <item/>
     </list>
-    <list id="n6_epq" name="listEquipSlot" xy="260,90" size="500,460" layout="vertical" overflow="scroll" lineGap="8" defaultItem="ui://epq0e001epq2" autoClearItems="true">
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-    </list>
-    <text id="n7_epq" name="lblHeroName" xy="260,55" size="300,30" fontSize="20" bold="true" text=""/>
-    <component id="n8_epq" name="btnClose" src="epq3" fileName="BtnClose.xml" xy="355,561" size="100,40">
-      <Button title="关闭"/>
-    </component>
+    <component id="n9_iqit" name="n9" src="epq2" fileName="RenderEquip.xml" xy="249,230"/>
+    <text id="n10_iqit" name="n10" xy="121,98" size="171,42" fontSize="30" text="附魔点数：0"/>
+    <text id="n11_iqit" name="n11" xy="141,458" size="361,42" fontSize="30" autoSize="none" text="附魔磁条：攻击+10%"/>
   </displayList>
 </component>
