@@ -4,7 +4,7 @@
     <graph id="n0_iqit" name="bg" xy="6,5" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
     <graph id="n1_iqit" name="titleBg" xy="6,5" size="747,60" type="rect" lineColor="#ffffffff"/>
     <text id="n2_iqit" name="lblTitle" xy="38,23" size="628,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="英雄面板"/>
-    <component id="n3_iqit" name="btnCloseTop" src="iqit1" fileName="BtnClose.xml" xy="650,16" size="91,40"/>
+    <component id="n3_iqit" name="btnClose" src="iqit1" fileName="BtnClose.xml" xy="650,16" size="91,40"/>
     <text id="n7_iqit" name="lblHeroName" xy="224,77" size="88,29" fontSize="20" bold="true" text="英雄名字"/>
     <component id="n10_iqit" name="ComHeroEquip1" src="iqit3" fileName="ComEquipSlot.xml" xy="39,91"/>
     <component id="n11_iqit" name="ComHeroEquip2" src="iqit3" fileName="ComEquipSlot.xml" xy="39,194"/>

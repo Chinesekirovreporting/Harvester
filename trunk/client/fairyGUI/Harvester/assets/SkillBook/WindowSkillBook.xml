@@ -3,7 +3,7 @@
   <displayList>
     <graph id="n0_skb" name="bg" xy="0,0" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
     <text id="n2_skb" name="lblTitle" xy="22,19" size="604,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="技能图鉴"/>
-    <component id="n3_skb" name="btnCloseTop" src="skb2" fileName="BtnClose.xml" xy="638,16" size="107,40"/>
+    <component id="n3_skb" name="btnClose" src="skb2" fileName="BtnClose.xml" xy="638,16" size="107,40"/>
     <list id="n5_skb" name="listSkillBook" xy="17,330" size="658,599" overflow="scroll" lineGap="4" defaultItem="ui://skb0k001skb1" align="center" autoClearItems="true">
       <item/>
       <item/>

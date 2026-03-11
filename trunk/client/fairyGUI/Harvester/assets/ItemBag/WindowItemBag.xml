@@ -4,7 +4,7 @@
     <graph id="n0_bpk" name="bg" xy="6,5" size="800,600" type="rect" lineSize="2" lineColor="#ffffffff"/>
     <graph id="n1_bpk" name="titleBg" xy="6,5" size="800,60" type="rect" lineColor="#ffffffff"/>
     <text id="n2_bpk" name="lblTitle" xy="32,27" size="684,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="背包"/>
-    <component id="n3_bpk" name="btnCloseTop" src="bpk2" fileName="BtnClose.xml" xy="726,26" size="74,40"/>
+    <component id="n3_bpk" name="btnClose" src="bpk2" fileName="BtnClose.xml" xy="726,26" size="74,40"/>
     <graph id="n4_bpk" name="contentBg" xy="26,83" size="760,480" type="rect" lineColor="#ff33ff99"/>
     <list id="n5_bpk" name="listItemBag" xy="45,81" size="710,460" overflow="scroll" lineGap="4" defaultItem="ui://bpk0k001bpk1" align="center" autoClearItems="true">
       <item/>
