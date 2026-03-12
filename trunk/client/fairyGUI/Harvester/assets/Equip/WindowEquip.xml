@@ -4,7 +4,7 @@
     <graph id="n0_epq" name="bg" xy="0,0" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
     <text id="n2_epq" name="lblTitle" xy="17,4" size="700,39" fontSize="28" color="#663333" autoSize="none" bold="true" text="英雄装备"/>
     <component id="n3_epq" name="btnClose" src="epq3" fileName="BtnClose.xml" xy="626,10" size="91,40"/>
-    <list id="n6_epq" name="listEquipSlot" xy="21,814" size="694,436" layout="vertical" overflow="scroll" lineGap="8" defaultItem="ui://epq0e001epq2" autoClearItems="true">
+    <list id="n6_epq" name="listEquip" xy="20,815" size="694,436" layout="vertical" overflow="scroll" lineGap="8" defaultItem="ui://epq0e001epq2" autoClearItems="true">
       <item/>
       <item/>
       <item/>

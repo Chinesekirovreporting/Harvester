@@ -26,7 +26,7 @@
     <component id="n13_ia6v" name="btnTalent" src="ia6v1" fileName="Button1.xml" xy="520,474" size="133,47">
       <Button title="天赋树"/>
     </component>
-    <component id="n14_ia6v" name="btnSkill" src="ia6v1" fileName="Button1.xml" xy="520,577" size="186,47">
+    <component id="n14_ia6v" name="btnSkillStone" src="ia6v1" fileName="Button1.xml" xy="520,577" size="186,47">
       <Button title="技能符文养成"/>
     </component>
     <component id="n15_ia6v" name="btnHeroExchange" src="ia6v1" fileName="Button1.xml" xy="90,766" size="125,38">
@@ -44,7 +44,7 @@
     <component id="n19_ia6v" name="btnTest" src="ia6v1" fileName="Button1.xml" xy="412,27">
       <Button title="测试战斗"/>
     </component>
-    <component id="n20_itde" name="btnHero" src="ia6v1" fileName="Button1.xml" xy="520,210" size="133,47">
+    <component id="n20_itde" name="btnHero" src="ia6v1" fileName="Button1.xml" xy="519,210" size="133,47">
       <Button title="英雄界面"/>
     </component>
     <component id="n22_itde" name="btnTestStep" src="ia6v1" fileName="Button1.xml" xy="589,25">

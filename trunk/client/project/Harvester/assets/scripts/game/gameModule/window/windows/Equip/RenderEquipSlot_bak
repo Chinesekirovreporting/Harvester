@@ -1,0 +1,54 @@
+// import { GButton, GLoader, GTextField } from "fairygui-cc";
+// import { GameRes } from "../../../../gameModel/setting/GameRes";
+// import type { ItemCFG } from "../../../../gameModel/table/tableClass/ItemCFG";
+
+// /** 品质颜色映射 (0xRRGGBB) */
+// const QUALITY_COLORS: Record<string, number> = {
+//     "白": 0xFFFFFF,
+//     "普通": 0xFFFFFF,
+//     "绿": 0x00FF00,
+//     "蓝": 0x0080FF,
+//     "紫": 0x8000FF,
+//     "橙": 0xFF8000,
+//     "传说": 0xFF8000,
+// };
+
+// /** 装备槽位展示数据 */
+// export interface IEquipSlotData {
+//     slotType: string;
+//     itemCFG: ItemCFG | null;
+// }
+
+// export class RenderEquipSlot extends GButton {
+//     private loaderIcon: GLoader;
+//     private lblSlotName: GTextField;
+//     private lblQuality: GTextField;
+//     private lblDesc: GTextField;
+
+//     protected onConstruct(): void {
+//         super.onConstruct();
+//         this.loaderIcon = this.getChild("loaderIcon") as GLoader;
+//         this.lblSlotName = this.getChild("lblSlotName") as GTextField;
+//         this.lblQuality = this.getChild("lblQuality") as GTextField;
+//         this.lblDesc = this.getChild("lblDesc") as GTextField;
+//     }
+
+//     public setData(data: IEquipSlotData): void {
+//         if (!data) return;
+//         this.lblSlotName.text = data.slotType || "";
+//         if (data.itemCFG) {
+//             this.lblQuality.text = data.itemCFG.Quality || "";
+//             this.lblQuality.color = QUALITY_COLORS[data.itemCFG.Quality] ?? 0xFFFFFF;
+//             this.lblDesc.text = data.itemCFG.Desc || "";
+//             if (data.itemCFG.Icon && GameRes.ICON_PATH) {
+//                 this.loaderIcon.url = GameRes.ICON_PATH + data.itemCFG.Icon;
+//             } else {
+//                 this.loaderIcon.url = GameRes.UI_ICON_PATH || "";
+//             }
+//         } else {
+//             this.lblQuality.text = "";
+//             this.lblDesc.text = "点击装备";
+//             this.loaderIcon.url = GameRes.UI_ICON_PATH || "";
+//         }
+//     }
+// }

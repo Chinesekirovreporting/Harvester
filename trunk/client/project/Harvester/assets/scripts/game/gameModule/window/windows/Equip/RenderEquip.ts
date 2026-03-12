@@ -2,7 +2,7 @@ import { GButton, GLoader, GTextField } from "fairygui-cc";
 import { HeroBookCFG } from "../../../../gameModel/table/tableClass/HeroBookCFG";
 import { GameRes } from "../../../../gameModel/setting/GameRes";
 
-export class RenderHeroEquip extends GButton {
+export class RenderEquip extends GButton {
     private loaderIcon: GLoader;
     private lblName: GTextField;
     private lblType: GTextField;

@@ -1,8 +1,7 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
 import { GButton, GList, GTextField, Event } from "fairygui-cc";
-import { RenderHeroEquip } from "./RenderHeroEquip";
-import { RenderEquipSlot, IEquipSlotData } from "./RenderEquipSlot";
+import { RenderEquip } from "./RenderEquip";
 import { GameModels } from "../../../../gameModel/GameModels";
 import { EQUIP_SLOT_TYPES } from "../../../../gameModel/ModelEquip";
 import type { HeroBookCFG } from "../../../../gameModel/table/tableClass/HeroBookCFG";
@@ -11,10 +10,8 @@ import type { HeroBookCFG } from "../../../../gameModel/table/tableClass/HeroBoo
  * 英雄装备窗口
  */
 export class WindowEquip extends AbstractUIWindow {
-    private listHero: GList;
-    private listEquipSlot: GList;
+    private listEquip: GList;
     private lblHeroName: GTextField;
-    private btnClose: GButton;
     private btnClose: GButton;
 
     /** 当前选中的英雄ID */
@@ -28,8 +25,7 @@ export class WindowEquip extends AbstractUIWindow {
         if (this._view) {
             return;
         }
-        UICore.registerExtension("Equip", "RenderHeroEquip", RenderHeroEquip);
-        UICore.registerExtension("Equip", "RenderEquipSlot", RenderEquipSlot);
+        UICore.registerExtension("Equip", "RenderEquip", RenderEquip);
         let view = UICore.createObject("Equip", "WindowEquip").asCom;
         if (view) {
             this._view = view;
@@ -39,85 +35,56 @@ export class WindowEquip extends AbstractUIWindow {
     }
 
     protected onInitView(): void {
-        this.listHero = this.view.asCom.getChild("listHero") as GList;
-        this.listEquipSlot = this.view.asCom.getChild("listEquipSlot") as GList;
+        this.listEquip = this.view.asCom.getChild("listEquip") as GList;
         this.lblHeroName = this.view.asCom.getChild("lblHeroName") as GTextField;
-        this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
-        this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
+        this.btnClose = this.view.asCom.getChild("btnClose") as GButton
 
-        this.listHero.setVirtual();
-        this.listHero.itemRenderer = this.listHeroItemRenderer.bind(this);
-        this.listHero.on(Event.CLICK_ITEM, this.onHeroItemClick, this);
+        this.listEquip.setVirtual();
+        this.listEquip.itemRenderer = this.listEquipRenderer.bind(this);
+        this.listEquip.on(Event.CLICK_ITEM, this.onHeroItemClick, this);
 
-        this.listEquipSlot.setVirtual();
-        this.listEquipSlot.itemRenderer = this.listEquipSlotItemRenderer.bind(this);
-        this.listEquipSlot.on(Event.CLICK_ITEM, this.onEquipSlotClick, this);
-
-        this.btnClose.onClick(this.onCloseClick, this);
         this.btnClose.onClick(this.onCloseClick, this);
     }
 
-    private listHeroItemRenderer(index: number, item: RenderHeroEquip): void {
+    private listEquipRenderer(index: number, item: RenderEquip): void {
         const list = GameModels.heroBook.getHeroBookList();
         item.setData(list[index]);
     }
 
-    private listEquipSlotItemRenderer(index: number, item: RenderEquipSlot): void {
-        const slotType = EQUIP_SLOT_TYPES[index];
-        const itemCFG = GameModels.equip.getEquipItemCFG(this._selectedHeroId, slotType);
-        item.setData({ slotType, itemCFG });
-    }
-
     private onHeroItemClick(): void {
-        const idx = this.listHero.selectedIndex;
-        if (idx < 0) return;
-        const list = GameModels.heroBook.getHeroBookList();
-        const hero = list[idx];
-        if (hero) {
-            this._selectedHeroId = hero.ID;
-            this.refreshEquipSlots();
-        }
+        // const idx = this.listHero.selectedIndex;
+        // if (idx < 0) return;
+        // const list = GameModels.heroBook.getHeroBookList();
+        // const hero = list[idx];
+        // if (hero) {
+        //     this._selectedHeroId = hero.ID;
+        //     this.refreshEquipSlots();
+        // }
     }
 
-    private onEquipSlotClick(): void {
-        const idx = this.listEquipSlot.selectedIndex;
-        if (idx < 0 || this._selectedHeroId <= 0) return;
-        const slotType = EQUIP_SLOT_TYPES[idx];
-        const itemCFG = GameModels.equip.getEquipItemCFG(this._selectedHeroId, slotType);
-        if (itemCFG) {
-            GameModels.equip.unequipItem(this._selectedHeroId, slotType);
-            this.refreshEquipSlots();
-        } else {
-            // 点击空槽：可扩展打开背包选择装备
-            console.log("点击空槽位:", slotType, "可扩展打开背包");
-        }
-    }
-
-    private refreshEquipSlots(): void {
-        if (this.lblHeroName) {
-            const hero = GameModels.heroBook.getHeroBookById(this._selectedHeroId);
-            this.lblHeroName.text = hero ? hero.Name : "";
-        }
-        this.listEquipSlot.numItems = EQUIP_SLOT_TYPES.length;
-        this.listEquipSlot.refreshVirtualList();
-    }
+    // private refreshEquipSlots(): void {
+    //     if (this.lblHeroName) {
+    //         const hero = GameModels.heroBook.getHeroBookById(this._selectedHeroId);
+    //         this.lblHeroName.text = hero ? hero.Name : "";
+    //     }
+    // }
 
     private onCloseClick(): void {
         this.close();
     }
 
     protected onShow(...args: Array<any>): void {
-        this.listHero.numItems = GameModels.heroBook.getHeroBookList().length;
-        this.listHero.refreshVirtualList();
+        this.listEquip.numItems = GameModels.heroBook.getHeroBookList().length;
+        this.listEquip.refreshVirtualList();
         // 默认选中第一个英雄
         const list = GameModels.heroBook.getHeroBookList();
         if (list.length > 0) {
             this._selectedHeroId = list[0].ID;
-            this.listHero.selectedIndex = 0;
+            this.listEquip.selectedIndex = 0;
         } else {
             this._selectedHeroId = 0;
         }
-        this.refreshEquipSlots();
+        // this.refreshEquipSlots();
     }
 
     protected onClose(): void {
@@ -125,14 +92,10 @@ export class WindowEquip extends AbstractUIWindow {
     }
 
     protected onDispose(): void {
-        this.listHero.off(Event.CLICK_ITEM, this.onHeroItemClick, this);
-        this.listEquipSlot.off(Event.CLICK_ITEM, this.onEquipSlotClick, this);
+        this.listEquip.off(Event.CLICK_ITEM, this.onHeroItemClick, this);
         this.btnClose.offClick(this.onCloseClick, this);
-        this.btnClose.offClick(this.onCloseClick, this);
-        this.listHero = null;
-        this.listEquipSlot = null;
+        this.listEquip = null;
         this.lblHeroName = null;
-        this.btnClose = null;
         this.btnClose = null;
     }
 }

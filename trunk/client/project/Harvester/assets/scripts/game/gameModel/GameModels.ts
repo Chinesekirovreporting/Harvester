@@ -18,12 +18,12 @@ export class GameModels {
     public static tec:ModelTec;             // 科技
     public static achieve:ModelAchieve;     // 成就
     public static heroBook:ModelHeroBook;   // 英雄图鉴
-    public static skill:ModelSkill;        // 技能图鉴
-    public static itemBook:ModelItemBook;          // 物品图鉴
-    public static itemBag:ModelItemBag;          // 物品背包
-    // public static equip:ModelEquip;        // 英雄装备
-    public static talent:ModelTalent;      // 天赋树
-    public static setting:ModelSetting;    // 设置
+    public static skill:ModelSkill;         // 技能图鉴
+    public static itemBook:ModelItemBook;   // 物品图鉴
+    public static itemBag:ModelItemBag;     // 物品背包
+    public static equip:ModelEquip;         // 英雄装备
+    public static talent:ModelTalent;       // 天赋树
+    public static setting:ModelSetting;     // 设置
 
     public static init() {
         GameModels.role = new ModelRole();
@@ -38,7 +38,7 @@ export class GameModels {
         GameModels.skill = new ModelSkill();
 
         // // 加载英雄装备数据
-        // GameModels.equip = new ModelEquip();
+        GameModels.equip = new ModelEquip();
         // // 加载天赋数据
         GameModels.talent = new ModelTalent();
         // 加载设置数据

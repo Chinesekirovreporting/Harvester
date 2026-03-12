@@ -5,8 +5,9 @@
     <graph id="n0_epq" name="n0" xy="4,2" size="201,84" type="rect" fillColor="#ff660066"/>
     <loader id="n1_epq" name="loaderIcon" xy="12,12" size="64,64" fill="scale"/>
     <text id="n2_epq" name="lblSlotName" xy="87,9" size="38,24" fontSize="16" bold="true" text="槽位"/>
-    <text id="n3_epq" name="lblQuality" xy="132,11" size="80,24" fontSize="14" text=""/>
+    <text id="n3_epq" name="lblType" xy="170,9" size="34,24" fontSize="14" autoSize="none" text=""/>
     <text id="n4_epq" name="lblDesc" xy="90,38" size="107,44" fontSize="12" autoSize="none" text="装备描述"/>
+    <text id="n5_iqit" name="lblName" xy="129,9" size="32,22" fontSize="14" text="名字"/>
   </displayList>
   <Button/>
 </component>

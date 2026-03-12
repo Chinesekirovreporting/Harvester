@@ -15,11 +15,13 @@ export class MainUITopView extends AbstractUIView {
     public btnHeroBook:GButton;
     public btnAchievement:GButton;
     public btnSkillBook:GButton;
+    public btnSkillStone:GButton;
     public btnHero:GButton;
     public btnTravel:GButton;
     public btnTestStep:GButton;
     public btnItemBook:GButton;
     public btnItemBag:GButton;
+    public btnEquip:GButton;
 
     public onInit(): void {
         this.btnTest = this.view.asCom.getChild("btnTest");
@@ -42,6 +44,8 @@ export class MainUITopView extends AbstractUIView {
         this.btnAchievement.onClick(this.onAchievementClick, this);
         this.btnSkillBook = this.view.asCom.getChild("btnSkillBook");
         this.btnSkillBook.onClick(this.onSkillBookClick, this);
+        this.btnSkillStone = this.view.asCom.getChild("btnSkillStone");
+        this.btnSkillStone.onClick(this.onSkillStoneClick, this);
         this.btnHero = this.view.asCom.getChild("btnHero");
         this.btnHero.onClick(this.onHeroClick, this);
         this.btnTravel = this.view.asCom.getChild("btnTravel");
@@ -52,6 +56,8 @@ export class MainUITopView extends AbstractUIView {
         this.btnItemBook.onClick(this.onItemBookClick, this);
         this.btnItemBag = this.view.asCom.getChild("btnItemBag");
         this.btnItemBag.onClick(this.onItemBagClick, this);
+        this.btnEquip = this.view.asCom.getChild("btnEquip");
+        this.btnEquip.onClick(this.onEquipClick, this);
     }
     
     private onTestClick():void {
@@ -89,6 +95,11 @@ export class MainUITopView extends AbstractUIView {
         GameModules.window.showWindowByName("WindowSkillBook", true);
     }
 
+    private onSkillStoneClick():void {
+        console.log("点击技能石按钮，打开技能石窗口");
+        GameModules.window.showWindowByName("WindowSkillStone", true);
+    }
+
     private onHeroClick():void {
         console.log("点击打开人物面板按钮，打开人物面板");
         GameModules.window.showWindowByName("WindowHero", true);
@@ -117,6 +128,11 @@ export class MainUITopView extends AbstractUIView {
     private onItemBagClick():void {
         console.log("点击物品背包按钮，打开物品背包窗口");
         GameModules.window.showWindowByName("WindowItemBag", true);
+    }
+
+    private onEquipClick():void {
+        console.log("点击装备按钮，打开装备窗口");
+        GameModules.window.showWindowByName("WindowEquip", true);
     }
 
     protected onShow(): void {

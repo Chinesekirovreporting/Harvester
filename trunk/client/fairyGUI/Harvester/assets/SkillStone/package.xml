@@ -2,6 +2,7 @@
 <packageDescription id="z1cyy9nq">
   <resources>
     <component id="iqit0" name="WindowSkillStone.xml" path="/" exported="true"/>
+    <component id="iqit1" name="BtnClose.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>
