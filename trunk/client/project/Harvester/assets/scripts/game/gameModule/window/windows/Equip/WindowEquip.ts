@@ -3,8 +3,6 @@ import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
 import { GButton, GList, GTextField, Event } from "fairygui-cc";
 import { RenderEquip } from "./RenderEquip";
 import { GameModels } from "../../../../gameModel/GameModels";
-import { EQUIP_SLOT_TYPES } from "../../../../gameModel/ModelEquip";
-import type { HeroBookCFG } from "../../../../gameModel/table/tableClass/HeroBookCFG";
 
 /**
  * 英雄装备窗口
@@ -14,8 +12,6 @@ export class WindowEquip extends AbstractUIWindow {
     private lblHeroName: GTextField;
     private btnClose: GButton;
 
-    /** 当前选中的英雄ID */
-    private _selectedHeroId: number = 0;
 
     protected getResList(): Array<string> {
         return ["ui/Equip", "ui/Icon"];
@@ -54,20 +50,8 @@ export class WindowEquip extends AbstractUIWindow {
     private onHeroItemClick(): void {
         // const idx = this.listHero.selectedIndex;
         // if (idx < 0) return;
-        // const list = GameModels.heroBook.getHeroBookList();
-        // const hero = list[idx];
-        // if (hero) {
-        //     this._selectedHeroId = hero.ID;
-        //     this.refreshEquipSlots();
-        // }
-    }
 
-    // private refreshEquipSlots(): void {
-    //     if (this.lblHeroName) {
-    //         const hero = GameModels.heroBook.getHeroBookById(this._selectedHeroId);
-    //         this.lblHeroName.text = hero ? hero.Name : "";
-    //     }
-    // }
+    }
 
     private onCloseClick(): void {
         this.close();
@@ -77,14 +61,6 @@ export class WindowEquip extends AbstractUIWindow {
         this.listEquip.numItems = GameModels.heroBook.getHeroBookList().length;
         this.listEquip.refreshVirtualList();
         // 默认选中第一个英雄
-        const list = GameModels.heroBook.getHeroBookList();
-        if (list.length > 0) {
-            this._selectedHeroId = list[0].ID;
-            this.listEquip.selectedIndex = 0;
-        } else {
-            this._selectedHeroId = 0;
-        }
-        // this.refreshEquipSlots();
     }
 
     protected onClose(): void {
