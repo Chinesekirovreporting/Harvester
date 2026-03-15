@@ -33,7 +33,7 @@ export class WindowEquip extends AbstractUIWindow {
     protected onInitView(): void {
         this.listEquip = this.view.asCom.getChild("listEquip") as GList;
         this.lblHeroName = this.view.asCom.getChild("lblHeroName") as GTextField;
-        this.btnClose = this.view.asCom.getChild("btnClose") as GButton
+        this.btnClose = this.view.asCom.getChild("btnClose") as GButton;
 
         this.listEquip.setVirtual();
         this.listEquip.itemRenderer = this.listEquipRenderer.bind(this);
