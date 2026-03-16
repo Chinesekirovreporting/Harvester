@@ -1,4 +1,4 @@
-import { BaseEffect } from "../core_effect/BaseEffect";
+import { BaseEffect } from "../core_effect/effects/BaseEffect";
 import { BuffVo } from "./BuffVo";
 
 export class BaseBuff {

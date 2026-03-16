@@ -1,9 +1,12 @@
+import { GameModules } from "../../../gameModule/GameModules";
 import { EnumEffect } from "./EnumEffect";
 
 // 魔法效果类,用于处理单一效果
 export class BaseEffect {
     public effectType:EnumEffect;   // 魔法效果枚举
-    
+    public data:any;    
+
+
     constructor(effectType:EnumEffect) {
         this.effectType = effectType;
     }
@@ -24,8 +27,9 @@ export class BaseEffect {
         // 更新效果状态，例如持续时间减少等
     }
 
-    private applyDamage(target:any):void {
+    private applyDamage(data:any):void {
         // 伤害逻辑
+        GameModules.effect.executeEffect( EnumEffect.Damage, this.data );
     } 
     
     private applyHeal(target:any):void {

@@ -1,4 +1,4 @@
-import { BaseEffect } from "../core_effect/BaseEffect";
+import { BaseEffect } from "../core_effect/effects/BaseEffect";
 
 export class BuffVo {
     public buffID:number;
