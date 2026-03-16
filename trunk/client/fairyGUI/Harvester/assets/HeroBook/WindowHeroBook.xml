@@ -2,7 +2,7 @@
 <component size="750,1334">
   <displayList>
     <graph id="n2_iqit" name="n2" xy="0,0" size="750,1334" type="rect"/>
-    <list id="n0_lrrb" name="listHeroBook" xy="26,436" size="698,331" layout="row" overflow="scroll" defaultItem="ui://a7mh4a68lrrb1" autoClearItems="true">
+    <list id="n0_lrrb" name="listHeroBook" xy="26,436" size="698,331" layout="row" overflow="scroll" scroll="horizontal" defaultItem="ui://a7mh4a68lrrb1" autoClearItems="true">
       <item/>
       <item/>
       <item/>

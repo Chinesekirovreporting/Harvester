@@ -1,0 +1,36 @@
+请帮我完成英雄图鉴的添加任务：
+
+### 任务说明
+在现有英雄图鉴中，保留第一个英雄「神力恩泽」，再新增 9 个英雄，使图鉴中共有 10 个英雄。
+
+### 数据来源与结构
+- 数据源：Excel 文件 `D:\HarvesterSvn\trunk\plan\excel\英雄表.xlsx`
+- 表名（第一个页签）：英雄表
+- 配置类：HeroBookCFG（由导表工具从 Excel 自动生成 `$HeroBookCFGSource.ts` 等文件）
+
+### 字段结构（参考 `$HeroBookCFGSource.ts` 和 `update_achieve_excel.py`）
+| 列名 | 类型 | 说明 |
+|------|------|------|
+| ID | int | 英雄ID，从1递增 |
+| Name | string | 英雄名称 |
+| Type | string | 英雄类型（如圣骑士、法师、刺客等） |
+| IsSuper | boolean | 是否超级英雄 |
+| ClientExe | number | 客户端扩展字段，无则填 0 |
+| ClientExe2 | number[] | 客户端扩展数组，Excel 中逗号分隔如 "1.11,1.12"，无则空字符串 |
+| ClientExe3 | int[] | 客户端扩展数组，Excel 中逗号分隔如 "1,2,3,4,5"，无则空字符串 |
+
+### 现有第一条数据（神力恩泽，需保留）
+- ID: 1, Name: 神力恩泽, Type: 圣骑士, IsSuper: true
+- ClientExe: 1.1, ClientExe2: "1.11,1.12", ClientExe3: "1,2,3,4,5"
+
+### 执行步骤
+1. 在 `D:\HarvesterSvn\trunk\plan\tools\ExcelToTypeScript\一次性工具\` 下创建或修改 Python 脚本（如 `update_hero_excel.py`），参考 `update_achieve_excel.py` 的写法。
+2. 脚本功能：更新 `英雄表.xlsx`，包含 10 条英雄数据：
+   - 第 1 条：神力恩泽（保持现有数据）
+   - 第 2–10 条：新增 9 个英雄，需有独立的中文名称和类型，风格与「神力恩泽」「圣骑士」一致（奇幻/农场题材）。IsSuper 可混合 true/false，ClientExe 系列字段新增英雄可填 0 和空字符串。
+3. 运行该脚本更新 Excel。
+4. 运行导表工具（如 `python excel_to_ts.py --cli --tables 英雄表`）重新生成 TS 配置。
+
+### 新增 9 个英雄示例（可自由替换）
+可参考以下命名风格自行发挥：
+- 烈焰之心（法师）、暗影之刃（刺客）、自然之语（德鲁伊）、钢铁之盾（战士）、风暴之眼（萨满）、光明使者（牧师）、霜寒之握（冰法）、大地之怒（元素使）、星辰之佑（圣骑）
