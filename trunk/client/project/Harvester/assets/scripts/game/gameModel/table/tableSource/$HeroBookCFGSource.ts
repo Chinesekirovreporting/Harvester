@@ -9,6 +9,7 @@ export class $HeroBookCFGSource {
         IsSuper: [true, true, false, true, false, false, true, false, false, true, true],
         ClientExe: [1.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ClientExe2: [[1.11, 1.12], [], [], [], [], [], [], [], [], [], []],
-        ClientExe3: [[1, 2, 3, 4, 5], [], [], [], [], [], [], [], [], [], []]
+        ClientExe3: [[1, 2, 3, 4, 5], [], [], [], [], [], [], [], [], [], []],
+        AttrId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     }
 }

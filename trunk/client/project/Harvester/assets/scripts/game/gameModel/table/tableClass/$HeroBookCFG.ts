@@ -9,4 +9,5 @@ export class $HeroBookCFG {
     public ClientExe:number;
     public ClientExe2:number[];
     public ClientExe3:number[];
+    public AttrId:number;
 }
