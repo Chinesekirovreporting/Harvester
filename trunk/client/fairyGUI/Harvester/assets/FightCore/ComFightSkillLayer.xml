@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="700,600">
+<component size="750,1334" opaque="false" bgColorEnabled="true">
   <displayList>
-    <graph id="n0_iqit" name="n0" xy="0,0" size="700,600" blend="add" filter="color" filterData="0,0,0,0" type="rect"/>
-    <text id="n1_iqit" name="n1" xy="7,1" size="109,35" fontSize="12" autoSize="none" text="这里是战斗的核心图层"/>
-    <text id="n2_iqit" name="n2" xy="5,35" size="697,35" fontSize="12" autoSize="none" text="战斗的核心思路：每一个Tick回合会产生一定数量的缓动气泡，每个回合有能量，每点击一个气泡Skill会消耗一点能量并施加技能效果"/>
-    <text id="n3_iqit" name="n3" xy="5,72" size="409,35" fontSize="12" autoSize="none" text="随着回合的进展，可设计气泡的数量髓回合数增加，能量也随之增加，时间缩减"/>
-    <text id="n4_iqit" name="n4" xy="7,115" size="376,19" fontSize="12" text="可设计出不同的牌型，基础牌，技能牌，状态牌，诅咒牌，敌对技能牌"/>
-    <component id="n5_iqit" name="n5" src="iqit5" fileName="ComFightSkill.xml" xy="104,194"/>
-    <component id="n7_iqit" name="n7" src="iqit5" fileName="ComFightSkill.xml" xy="271,207"/>
-    <component id="n8_iqit" name="n8" src="iqit5" fileName="ComFightSkill.xml" xy="75,339"/>
-    <component id="n9_iqit" name="n9" src="iqit5" fileName="ComFightSkill.xml" xy="223,391"/>
-    <component id="n10_iqit" name="n10" src="iqit5" fileName="ComFightSkill.xml" xy="296,295"/>
+    <image id="n20_jz05" name="n20" src="jz059" fileName="n1.png" xy="13,270" size="755,635" alpha="0.638"/>
+    <text id="n1_iqit" name="n1" xy="36,296" size="408,28" fontSize="15" autoSize="none" text="这里是战斗的核心图层"/>
+    <text id="n2_iqit" name="n2" xy="34,325" size="697,35" fontSize="15" autoSize="none" text="战斗的核心思路：每一个Tick回合会产生一定数量的缓动气泡，每个回合有能量，每点击一个气泡Skill会消耗一点能量并施加技能效果"/>
+    <text id="n3_iqit" name="n3" xy="34,362" size="409,35" fontSize="15" autoSize="none" text="随着回合的进展，可设计气泡的数量髓回合数增加，能量也随之增加，时间缩减"/>
+    <text id="n4_iqit" name="n4" xy="36,398" size="469,23" fontSize="15" text="可设计出不同的牌型，基础牌，技能牌，状态牌，诅咒牌，敌对技能牌"/>
+    <graph id="n13_jz05" name="n13" xy="52,991" size="256,53" type="rect"/>
+    <component id="n5_iqit" name="btnPop1" src="iqit5" fileName="ComFightSkill.xml" xy="128,517">
+      <Button title="P1"/>
+    </component>
+    <component id="n7_iqit" name="btnPop2" src="iqit5" fileName="ComFightSkill.xml" xy="217,518">
+      <Button title="P2"/>
+    </component>
+    <component id="n8_iqit" name="btnPop3" src="iqit5" fileName="ComFightSkill.xml" xy="311,519">
+      <Button title="P3"/>
+    </component>
+    <component id="n9_iqit" name="btnPop5" src="iqit5" fileName="ComFightSkill.xml" xy="513,518">
+      <Button title="P5"/>
+    </component>
+    <component id="n10_iqit" name="btnPop4" src="iqit5" fileName="ComFightSkill.xml" xy="410,518">
+      <Button title="P4"/>
+    </component>
+    <graph id="n11_jz05" name="n11" xy="43,1064" size="613,232" type="rect"/>
+    <text id="n12_jz05" name="n12" xy="96,999" size="124,42" fontSize="30" text="战斗日志"/>
+    <list id="n14_jz05" name="n14" xy="47,1066" size="600,232" overflow="scroll" defaultItem="ui://a7jwbx4sjz056">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <text id="n15_jz05" name="n15" xy="490,748" size="124,42" fontSize="30" text="能量数量"/>
+    <text id="n16_jz05" name="lblEnergy" xy="491,811" size="120,42" fontSize="30" autoSize="none" text="5/5"/>
+    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="553,811">
+      <Button title="P6"/>
+    </component>
   </displayList>
 </component>

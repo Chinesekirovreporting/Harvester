@@ -4,8 +4,6 @@ import { EnumRoundType } from "./EnumRoundType";
 import { RoundBase } from "./RoundBase";
 
 export class ModuleRound extends AbstractModule {
-    public static readonly ON_ROUND_START:string = "ON_ROUND_START";
-	public static readonly ON_ROUND_END:string = "ON_ROUND_END";
     protected init():void {
         console.log("初始化ROUND模块");
     }
