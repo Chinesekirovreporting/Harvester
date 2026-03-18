@@ -1,6 +1,9 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
 import { GButton, GComponent, GLoader } from "fairygui-cc";
+import { GameModules } from "../../../GameModules";
+import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
+import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
 
 export class WindowFightCore extends AbstractUIWindow {
     
@@ -52,9 +55,17 @@ export class WindowFightCore extends AbstractUIWindow {
         this.comBoss1.getChild("txtName").text = "boss111";
         this.comBoss1.getChild("txtLevel").text = "111";
         this.comBoss1.getChild("txtFight").text = "111";
+        // 订阅伤害效果事件
+        GameModules.effect.on(ModuleEffectEvent.ON_DAMAGE_EFFECT, this.onDamageEffect, this);
+    }
+
+    private onDamageEffect(result:DamageResultTable):void {
+        console.log("onDamageEffect", result);
+        // this.loaderFight.progress = result.damage / 100;
     }
 
     protected onClose(): void {
-        super.onClose();
+        // 取消订阅伤害效果事件
+        GameModules.effect.off(ModuleEffectEvent.ON_DAMAGE_EFFECT, this.onDamageEffect, this);
     }
 }

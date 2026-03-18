@@ -1,34 +1,41 @@
 import { BaseEffect } from "../core_effect/effects/BaseEffect";
 import { BuffVo } from "./BuffVo";
+import { EnumBuffType } from "./EnumBuffType";
 
 export class BaseBuff {
-    public name:string;
-    public icon:string;
-    public buffID:number;
-    public duration:number; 
-    public isDebuff:boolean;
-    public effectList:BaseEffect[];
-    public buffVo:BuffVo;
+    public name:string;                 // 技能名称
+    public icon:string;                     // 图标
+    public buffID:number;                   // 技能ID
+    public duration:number;                 // 持续时间
+    public isDebuff:boolean;                // 是否是减益效果
+    public effectList:BaseEffect[] = [];    // 效果列表
+    public buffVo:BuffVo;                   // 技能元数据
+    public buffType:EnumBuffType;            // BUFF类型
     constructor(buffVo:BuffVo) { 
         this.buffVo = buffVo;
-        this.effectList = this.buffVo.getEffectList();
     }
     
-    protected onCreated():void {
-
-    }
-
-    protected onUpdate():void {
+    // 触发BUFF效果
+    public applyBuff():void {
         for (const effect of this.effectList) {
-            effect.update();
+            effect.applyEffect();
         }
     }
-
-    protected onOneTick():void {
-
+    
+    // BUFF创建时首次触发
+    protected onBuffCreated():void {
+        this.applyBuff();
     }
 
-    protected onDestroy():void {
-        
+    protected onBuffTick():void {
+        // for (const effect of this.effectList) {
+        //     effect.update();
+        // }
+    }
+
+    protected onBuffRemoved():void {
+        // for (const effect of this.effectList) {
+        //     effect.removeEffect();
+        // }
     }
 } 

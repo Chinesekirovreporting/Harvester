@@ -1,6 +1,7 @@
 import { GameModules } from "../../../gameModule/GameModules";
 import { DamageResultTable, ResultTable } from "../../core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { BattleLogManager } from "../../core_battle/BattleLog";
+import { ModuleEffectEvent } from "../ModuleEffectEvent";
 
 export class DamageEffectManager {
     // 伤害效果列表
@@ -43,7 +44,9 @@ export class DamageEffectManager {
         // 取出damageResultList第一项数据，并从列表里清空
         let result:DamageResultTable = this.damageResultList.shift();
         if (result) {
-            // 特效表现 TODO 
+            // 事件派发 特效表现 
+            GameModules.effect.emit(ModuleEffectEvent.ON_DAMAGE_EFFECT, result);
+            // GameModules.event.dispatchEventWithData(ModuleEffectEvent.ON_DAMAGE_EFFECT, result);
             BattleLogManager.addLog("DamageEffectManager执行伤害结果", result);
         }
     }

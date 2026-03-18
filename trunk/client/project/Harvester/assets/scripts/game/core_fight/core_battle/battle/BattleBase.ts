@@ -18,6 +18,11 @@ export class BattleBase extends AbstractBattle {
 
     }
 
+    public destroyBattle():void {
+        this.stopBattle();
+        this.data = null;
+    }
+
     public update():void {
         // 战场更新逻辑，主要是处理战斗流程和状态的更新等
     }

@@ -11,19 +11,19 @@ export class BaseEffect {
         this.effectType = effectType;
     }
 
-    public applyEffect(target:any):void {
+    public applyEffect():void {
         if (this.effectType === EnumEffect.Damage) {
-            this.applyDamage(target);
+            this.applyDamage(this.data);
         } else if (this.effectType === EnumEffect.Heal) {
-            this.applyHeal(target);
+            this.applyHeal(this.data);
         } else if (this.effectType === EnumEffect.Buff) {
-            this.applyBuff(target);
+            this.applyBuff(this.data);
         } else if (this.effectType === EnumEffect.Debuff) {
-            this.applyDebuff(target);
+            this.applyDebuff(this.data);
         }
     }
 
-    public update():void {
+    private update():void {
         // 更新效果状态，例如持续时间减少等
     }
 

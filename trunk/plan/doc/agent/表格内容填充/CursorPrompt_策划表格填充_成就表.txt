@@ -16,7 +16,7 @@
 ## 表名映射
 新表需在 `excel_to_ts_config.json` 的 `table_name_map` 中配置：
 - Key：Excel 文件名（不含 .xlsx），如 `"成就表"`
-- Value：生成的 TS 类名或表格Sheet名称，如 `"AchieveCFG"`
+- Value：生成的 TS 类名或表格首页Sheet名称，如 `"AchieveCFG"`
 
 ## 请协助完成以下操作
 
