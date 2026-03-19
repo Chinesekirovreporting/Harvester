@@ -158,7 +158,7 @@ export class TweenUtil {
     }
 
     /**
-    * 浮动效果：延迟后先上移再下移，回到原位 类似于技能牌浮动效果
+    * 单次浮动效果：延迟后先上移再下移，回到原位 类似于技能牌浮动效果
     * @param node FairyGUI 组件
     * @param delay 延迟时间（秒）
     * @param delayCall 延迟结束后、动画开始前的回调
@@ -182,5 +182,119 @@ export class TweenUtil {
            }); 
     } 
     
+    /**
+     * 无限循环浮动效果：持续上下浮动
+     * @param node FairyGUI 组件
+     * @param offsetY 每次浮动的垂直位移（默认 10）
+     * @param duration 单程时长（默认 0.2）
+     * @returns 返回 stop 函数，用于停止动画
+     */
+    public static floatEffectLoop(node: GObject, offsetY: number = 10, duration: number = 2): () => void {
+        let stopped = false;
+
+        const runCycle = () => {
+            if (stopped) return;
+
+            const startX = node.x;
+            const startY = node.y;
+
+            // 向上移动
+            GTween.to2(startX, startY, startX, startY + offsetY, duration)
+                .setEase(EaseType.QuadOut)
+                .onUpdate((tw) => { node.setPosition(tw.value.x, tw.value.y); })
+                .onComplete(() => {
+                    if (stopped) return;
+                    // 向下移动，回到原位
+                    GTween.to2(startX, startY + offsetY, startX, startY, duration)
+                        .setEase(EaseType.QuadIn)
+                        .onUpdate((tw) => { node.setPosition(tw.value.x, tw.value.y); })
+                        .onComplete(() => {
+                            if (stopped) return;
+                            runCycle();  // 下一轮
+                        });
+                });
+        };
+
+        runCycle();
+        return () => { stopped = true; };
+    }
+
+    /**
+     * UI 渐隐效果：点击后淡出消失
+     * @param node FairyGUI 窗口/组件（GObject / GComponent）
+     * @param duration 渐隐时长（秒），默认 0.3
+     * @param callBack 动画完成回调（可在此设置 visible=false 或移除节点）
+     */
+    public static fadeOut(node: GObject, duration: number = 0.3, callBack?: () => void): void {
+        const startAlpha = node.alpha;
+        GTween.to(startAlpha, 0, duration)
+            .setEase(EaseType.QuadOut)
+            .onUpdate((tw) => {
+                node.alpha = tw.value.x;
+            })
+            .onComplete(() => {
+                node.alpha = 0;
+                callBack?.();
+            });
+    }
+
+    /**
+    * 飞入效果：飞到指定位置，先快后慢 类似于技能牌飞入效果
+    * @param node FairyGUI 组件
+    * @param toX 目标 X
+    * @param toY 目标 Y
+    * @param duration 时长，默认 0.35
+    * @param callBack 完成回调
+    */
+    public static flyTo(node: GObject, toX: number, toY: number, duration: number = 0.35, callBack?: () => void): void {
+       const startX = node.x;
+       const startY = node.y;
+
+       GTween.to2(startX, startY, toX, toY, duration)
+           .setEase(EaseType.QuadOut)
+           .onUpdate((tw) => { node.setPosition(tw.value.x, tw.value.y); })
+           .onComplete(() => {
+               node.setPosition(toX, toY);
+               callBack?.();
+           });
+    }
+
+    /**
+     * 飞入效果（贝塞尔曲线）：沿曲线飞到目标位置，先快后慢 类似于技能牌飞入效果
+     * @param node FairyGUI 组件
+     * @param toX 目标 X
+     * @param toY 目标 Y
+     * @param ctrlX 控制点 X（曲线弯曲程度由控制点决定）
+     * @param ctrlY 控制点 Y
+     * @param duration 时长，默认 0.35
+     * @param callBack 完成回调
+     */
+    public static flyToBezier(
+        node: GObject,
+        toX: number,
+        toY: number,
+        ctrlX: number,
+        ctrlY: number,
+        duration: number = 0.35,
+        callBack?: () => void
+    ): void {
+        const startX = node.x;
+        const startY = node.y;
+    
+        GTween.to(0, 1, duration)
+            .setEase(EaseType.QuadOut)
+            .onUpdate((tw) => {
+                const t = tw.value.x;
+                const u = 1 - t;
+                const x = u * u * startX + 2 * u * t * ctrlX + t * t * toX;
+                const y = u * u * startY + 2 * u * t * ctrlY + t * t * toY;
+                node.setPosition(x, y);
+            })
+            .onComplete(() => {
+                node.setPosition(toX, toY);
+                callBack?.();
+            });
+}
+
     // 斗牌技能表现形式1.技能牌缓动四散2.技能牌启动类似启动宝箱的四散坠落3.子弹时间慢动作 
 } 

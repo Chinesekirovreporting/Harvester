@@ -4,6 +4,8 @@ import { EnumRoundType } from "./EnumRoundType";
 import { RoundBase } from "./RoundBase";
 
 export class ModuleRound extends AbstractModule {
+    public curRound:RoundBase;
+
     protected init():void {
         console.log("初始化ROUND模块");
     }
@@ -14,6 +16,10 @@ export class ModuleRound extends AbstractModule {
         round.roundType = EnumRoundType.NORMAL;
         // round.roundTarget = BaseActor.createRoundTarget();
         // round.roundTarget = BaseActor.createRoundTarget();
+    }
+
+    public getCurRound():RoundBase {
+        return this.curRound;
     }
 
     public updateRound():void {

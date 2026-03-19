@@ -1,6 +1,6 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { GButton, GComponent, GList, GLoader } from "fairygui-cc";
+import { GButton, GComponent, GList, GLoader, GObject } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -9,6 +9,8 @@ import { ModuleRound } from "../../../../core_fight/core_round/ModuleRound";
 import { BattleBase } from "../../../../core_fight/core_battle/battle/BattleBase";
 import { ModuleRoundEvent } from "../../../../core_fight/core_round/ModuleRoundEvent";
 import { RoundBase } from "../../../../core_fight/core_round/RoundBase";
+import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
+import { Tween } from "cc";
 
 export class WindowFightCore extends AbstractUIWindow {
     
@@ -18,6 +20,7 @@ export class WindowFightCore extends AbstractUIWindow {
     private loaderFight:GLoader;
     private comFightCore:GComponent
     private listFightCoreLog:GList;
+    private nButtonCount:number = 6;
 
     protected getResList(): Array<string> {
         return ["ui/FightCore"];
@@ -51,6 +54,23 @@ export class WindowFightCore extends AbstractUIWindow {
         this.loaderFight = this.view.asCom.getChild("loaderFight") as GLoader;
         this.comFightCore = this.view.asCom.getChild("comFightCore") as GComponent;
         this.listFightCoreLog = this.view.asCom.getChild("listFightCoreLog") as GList;
+        for (let i = 1; i <= this.nButtonCount; i++) {
+            let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
+            if (btn) {
+                btn.onClick(this.onFightCoreButtonClick.bind(this, i), this);
+            }
+        }
+    }   
+
+    private onFightCoreButtonClick(index:number):void {
+        console.log("onFightCoreButtonClick", index);
+        // 执行技能函数，根据index 执行对应的技能
+        GameModules.skill.useSkill(index,1001);
+        this.comFightCore.getChild("btnPop" + index).touchable = false;
+        // 更新UI 隐藏当前按钮，并显示下一个按钮
+        TweenUtil.fadeOut(this.comFightCore.getChild("btnPop" + index) as GObject,0.3,() => {
+            this.comFightCore.getChild("btnPop" + index).visible = false;
+        });
     }
 
     private onCloseClick():void {
@@ -81,6 +101,7 @@ export class WindowFightCore extends AbstractUIWindow {
 
     protected onShow(...args: Array<any>): void {
         this.updateFightActor();
+        TweenUtil.floatEffectLoop(this.comBoss1)
         this.onFightCoreEventBind();
     }
 
@@ -90,6 +111,17 @@ export class WindowFightCore extends AbstractUIWindow {
 
     private onRoundStart(round:RoundBase):void {
         console.log("onRoundStart", round);
+        this.refreshFightSkill();
+    }
+
+    private refreshFightSkill():void {
+        for (let i = 1; i <= this.nButtonCount; i++) {
+            let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
+            if (btn) {
+                btn.touchable = true;
+                btn.visible = true;
+            }
+        }
     }
 
     private onDamageEffect(result:DamageResultTable):void {

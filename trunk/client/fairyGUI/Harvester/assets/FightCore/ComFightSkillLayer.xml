@@ -23,7 +23,7 @@
     </component>
     <text id="n15_jz05" name="n15" xy="490,748" size="124,42" fontSize="30" text="能量数量"/>
     <text id="n16_jz05" name="lblEnergy" xy="491,811" size="120,42" fontSize="30" autoSize="none" text="5/5"/>
-    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="553,811">
+    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="602,518">
       <Button title="P6"/>
     </component>
   </displayList>

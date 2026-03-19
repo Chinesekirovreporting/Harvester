@@ -1,4 +1,6 @@
 import { AbstractModule } from "../../../framework/managers/scene/AbstractModule";
+import { GameModules } from "../../gameModule/GameModules";
+import { ModuleRoundEvent } from "../core_round/ModuleRoundEvent";
 
 export class ModuleSkill extends AbstractModule{
 
@@ -13,7 +15,7 @@ export class ModuleSkill extends AbstractModule{
 
     // }
 
-    // public useSkill(unit:Unit, skillId:number):void {
-
-    // }
+    public useSkill(index:number, skillId:number):void {
+        GameModules.round.dispatchEventWithData(ModuleRoundEvent.ON_ROUND_START, {roundID:1});
+    }
 }
