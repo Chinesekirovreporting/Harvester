@@ -1,6 +1,6 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { GButton, GComponent, GLoader } from "fairygui-cc";
+import { GButton, GComponent, GList, GLoader } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -17,6 +17,7 @@ export class WindowFightCore extends AbstractUIWindow {
     private comBoss1: GComponent;
     private loaderFight:GLoader;
     private comFightCore:GComponent
+    private listFightCoreLog:GList;
 
     protected getResList(): Array<string> {
         return ["ui/FightCore"];
@@ -49,6 +50,7 @@ export class WindowFightCore extends AbstractUIWindow {
         }
         this.loaderFight = this.view.asCom.getChild("loaderFight") as GLoader;
         this.comFightCore = this.view.asCom.getChild("comFightCore") as GComponent;
+        this.listFightCoreLog = this.view.asCom.getChild("listFightCoreLog") as GList;
     }
 
     private onCloseClick():void {

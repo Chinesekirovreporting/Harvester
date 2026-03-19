@@ -17,16 +17,16 @@ import { IntUtil } from "../../utils/IntUtil";
 export class AbstractUIWindow implements IUIWindow {
 	
 	protected _view:GComponent;
-	protected _modal:boolean = false;
-	protected _touchClose:boolean = false;
-	protected _isLoaded:boolean = false;
-	protected _isInited:boolean = false;
-	protected _isShow:boolean = false;
-	protected _isShowCenter:boolean = true;
-	protected _windowData:any;
-	protected _needShowAction:boolean = false;
-	protected _autoDispose:boolean = true;
-	protected _autoDisposeTime:number = IntUtil.MAX_VALUE;	//5000 永不销毁
+	protected _modal:boolean = false;						// 是否模态
+	protected _touchClose:boolean = false;					// 是否触摸关闭
+	protected _isLoaded:boolean = false;					// 是否已加载
+	protected _isInited:boolean = false;					// 是否已初始化
+	protected _isShow:boolean = false;						// 是否显示
+	protected _isShowCenter:boolean = true;					// 是否居中显示	
+	protected _windowData:any;								// 窗体数据
+	protected _needShowAction:boolean = false;				// 是否需要显示动画	
+	protected _autoDispose:boolean = true;					// 是否自动销毁
+	protected _autoDisposeTime:number = IntUtil.MAX_VALUE;	//默认5000ms 改为永不销毁，永远不销毁
 	protected _lastCloseTime:number;
 	protected _resList:Array<string>;
 	protected _loadResCallback:Method;

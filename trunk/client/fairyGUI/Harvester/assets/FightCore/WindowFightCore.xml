@@ -25,6 +25,16 @@
     <component id="n19_iqit" name="n19" src="iqit4" fileName="ComFightSkillLayer.xml" xy="0,0">
       <gearDisplay controller="c1" pages="1"/>
     </component>
-    <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="0,0" size="750,1334"/>
+    <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="3,-25" size="750,1334"/>
+    <graph id="n23_jz05" name="n23" xy="24,987" size="256,53" group="n27_jz05" type="rect"/>
+    <graph id="n24_jz05" name="n24" xy="21,1060" size="613,232" group="n27_jz05" type="rect"/>
+    <text id="n25_jz05" name="n25" xy="74,995" size="124,42" group="n27_jz05" fontSize="30" text="战斗日志"/>
+    <list id="n26_jz05" name="listFightCoreLog" xy="19,1062" size="600,232" group="n27_jz05" overflow="scroll" defaultItem="ui://a7jwbx4sjz056">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <group id="n27_jz05" name="n27" xy="19,987" size="615,307"/>
   </displayList>
 </component>
