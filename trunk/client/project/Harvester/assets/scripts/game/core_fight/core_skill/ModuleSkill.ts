@@ -1,6 +1,10 @@
 import { AbstractModule } from "../../../framework/managers/scene/AbstractModule";
 import { GameModules } from "../../gameModule/GameModules";
 import { ModuleRoundEvent } from "../core_round/ModuleRoundEvent";
+import { BaseSkill } from "./BaseSkill";
+import { ModuleSkillEvent } from "./ModuleSkillEvent";
+import { SkillFireBall } from "./skills/SkillFireBall";
+import { SkillVo } from "./SkillVo";
 
 export class ModuleSkill extends AbstractModule{
 
@@ -16,6 +20,8 @@ export class ModuleSkill extends AbstractModule{
     // }
 
     public useSkill(index:number, skillId:number):void {
-        GameModules.round.dispatchEventWithData(ModuleRoundEvent.ON_ROUND_START, {roundID:1});
+        let baseSkill:BaseSkill = new SkillFireBall(new SkillVo());
+        baseSkill.spellSkill();
+        GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_SKILL_CAST, baseSkill);
     }
 }

@@ -294,7 +294,7 @@ export class TweenUtil {
                 node.setPosition(toX, toY);
                 callBack?.();
             });
-}
+    };
 
     // 斗牌技能表现形式1.技能牌缓动四散2.技能牌启动类似启动宝箱的四散坠落3.子弹时间慢动作 
 } 

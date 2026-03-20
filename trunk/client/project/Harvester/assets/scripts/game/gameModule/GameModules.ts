@@ -1,4 +1,3 @@
-import { Game } from "cc";
 import { ModuleBattle } from "../core_fight/core_battle/ModuleBattle";
 import { ModuleRound } from "../core_fight/core_round/ModuleRound";
 import { ModuleStage } from "../core_fight/core_stage/ModuleStage";
@@ -11,6 +10,7 @@ import { ModuleSkill } from "../core_fight/core_skill/ModuleSkill";
 import { ModuleBuff } from "../core_fight/core_buff/ModuleBuff";
 import { ModuleEffect } from "../core_fight/core_effect/ModuleEffect";
 import { ModuleAttr } from "../core_fight/core_attr/ModuleAttr";
+import { ModuleRule } from "./rule/ModuleRule";
 
 export class GameModules {
     // 核心展示模块
@@ -27,6 +27,7 @@ export class GameModules {
     public static readonly MODULE_EFFECT:string = "effect"; // 每个buff生效内的具体效果，可能是伤害，治疗，增益，减益等
     public static readonly MODULE_ATTR:string = "attr"; // 角色属性模块，包含角色的所有属性数据，提供属性计算等功能
     public static readonly MODULE_ACTOR:string = "actor"; // 角色模块，包含角色的所有数据，提供角色行为等功能
+    public static readonly MODULE_RULE:string = "rule"; // 规则模块，包含游戏的所有规则数据，用于模拟战斗，特殊规则定制，等垂直切片功能
 
     public static mainUI:ModuleMainUI;
     public static window:ModuleWindow;
@@ -41,6 +42,7 @@ export class GameModules {
     public static effect:ModuleEffect;
     public static attr:ModuleAttr;
     public static actor:ModuleActor;
+    public static rule:ModuleRule;
     
     // 初始化基础模块（底层模块）
     public static InitBaseModules() {
@@ -62,6 +64,7 @@ export class GameModules {
         GameModules.effect = new ModuleEffect(GameModules.MODULE_EFFECT);
         GameModules.attr = new ModuleAttr(GameModules.MODULE_ATTR);
         GameModules.actor = new ModuleActor(GameModules.MODULE_ACTOR);
+        GameModules.rule = new ModuleRule(GameModules.MODULE_RULE);
     }
 
     // 初始化游戏模块(游戏内容)

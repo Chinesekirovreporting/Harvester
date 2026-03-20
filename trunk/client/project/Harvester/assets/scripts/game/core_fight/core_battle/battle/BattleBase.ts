@@ -1,7 +1,11 @@
+import { RoundBase } from "../../core_round/RoundBase";
 import { AbstractBattle } from "./AbstractBattle";
 
 // 普通战斗场景
 export class BattleBase extends AbstractBattle {
+
+    public roundList:RoundBase[];
+    public curRound:RoundBase;      // 当前回合
     constructor() {
         super();
     }

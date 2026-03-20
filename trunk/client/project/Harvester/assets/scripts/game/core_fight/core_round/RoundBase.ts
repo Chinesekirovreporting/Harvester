@@ -7,4 +7,16 @@ export class RoundBase {
     public roundType:number;
     public roundTarget:BaseActor;
     public roundActionList:RoundActionBase[];
+
+    public roundStart():void {
+        
+    }
+
+    public roundEnd():void {
+
+    }
+
+    public roundUpdate():void {
+
+    }
 }

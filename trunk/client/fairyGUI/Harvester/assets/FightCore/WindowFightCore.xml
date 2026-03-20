@@ -4,16 +4,16 @@
   <displayList>
     <graph id="n1_lrrb" name="n1" xy="4,0" size="750,1334" group="n18_iqit" type="rect"/>
     <text id="n0_lrrb" name="n0" xy="337,190" size="76,36" group="n18_iqit" fontSize="12" text="核心战斗区域&#xA;"/>
-    <component id="n2_lrrb" name="comPlayer3" src="lrrb1" fileName="ActorCom.xml" xy="25,385" size="152,155" group="n18_iqit" visible="false"/>
+    <component id="n2_lrrb" name="comPlayer3" src="lrrb1" fileName="ActorCom.xml" xy="26,385" size="152,155" group="n18_iqit" visible="false"/>
     <component id="n3_lrrb" name="comBoss3" src="lrrb1" fileName="ActorCom.xml" xy="526,394" group="n18_iqit" visible="false"/>
     <component id="n4_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="647,31" size="101,40" group="n18_iqit"/>
-    <component id="n5_109dk" name="comPlayer4" src="lrrb1" fileName="ActorCom.xml" xy="14,551" group="n18_iqit" visible="false"/>
+    <component id="n5_109dk" name="comPlayer4" src="lrrb1" fileName="ActorCom.xml" xy="14,550" group="n18_iqit" visible="false"/>
     <component id="n6_109dk" name="comPlayer5" src="lrrb1" fileName="ActorCom.xml" xy="26,755" group="n18_iqit" visible="false"/>
     <component id="n7_109dk" name="comBoss4" src="lrrb1" fileName="ActorCom.xml" xy="530,545" group="n18_iqit" visible="false"/>
-    <component id="n8_109dk" name="comBoss5" src="lrrb1" fileName="ActorCom.xml" xy="517,761" group="n18_iqit" visible="false"/>
+    <component id="n8_109dk" name="comBoss5" src="lrrb1" fileName="ActorCom.xml" xy="517,762" group="n18_iqit" visible="false"/>
     <component id="n9_109dk" name="comPlayer1" src="lrrb1" fileName="ActorCom.xml" xy="97,159" group="n18_iqit"/>
     <component id="n10_109dk" name="comBoss1" src="lrrb1" fileName="ActorCom.xml" xy="496,159" group="n18_iqit"/>
-    <component id="n11_109dk" name="comPlayer2" src="lrrb1" fileName="ActorCom.xml" xy="171,655" group="n18_iqit" visible="false"/>
+    <component id="n11_109dk" name="comPlayer2" src="lrrb1" fileName="ActorCom.xml" xy="169,656" group="n18_iqit" visible="false"/>
     <component id="n12_109dk" name="comBoss2" src="lrrb1" fileName="ActorCom.xml" xy="349,693" group="n18_iqit" visible="false"/>
     <loader id="n15_itde" name="loaderFight" xy="314,63" size="143,108" group="n18_iqit" url="ui://a7jwbx4sitde3" fill="scale" color="#669999"/>
     <text id="n16_iqit" name="n16" xy="198,871" size="171,19" group="n18_iqit" fontSize="12" text="核心战斗为一个Tick的气泡点击"/>
@@ -21,7 +21,7 @@
     <group id="n18_iqit" name="n18" xy="4,0" size="750,1334" advanced="true">
       <gearDisplay controller="c1" pages="0,1"/>
     </group>
-    <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="0,16" size="750,1334">
+    <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="-1,16" size="750,1334">
       <gearDisplay controller="c1" pages="0"/>
     </component>
     <graph id="n23_jz05" name="n23" xy="25,987" size="256,53" group="n27_jz05" type="rect"/>

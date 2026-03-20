@@ -21,6 +21,10 @@ export class BaseSkill {
         this.skillVo = skillVo;
         this.buffList = this.skillVo.getBuffList();
     }
+    
+    public spellSkill() {
+        this.onSpellStart();
+    }
 
     //////////// 技能事件 //////////////////////
     protected onSpellStart():void {

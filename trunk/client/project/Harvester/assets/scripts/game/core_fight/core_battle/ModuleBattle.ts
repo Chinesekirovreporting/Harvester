@@ -23,6 +23,7 @@ export class ModuleBattle extends AbstractModule{
     }
 
     public battleDesdroy():void {
+        this.curBattle.stopBattle();
         this.curBattle.destroyBattle();
         this.curBattle = null;
     }
@@ -30,7 +31,6 @@ export class ModuleBattle extends AbstractModule{
     public showBattleByType(battleType:EnumBattleType):void {
         // 根据战斗类型创建对应的战斗实例并显示
         let battleInstance:any;
-
     }
 
     protected show():void {
