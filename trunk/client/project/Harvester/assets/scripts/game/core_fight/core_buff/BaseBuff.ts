@@ -3,16 +3,13 @@ import { BuffVo } from "./BuffVo";
 import { EnumBuffType } from "./EnumBuffType";
 
 export class BaseBuff {
-    public name:string;                 // 技能名称
-    public icon:string;                     // 图标
-    public buffID:number;                   // 技能ID
-    public duration:number;                 // 持续时间
-    public isDebuff:boolean;                // 是否是减益效果
-    public effectList:BaseEffect[] = [];    // 效果列表
-    public buffVo:BuffVo;                   // 技能元数据
-    public buffType:EnumBuffType;            // BUFF类型
+    public buffVo:BuffVo;                       // BUFF元数据
+    public buffType:EnumBuffType;               // BUFF类型
+    public effectList:BaseEffect[] = [];        // 效果列表
+    public targetId:number;                     // 目标ID
     constructor(buffVo:BuffVo) { 
         this.buffVo = buffVo;
+        this.buffType = buffVo.buffCFG.BuffType;
     }
     
     // 触发BUFF效果

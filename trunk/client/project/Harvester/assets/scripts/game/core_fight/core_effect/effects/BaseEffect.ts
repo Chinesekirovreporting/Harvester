@@ -1,46 +1,27 @@
 import { GameModules } from "../../../gameModule/GameModules";
-import { EnumEffect } from "./EnumEffect";
+import { EffectVo } from "../EffectVo";
+import { EnumEffectType } from "./EnumEffectType";
 
 // 魔法效果类,用于处理单一效果
 export class BaseEffect {
-    public effectType:EnumEffect;   // 魔法效果枚举
-    public data:any;    
+    public effectType:EnumEffectType;   // 魔法效果枚举
+    public effectVo:EffectVo;           // 魔法效果数据
 
-
-    constructor(effectType:EnumEffect) {
-        this.effectType = effectType;
+    constructor(effectVo:EffectVo) {
+        this.effectVo = effectVo;
+        this.effectType = effectVo.effectCFG.EffectType;
     }
 
+    // 魔法效果触发执行
     public applyEffect():void {
-        if (this.effectType === EnumEffect.Damage) {
-            this.applyDamage(this.data);
-        } else if (this.effectType === EnumEffect.Heal) {
-            this.applyHeal(this.data);
-        } else if (this.effectType === EnumEffect.Buff) {
-            this.applyBuff(this.data);
-        } else if (this.effectType === EnumEffect.Debuff) {
-            this.applyDebuff(this.data);
-        }
+        this.onEffectStart();
     }
 
-    private update():void {
-        // 更新效果状态，例如持续时间减少等
+    protected onEffectStart():void {
+
     }
 
-    private applyDamage(data:any):void {
-        // 伤害逻辑
-        GameModules.effect.executeEffect( EnumEffect.Damage, this.data );
-    } 
-    
-    private applyHeal(target:any):void {
-        // 治疗逻辑
-    }
-
-    private applyBuff(target:any):void {
-        // 增益逻辑
-    }
-
-    private applyDebuff(target:any):void {
-        // 减益逻辑
-    }
+    // protected update():void {
+    //     // 更新效果状态，例如持续时间减少等
+    // }
 }

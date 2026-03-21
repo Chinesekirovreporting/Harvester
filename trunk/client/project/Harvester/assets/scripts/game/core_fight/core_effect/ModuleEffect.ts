@@ -1,6 +1,6 @@
 import { App } from "../../../framework/managers/App";
 import { AbstractModule } from "../../../framework/managers/scene/AbstractModule";
-import { EnumEffect } from "./effects/EnumEffect";
+import { EnumEffect } from "./effects/EnumEffectType";
 import { DamageEffectManager } from "./effectTableManager/DamageEffectManager";
 
 export class ModuleEffect extends AbstractModule {
