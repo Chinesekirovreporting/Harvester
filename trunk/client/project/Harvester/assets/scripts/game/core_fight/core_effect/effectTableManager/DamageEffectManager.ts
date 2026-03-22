@@ -1,6 +1,7 @@
 import { GameModules } from "../../../gameModule/GameModules";
 import { DamageResultTable, ResultTable } from "../../core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { BattleLogManager } from "../../core_battle/BattleLog";
+import { EffectDamage } from "../effects/EffectDamage";
 import { ModuleEffectEvent } from "../ModuleEffectEvent";
 
 export class DamageEffectManager {
@@ -15,10 +16,10 @@ export class DamageEffectManager {
         console.log("初始化DamageEffectManager")
     }
 
-    public executeDamageEffect(data:any):void {
-        console.log("DamageEffectManager执行伤害效果", data)
+    public executeDamageEffect(effectDamage:EffectDamage):void {
+        console.log("DamageEffectManager执行伤害效果", effectDamage)
         // 将数据丢给属性模块进行数据运算
-        let result:ResultTable = GameModules.attr.calcByDamageEffect(data);
+        let result:ResultTable = GameModules.attr.calcByDamageEffect(effectDamage);
         this.damageResultList.push(result as DamageResultTable);
     }
 

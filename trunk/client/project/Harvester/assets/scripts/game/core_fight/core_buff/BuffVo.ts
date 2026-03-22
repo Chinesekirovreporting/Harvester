@@ -1,18 +1,15 @@
+import { App } from "../../../framework/managers/App";
+import { $Tables } from "../../gameModel/table/$Tables";
 import { BuffCFG } from "../../gameModel/table/tableClass/BuffCFG";
 import { BaseEffect } from "../core_effect/effects/BaseEffect";
-import { EnumBuffType } from "./EnumBuffType";
 
 export class BuffVo {
     public buffID:number;
     public buffCFG:BuffCFG;
-    public effectList:BaseEffect[];
 
-    constructor(buffID:number, name:string, icon:string, duration:number, isDebuff:boolean, effectList:BaseEffect[]) {
-        this.buffID = buffID;
-        this.effectList = effectList;
+    constructor( buffId:number ) {
+        this.buffID = buffId;
+        this.buffCFG = App.tableManager.getTable($Tables.BuffCFG, this.buffID) as BuffCFG;
     }
 
-    public getEffectList():BaseEffect[] {
-        return [];
-    }
 }

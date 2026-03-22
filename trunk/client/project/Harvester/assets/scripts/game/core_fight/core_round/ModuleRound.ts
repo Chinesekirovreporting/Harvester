@@ -7,7 +7,6 @@ import { RoundBase } from "./RoundBase";
 export class ModuleRound extends AbstractModule {
 
     public curRound:RoundBase;
-
     protected init():void {
         console.log("初始化ROUND模块");
     }

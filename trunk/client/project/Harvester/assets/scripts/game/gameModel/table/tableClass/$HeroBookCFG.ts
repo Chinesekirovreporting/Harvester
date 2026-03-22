@@ -6,8 +6,6 @@ export class $HeroBookCFG {
     public Name:string;
     public Type:string;
     public IsSuper:boolean;
-    public ClientExe:number;
-    public ClientExe2:number[];
-    public ClientExe3:number[];
+    public SkillList:number[];
     public AttrId:number;
 }

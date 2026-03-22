@@ -6,6 +6,7 @@ export class $BuffCFG {
     public Name:string;
     public Desc:string;
     public IsDot:number;
+    public IsDebuff:number;
     public StartEffs:number[];
     public CycleEffs:number[];
     public Duration:number;

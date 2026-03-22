@@ -11,6 +11,8 @@ import { ModuleRoundEvent } from "../../../../core_fight/core_round/ModuleRoundE
 import { RoundBase } from "../../../../core_fight/core_round/RoundBase";
 import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
 import { Tween } from "cc";
+import { ModuleSkillEvent } from "../../../../core_fight/core_skill/ModuleSkillEvent";
+import { BaseSkill } from "../../../../core_fight/core_skill/BaseSkill";
 
 export class WindowFightCore extends AbstractUIWindow {
     
@@ -65,7 +67,8 @@ export class WindowFightCore extends AbstractUIWindow {
     private onFightCoreButtonClick(index:number):void {
         console.log("onFightCoreButtonClick", index);
         // 执行技能函数，根据index 执行对应的技能
-        GameModules.skill.useSkill(index,1001);
+        var skillId //= GameModules.round.curRound.getSkillIdBySkillIndex(index);
+        GameModules.skill.useSkill(skillId, this.comFightCore.getChild("btnPop" + index).data);
         this.comFightCore.getChild("btnPop" + index).touchable = false;
         // 更新UI 隐藏当前按钮，并显示下一个按钮
         TweenUtil.fadeOut(this.comFightCore.getChild("btnPop" + index) as GObject,0.3,() => {
@@ -91,6 +94,8 @@ export class WindowFightCore extends AbstractUIWindow {
         GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_START, this.onBattleStart, this);
         // 订阅订阅回合开始事件
         GameModules.round.on(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
+        // 订阅技能释放事件
+        GameModules.skill.on(ModuleSkillEvent.ON_SKILL_CAST, this.onSkillCast, this);
         // 订阅伤害效果事件
         GameModules.effect.on(ModuleEffectEvent.ON_DAMAGE_EFFECT, this.onDamageEffect, this);
         // 订阅回合结束事件
@@ -124,6 +129,10 @@ export class WindowFightCore extends AbstractUIWindow {
         }
     }
 
+    private onSkillCast(skill:BaseSkill):void {
+        console.log("onSkillCast", skill.skillVo.skillCFG.Name);
+    }
+
     private onDamageEffect(result:DamageResultTable):void {
         console.log("onDamageEffect", result);
         // this.loaderFight.progress = result.damage / 100;
@@ -139,12 +148,14 @@ export class WindowFightCore extends AbstractUIWindow {
 
 
     private onFightCoreEventUnbind():void {
-        // 取消订阅伤害效果事件
-        GameModules.effect.off(ModuleEffectEvent.ON_DAMAGE_EFFECT, this.onDamageEffect, this);
         // 取消订阅回合结束事件
         GameModules.round.off(ModuleRoundEvent.ON_ROUND_END, this.onRoundEnd, this);
         // 取消订阅回合开始事件
         GameModules.round.off(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
+        // 订阅技能释放事件
+        GameModules.skill.off(ModuleSkillEvent.ON_SKILL_CAST, this.onSkillCast, this);
+        // 取消订阅伤害效果事件
+        GameModules.effect.off(ModuleEffectEvent.ON_DAMAGE_EFFECT, this.onDamageEffect, this);
         // 取消订阅战场开始事件
         GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_START, this.onBattleStart, this);
         // 取消订阅战场结束事件

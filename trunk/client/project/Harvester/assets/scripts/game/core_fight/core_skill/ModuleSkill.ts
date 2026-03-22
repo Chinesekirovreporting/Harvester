@@ -1,15 +1,20 @@
+import { App } from "../../../framework/managers/App";
 import { AbstractModule } from "../../../framework/managers/scene/AbstractModule";
+import { $Tables } from "../../gameModel/table/$Tables";
+import { SkillCFG } from "../../gameModel/table/tableClass/SkillCFG";
 import { GameModules } from "../../gameModule/GameModules";
+import { BaseActor } from "../core_actor/BaseActor";
 import { ModuleRoundEvent } from "../core_round/ModuleRoundEvent";
 import { BaseSkill } from "./BaseSkill";
 import { ModuleSkillEvent } from "./ModuleSkillEvent";
+import { EnumSkill } from "./skills/EnumSkill";
 import { SkillFireBall } from "./skills/SkillFireBall";
 import { SkillVo } from "./SkillVo";
 
 export class ModuleSkill extends AbstractModule{
 
     public static readonly ON_SKILL_CAST:string = "ON_SKILL_CAST";
-    public static readonly ON_SKILL_END:string = "ON_SKILL_END";
+    // public static readonly ON_SKILL_END:string = "ON_SKILL_END";
 
     protected init():void {
         console.log("初始化ModuleSkill")
@@ -19,9 +24,17 @@ export class ModuleSkill extends AbstractModule{
 
     // }
 
-    public useSkill(index:number, skillId:number):void {
-        let baseSkill:BaseSkill = new SkillFireBall(new SkillVo());
-        baseSkill.spellSkill();
-        GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_SKILL_CAST, baseSkill);
+    public getSkillListByHero(heroId:number):BaseSkill[] {
+        return [];//App.tableManager.getTables($Tables.SkillCFG, heroId);
+    }
+
+    // 使用技能
+    public useSkill(skillId:EnumSkill, useUnit:BaseActor):void {
+        if (skillId == EnumSkill.SKILL_FIRE_BALL ) {
+            let skillVo:SkillVo = new SkillVo(App.tableManager.getTable($Tables.SkillCFG, skillId) as SkillCFG);
+            let baseSkill:SkillFireBall = new SkillFireBall(skillVo, useUnit);
+            baseSkill.spellSkill();
+            GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_SKILL_CAST, baseSkill);
+        }
     }
 }

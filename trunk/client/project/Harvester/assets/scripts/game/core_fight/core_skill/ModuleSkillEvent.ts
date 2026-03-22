@@ -2,5 +2,4 @@
 export class ModuleSkillEvent {
     public static readonly ON_SKILL_CAST:string = "ON_SKILL_CAST";
     public static readonly ON_SKILL_END:string = "ON_SKILL_END";
-
 }

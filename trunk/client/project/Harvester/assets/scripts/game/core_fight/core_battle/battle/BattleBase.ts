@@ -1,11 +1,13 @@
+import { BaseActor } from "../../core_actor/BaseActor";
 import { RoundBase } from "../../core_round/RoundBase";
 import { AbstractBattle } from "./AbstractBattle";
 
 // 普通战斗场景
 export class BattleBase extends AbstractBattle {
-
-    public roundList:RoundBase[];
-    public curRound:RoundBase;      // 当前回合
+    public friendActorList:BaseActor[];     // 战斗双方角色列表 
+    public enemyActorList:BaseActor[];      // 敌方角色列表 
+    public roundList:RoundBase[];           // 回合列表 
+    public curRound:RoundBase;              // 当前回合 
     constructor() {
         super();
     }

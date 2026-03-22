@@ -11,6 +11,7 @@ export class RoundActionBase {
     public actionVo:ActionVo;
 
     public doAction():void {
-        GameModules.skill.useSkill(this.actionID,this.actionVo.skillID);
+        // GameModules.skill.useSkill(this.actionID,this.actionVo.skillID);
+        // GameModules.skill.useSkill(this.actionVo.skillID);
     }
 }
