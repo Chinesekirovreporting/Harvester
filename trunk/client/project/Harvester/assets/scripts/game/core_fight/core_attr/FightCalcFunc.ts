@@ -24,21 +24,17 @@ export class FightCalcFunc {
      */
     public static calculateAttackPowerDamage(attacker:BaseActor, defender:BaseActor, damage:number):DamageResultTable {
         // 属性模块优先处理数据运算，将结果返回给魔法效果管理器,从而将数据和表现进行分离
-        // 伤害值 = （攻强- 护甲）
-        var damage:number = damage * (1 + attacker.attackPower - defender.armor);
+        // 伤害值 = （攻强- 护甲）/100 * 伤害值
+        var damage:number = damage * (  attacker.attrVo.ATTACK_POWER - defender.attrVo.ARMOR) / 100;
         // 优先扣除护盾 
-        if (defender.shield > 0) {
-            if (damage > defender.shield) {
-                damage -= defender.shield;
-                defender.shield = 0;
+        if (defender.attrVo.SHIELD > 0) {
+            if (damage > defender.attrVo.SHIELD) {
+                damage -= defender.attrVo.SHIELD;
+                defender.attrVo.SHIELD = 0;
             } else {
-                defender.shield -= damage;
+                defender.attrVo.SHIELD -= damage;
                 damage = 0;
             }
-        }
-        // 扣除生命值
-        if (damage > 0) {
-            defender.hp -= damage;
         }
         return new DamageResultTable(
             // isCrit:false,

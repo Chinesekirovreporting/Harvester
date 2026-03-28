@@ -30,6 +30,10 @@ export class ModuleSkill extends AbstractModule{
 
     // 使用技能
     public useSkill(skillId:EnumSkill, useUnit:BaseActor):void {
+        GameModules.round.curRound.energy -= App.tableManager.getTable($Tables.SkillCFG, skillId).Cost;
+        if (GameModules.round.curRound.energy < 0) {
+            return;
+        }
         if (skillId == EnumSkill.SKILL_FIRE_BALL ) {
             let skillVo:SkillVo = new SkillVo(App.tableManager.getTable($Tables.SkillCFG, skillId) as SkillCFG);
             let baseSkill:SkillFireBall = new SkillFireBall(skillVo, useUnit);

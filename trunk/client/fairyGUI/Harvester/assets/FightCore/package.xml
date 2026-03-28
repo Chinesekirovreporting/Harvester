@@ -9,6 +9,7 @@
     <component id="iqit5" name="ComFightSkill.xml" path="/"/>
     <component id="jz056" name="RenderFightCoreLog.xml" path="/"/>
     <image id="jz059" name="n1.png" path="/"/>
+    <component id="ottwa" name="BtnEndRound.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

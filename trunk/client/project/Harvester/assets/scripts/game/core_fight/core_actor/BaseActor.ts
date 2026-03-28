@@ -12,5 +12,10 @@ export class BaseActor {
     constructor(heroID:number) {
         this.heroID = heroID;
         this.name = App.tableManager.getTable($Tables.HeroBookCFG, heroID).Name;
+        this.initAttrVo();
+    }
+
+    private initAttrVo():void {
+        this.attrVo = new AttrVo(this);
     }
 }

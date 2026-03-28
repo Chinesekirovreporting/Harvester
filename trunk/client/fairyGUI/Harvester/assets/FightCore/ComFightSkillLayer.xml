@@ -30,6 +30,10 @@
     <group id="n22_jz05" name="n22" xy="24,78" size="697,123" advanced="true">
       <gearDisplay controller="c1" pages="1"/>
     </group>
-    <text id="n23_jz05" name="lblReady" xy="244,134" size="231,59" fontSize="30" autoSize="none" text="准备阶段"/>
+    <text id="n23_jz05" name="lblStep" xy="244,134" size="231,59" fontSize="30" autoSize="none" text="准备阶段"/>
+    <component id="n24_jz05" name="btnEndRound" src="ottwa" fileName="BtnEndRound.xml" xy="263,763"/>
+    <component id="n25_fxb0" name="btnEndBattle" src="ottwa" fileName="BtnEndRound.xml" xy="377,763">
+      <Button title="强制战斗结束"/>
+    </component>
   </displayList>
 </component>

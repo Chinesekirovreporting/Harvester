@@ -24,7 +24,6 @@ export class ModuleEffect extends AbstractModule {
         // this.debuffTableManager = new DebuffTableManager();
     }
 
-
     public onEffectStart():void {
         this.damageEffectManager.onEffectStart();
     }

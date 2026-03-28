@@ -47,7 +47,6 @@ export class DamageEffectManager {
         if (result) {
             // 事件派发 特效表现 
             GameModules.effect.emit(ModuleEffectEvent.ON_DAMAGE_EFFECT, result);
-            // GameModules.event.dispatchEventWithData(ModuleEffectEvent.ON_DAMAGE_EFFECT, result);
             BattleLogManager.addLog("DamageEffectManager执行伤害结果", result);
         }
     }

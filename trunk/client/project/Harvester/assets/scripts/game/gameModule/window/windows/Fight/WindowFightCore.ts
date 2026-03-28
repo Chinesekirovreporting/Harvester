@@ -1,6 +1,6 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { GButton, GComponent, GList, GLoader, GObject } from "fairygui-cc";
+import { GButton, GComponent, GList, GLoader, GObject, GTextField } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -13,6 +13,7 @@ import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
 import { Tween } from "cc";
 import { ModuleSkillEvent } from "../../../../core_fight/core_skill/ModuleSkillEvent";
 import { BaseSkill } from "../../../../core_fight/core_skill/BaseSkill";
+import { App } from "db://assets/scripts/framework/managers/App";
 
 export class WindowFightCore extends AbstractUIWindow {
     
@@ -22,6 +23,10 @@ export class WindowFightCore extends AbstractUIWindow {
     private loaderFight:GLoader;
     private comFightCore:GComponent
     private listFightCoreLog:GList;
+    private lblEnergy:GTextField;
+    private lblStep:GTextField;
+    private btnEndRound:GButton;
+    private btnEndBattle:GButton;
     private nButtonCount:number = 6;
 
     protected getResList(): Array<string> {
@@ -56,6 +61,12 @@ export class WindowFightCore extends AbstractUIWindow {
         this.loaderFight = this.view.asCom.getChild("loaderFight") as GLoader;
         this.comFightCore = this.view.asCom.getChild("comFightCore") as GComponent;
         this.listFightCoreLog = this.view.asCom.getChild("listFightCoreLog") as GList;
+        this.lblEnergy = this.view.asCom.getChild("lblEnergy") as GTextField;
+        this.lblStep = this.comFightCore.getChild("lblStep") as GTextField;
+        this.btnEndRound = this.comFightCore.getChild("btnEndRound") as GButton;
+        this.btnEndRound.onClick(this.onBtnEndRoundClick, this);
+        this.btnEndBattle = this.comFightCore.getChild("btnEndBattle") as GButton;
+        this.btnEndBattle.onClick(this.onBtnEndBattleClick, this);
         for (let i = 1; i <= this.nButtonCount; i++) {
             let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
             if (btn) {
@@ -67,7 +78,7 @@ export class WindowFightCore extends AbstractUIWindow {
     private onFightCoreButtonClick(index:number):void {
         console.log("onFightCoreButtonClick", index);
         // 执行技能函数，根据index 执行对应的技能
-        var skillId //= GameModules.round.curRound.getSkillIdBySkillIndex(index);
+        var skillId = 1;    // 技能表 //GameModules.round.curRound.getSkillIdBySkillIndex(index);
         GameModules.skill.useSkill(skillId, this.comFightCore.getChild("btnPop" + index).data);
         this.comFightCore.getChild("btnPop" + index).touchable = false;
         // 更新UI 隐藏当前按钮，并显示下一个按钮
@@ -80,6 +91,15 @@ export class WindowFightCore extends AbstractUIWindow {
         this.close();
     }
 
+    private onBtnEndRoundClick():void {
+        // 点击回合结束，跳转敌方回合
+        GameModules.battle.battleEnemyRoundStart();
+    }
+
+    private onBtnEndBattleClick():void {
+        GameModules.battle.battleEnd();
+    }
+
     private updateFightActor():void {
         this.comPlayer1.getChild("txtName").text = "玩家111";
         this.comPlayer1.getChild("txtLevel").text = "111";
@@ -89,11 +109,23 @@ export class WindowFightCore extends AbstractUIWindow {
         this.comBoss1.getChild("txtFight").text = "111";
     }
 
+    private updateEnergy():void {
+        // this.lblEnergy.text = GameModules.round.curRound.getRoundEnergy().toString();
+    }
+
+    private updateRound():void {
+
+    }
+
     private onFightCoreEventBind():void {
         // 订阅战场开始
         GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_START, this.onBattleStart, this);
         // 订阅订阅回合开始事件
         GameModules.round.on(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
+        // 订阅回合友方开始事件
+        GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.onFriendRoundStart, this);
+        // 订阅回合敌方开始事件
+        GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_ENEMY_ROUND_START, this.onEnemyRoundStart, this);
         // 订阅技能释放事件
         GameModules.skill.on(ModuleSkillEvent.ON_SKILL_CAST, this.onSkillCast, this);
         // 订阅伤害效果事件
@@ -106,17 +138,42 @@ export class WindowFightCore extends AbstractUIWindow {
 
     protected onShow(...args: Array<any>): void {
         this.updateFightActor();
+        this.updateEnergy();
+        this.updateRound();
         TweenUtil.floatEffectLoop(this.comBoss1)
         this.onFightCoreEventBind();
+        // 游戏流程控制，准备 ~ 开始战斗！(战场开启阶段)
+        GameModules.battle.battleStart();
     }
 
+    /////////////////////////////////// 游戏流程控制 /////////////////////////////////////////
     private onBattleStart(battle:BattleBase):void {
         console.log("onBattleStart", battle);
+        this.lblStep.text = "进入战场阶段";
+        // 进入游戏回合开始前准备阶段(回合开始前准备阶段)
+        App.timerManager.registerOnce(3000, () => {
+            this.lblStep.text = "进入回合开始前准备阶段";
+            GameModules.battle.battlePreRoundStart();
+        }, this);
+        App.timerManager.registerOnce(6000, () => {
+            this.lblStep.text = "进入回合循环阶段";
+            GameModules.battle.battleRoundStart();
+        }, this);
     }
 
     private onRoundStart(round:RoundBase):void {
         console.log("onRoundStart", round);
         this.refreshFightSkill();
+    }
+
+    private onFriendRoundStart(battle:BattleBase):void {
+        this.lblStep.text = "进入友方回合阶段";
+        console.log("onFriendRoundStart", battle);
+    }
+
+    private onEnemyRoundStart(battle:BattleBase):void {
+        this.lblStep.text = "进入敌方回合阶段";
+        console.log("onEnemyRoundStart", battle);
     }
 
     private refreshFightSkill():void {
@@ -131,6 +188,7 @@ export class WindowFightCore extends AbstractUIWindow {
 
     private onSkillCast(skill:BaseSkill):void {
         console.log("onSkillCast", skill.skillVo.skillCFG.Name);
+        this.updateEnergy();
     }
 
     private onDamageEffect(result:DamageResultTable):void {
@@ -143,15 +201,19 @@ export class WindowFightCore extends AbstractUIWindow {
     }
 
     private onBattleEnd(battle:BattleBase):void {
+        this.lblStep.text = "进入战场结束阶段";
         console.log("onBattleEnd", battle);
     }
-
 
     private onFightCoreEventUnbind():void {
         // 取消订阅回合结束事件
         GameModules.round.off(ModuleRoundEvent.ON_ROUND_END, this.onRoundEnd, this);
         // 取消订阅回合开始事件
         GameModules.round.off(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
+        // 取消订阅回合友方开始事件
+        GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.onFriendRoundStart, this);
+        // 取消订阅回合敌方开始事件
+        GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_ENEMY_ROUND_START, this.onEnemyRoundStart, this);
         // 订阅技能释放事件
         GameModules.skill.off(ModuleSkillEvent.ON_SKILL_CAST, this.onSkillCast, this);
         // 取消订阅伤害效果事件
