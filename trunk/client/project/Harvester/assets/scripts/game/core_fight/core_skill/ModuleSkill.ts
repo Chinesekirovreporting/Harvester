@@ -41,4 +41,20 @@ export class ModuleSkill extends AbstractModule{
             GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_SKILL_CAST, baseSkill);
         }
     }
+
+    // 敌方使用技能
+    public enemyUseSkill(skillId:EnumSkill, enemyActor:BaseActor):void {
+        // 敌方使用技能时，暂不设置能量消耗
+        // GameModules.round.curRound.energy -= App.tableManager.getTable($Tables.SkillCFG, skillId).Cost;
+        // if (GameModules.round.curRound.energy < 0) {
+        //     return;
+        // }
+        // 敌方使用技能时，释放技能
+        if (skillId == EnumSkill.SKILL_FIRE_BALL ) {
+            let skillVo:SkillVo = new SkillVo(App.tableManager.getTable($Tables.SkillCFG, skillId) as SkillCFG);
+            let baseSkill:SkillFireBall = new SkillFireBall(skillVo, enemyActor);
+            baseSkill.spellSkill();
+            GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_ENEMY_SKILL_CAST, baseSkill);
+        }
+    }
 }

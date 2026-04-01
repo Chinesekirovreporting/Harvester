@@ -27,10 +27,17 @@ export class BaseSkill {
         // GammModuels.mo
         if(this.skillVo.skillCFG.TargetType == EnumTargetType.SELF){
             this.targetActor = this.useUnit;
-            // 为敌对添加BUFF
-            GameModules.buff.addBuff(this.skillVo.skillCFG.BuffIds[0], this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
+            // 为友军添加BUFF
+            for (const buffId of this.skillVo.skillCFG.BuffIds) {
+                GameModules.buff.addBuff(buffId, this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
+            }
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.ENEMY){
-            // this.targetActor = this.useUnit.enemyActorList[0];
+            this.targetActor = GameModules.actor.getActorEnemy(this.useUnit);  // 敌对目标
+            // 为敌方添加BUFF
+            for (const buffId of this.skillVo.skillCFG.BuffIds) {
+                GameModules.buff.addBuff(buffId, this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
+            }
+            // GameModules.buff.addBuff(this.skillVo.skillCFG.BuffIds[0], this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.ALLY){
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.ALL){
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.RANDOM){

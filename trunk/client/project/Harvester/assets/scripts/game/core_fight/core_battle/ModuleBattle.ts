@@ -16,7 +16,7 @@ export class ModuleBattle extends AbstractModule{
     
     // 战斗开始，先进入战场准备阶段
     public battleStart():void {
-        this.curBattle = BattleFactory.createBattle(EnumBattleType.NORMAL, new BattleVo());
+        this.curBattle = BattleFactory.createBattle(EnumBattleType.NORMAL, new BattleVo(1, EnumBattleType.NORMAL));
         this.curBattle.startBattle();
     }
 

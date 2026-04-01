@@ -22,7 +22,8 @@ export class BattleFactory {
         }
 
         if (battleBase != null) {
-            battleBase.data = data;
+            battleBase.battleVo = data;
+            battleBase.updateBattleInfo();
         }
         return battleBase;
     }

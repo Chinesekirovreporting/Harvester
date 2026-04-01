@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="150,150">
+<component size="200,300">
   <displayList>
-    <graph id="n0_lrrb" name="n0" xy="0,0" size="150,150" type="rect"/>
-    <text id="n1_lrrb" name="txtName" xy="10,9" size="52,19" fontSize="12" text="角色名字"/>
-    <text id="n2_lrrb" name="txtLevel" xy="11,37" size="28,19" fontSize="12" text="等级"/>
-    <text id="n3_lrrb" name="txtFight" xy="10,68" size="40,19" fontSize="12" text="战斗力"/>
-    <text id="n4_lrrb" name="n4" xy="12,102" size="95,19" fontSize="12" text="1234123451234"/>
+    <graph id="n0_lrrb" name="n0" xy="0,0" size="200,300" type="rect"/>
+    <text id="n1_lrrb" name="name" xy="8,9" size="84,29" fontSize="20" text="角色名字"/>
+    <text id="n2_lrrb" name="level" xy="9,50" size="44,29" fontSize="20" text="等级"/>
+    <text id="n3_lrrb" name="fight" xy="9,94" size="64,29" fontSize="20" text="战斗力"/>
+    <text id="n4_lrrb" name="lblHp" xy="112,140" size="72,29" fontSize="20" autoSize="none" text="200"/>
+    <text id="n5_fxb0" name="lblName" xy="112,9" size="84,29" fontSize="20" text="神力恩泽"/>
+    <text id="n6_fxb0" name="lblLevel" xy="112,50" size="26,29" fontSize="20" text="80"/>
+    <text id="n7_fxb0" name="lblFight" xy="112,94" size="37,29" fontSize="20" text="999"/>
+    <text id="n8_fxb0" name="n8" xy="10,139" size="90,29" fontSize="20" autoSize="none" text="血量"/>
+    <text id="n9_fxb0" name="n9" xy="9,187" size="90,29" fontSize="20" autoSize="none" text="能量"/>
+    <text id="n10_fxb0" name="lblMp" xy="112,186" size="72,29" fontSize="20" autoSize="none" text="5"/>
   </displayList>
 </component>

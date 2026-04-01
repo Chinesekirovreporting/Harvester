@@ -11,6 +11,7 @@ export class BattleStateRoundFriendStart extends BattleStateBase {
 
     protected onEnterState():void {
         // console.log(`进入状态: ${this.state}`);
+        
         GameModules.round.friendRoundStart(GameModules.battle.curBattle.curRound);
         GameModules.battle.dispatchEventWithData(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.battle);
     }

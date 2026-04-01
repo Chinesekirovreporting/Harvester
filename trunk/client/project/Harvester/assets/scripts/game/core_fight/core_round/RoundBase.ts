@@ -57,11 +57,13 @@ export class RoundBase {
     }  
 
     public roundEnd():void { 
+        // 大回合结束，结束当前小回合状态
         if(this.curRoundState == EnumRoundState.FRIEND_ROUND){
             this.roundStateDict[this.curRoundState].exitState();
         }else if(this.curRoundState == EnumRoundState.ENEMY_ROUND){
             this.roundStateDict[this.curRoundState].exitState();
         }
+        // 判断是否需要进入下一回合，敌方阵亡或友方阵亡则结束游戏
         GameModules.round.dispatchEventWithData(ModuleRoundEvent.ON_ROUND_END, this);
     }
 

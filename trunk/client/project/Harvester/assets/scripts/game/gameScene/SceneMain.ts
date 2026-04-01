@@ -25,6 +25,16 @@ export class SceneMain extends AbstractScene {
 		this.addModule(GameModules.mainUI);
 		this.addModule(GameModules.window);
 		this.addModule(GameModules.rule);
+		// 战斗模块
+		this.addModule(GameModules.battle);
+		// this.addModule(GameModules.stage);
+		this.addModule(GameModules.round);
+		this.addModule(GameModules.action);
+		this.addModule(GameModules.skill);
+		this.addModule(GameModules.buff);
+		this.addModule(GameModules.effect);
+		this.addModule(GameModules.attr);
+		this.addModule(GameModules.actor);
 		// this.addModule(GameModules.viewUI);
 		// this.addModule(GameModules.notice);
 		// this.addModule(GameModules.guide);

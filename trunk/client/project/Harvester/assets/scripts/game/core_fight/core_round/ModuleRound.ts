@@ -19,10 +19,10 @@ export class ModuleRound extends AbstractModule {
     }
 
     // 回合开始
-    public roundStart(roundBase:RoundBase):void {
-        this.curRound = roundBase;
-        this.curRound.roundStart();
-    }
+    // public roundStart(roundBase:RoundBase):void {
+    //     this.curRound = roundBase;
+    //     this.curRound.roundStart();
+    // }
 
     // 进入友方回合
     public friendRoundStart(roundBase:RoundBase):void {

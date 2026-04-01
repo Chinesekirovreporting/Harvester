@@ -6,7 +6,7 @@ import { ModuleEffectEvent } from "../ModuleEffectEvent";
 
 export class DamageEffectManager {
     // 伤害效果列表
-    public damageResultList:DamageResultTable[];
+    public damageResultList:DamageResultTable[] = [];
     public isRunning:boolean = false;
     constructor() {
         this.init();

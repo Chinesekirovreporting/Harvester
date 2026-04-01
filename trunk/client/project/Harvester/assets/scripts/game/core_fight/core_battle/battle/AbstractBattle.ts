@@ -1,7 +1,8 @@
 import { IPooledObject } from "db://assets/scripts/framework/utils/objectPool/IPooledObjpect";
+import { BattleVo } from "../BattleVo";
 
 export class AbstractBattle implements IPooledObject{
-    public data:Object;   // 战斗数据，包含战斗双方的角色信息、战斗环境信息等
+    public battleVo:BattleVo;   // 战斗数据，包含战斗双方的角色信息、战斗环境信息等
     constructor() {
 
     }

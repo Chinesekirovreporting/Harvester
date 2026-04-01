@@ -16,7 +16,7 @@ export class RuleDemo {
 
     // 模拟回合开始事件
     public simRoundStart():void {
-        GameModules.round.roundStart(GameModules.round.curRound);
+        // GameModules.round.roundStart(GameModules.round.curRound);
     }
 
     // 模拟玩家动作事件

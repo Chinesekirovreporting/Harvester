@@ -17,10 +17,13 @@ export class BattleBase extends AbstractBattle {
     }
     
     public initBattle():void {
-        this.friendActorList = [];
-        this.enemyActorList = [];
         this.roundList = [];
         this.battleStageMgr = new BattleStateManager(this);
+    }
+
+    public updateBattleInfo():void {
+        this.friendActorList = [this.battleVo.battleActor];
+        this.enemyActorList = [this.battleVo.battleTarget];
     }
 
     // 战场开始战斗
@@ -52,7 +55,7 @@ export class BattleBase extends AbstractBattle {
     // 战场销毁
     public destroyBattle():void {
         this.stopBattle();
-        this.data = null;
+        this.battleVo = null;
     }
 
     public update():void {

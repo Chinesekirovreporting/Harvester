@@ -53,7 +53,6 @@ export class ModelRole extends AbstractModel{
         const loginTime = App.cookieManager.getNumber(StorageKeys.LAST_LOGIN_TIME, 0);
         const userName = App.cookieManager.getString(StorageKeys.USER_NAME, "游客");
         const musicOn = App.cookieManager.getBoolean(StorageKeys.MUSIC_ENABLED, true);
-
         console.log(loginTime, userName, musicOn);
     }
 }

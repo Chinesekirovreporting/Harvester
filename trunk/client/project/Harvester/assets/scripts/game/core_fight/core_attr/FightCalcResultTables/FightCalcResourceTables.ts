@@ -1,13 +1,32 @@
-export class ResultTable {
+import { BaseActor } from "../../core_actor/BaseActor";
 
+export class ResultTable {
+    constructor() {
+        this.init();
+    }
+
+    protected init():void {
+        console.log("ResultTable初始化");
+    }
 }
 
 export class DamageResultTable extends ResultTable {
     public isCrit:boolean;  // 是否暴击
     public isMiss:boolean;  // 是否未命中
-    public caster:number;  // 施法者
-    public target:number;  // 目标单位
+    public caster:BaseActor;  // 施法者
+    public target:BaseActor;  // 目标单位
     public damage:number;  // 伤害值
+    public beKilled:boolean;  // 是否被击杀
+
+    constructor(isCrit:boolean, isMiss:boolean, caster:BaseActor, target:BaseActor, damage:number, beKilled:boolean) {
+        super();
+        this.isCrit = isCrit;
+        this.isMiss = isMiss;
+        this.caster = caster;
+        this.target = target;
+        this.damage = damage;
+        this.beKilled = beKilled;
+    }
 }
 
 export class HealResultTable extends ResultTable {

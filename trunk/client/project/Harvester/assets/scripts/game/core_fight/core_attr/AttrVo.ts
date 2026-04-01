@@ -1,5 +1,6 @@
 import { App } from "../../../framework/managers/App";
 import { $Tables } from "../../gameModel/table/$Tables";
+import { HeroAttrCFG } from "../../gameModel/table/tableClass/HeroAttrCFG";
 import { BaseActor } from "../core_actor/BaseActor";
 
 // 属性结构体 
@@ -25,15 +26,15 @@ export class AttrVo {
 
     constructor(owner:BaseActor) {
         this.owner = owner;
-        var heroAttrCFG = App.tableManager.getTable($Tables.HeroAttrCFG, owner.heroID);
+        var heroAttrCFG:HeroAttrCFG = App.tableManager.getTable($Tables.HeroAttrCFG, owner.heroID);
         this.HP = heroAttrCFG.HP;
         this.MP = heroAttrCFG.MP;
-        this.ATTACK_POWER = heroAttrCFG.ATTACK_POWER;
-        this.MAGIC_POWER = heroAttrCFG.MAGIC_POWER;
-        this.ARMOR = heroAttrCFG.ARMOR;
-        this.SHIELD = heroAttrCFG.SHIELD;
-        this.MAGIC_RESIST = heroAttrCFG.MAGIC_RESIST;
-        this.CRIT_RATE = heroAttrCFG.CRIT_RATE;
+        this.ATTACK_POWER = heroAttrCFG.AttackPower;
+        this.MAGIC_POWER = heroAttrCFG.MagicPower;
+        this.ARMOR = heroAttrCFG.Armor;
+        this.SHIELD = heroAttrCFG.Shield;
+        this.MAGIC_RESIST = heroAttrCFG.MagicResist;
+        this.CRIT_RATE = heroAttrCFG.CritRate;
         this.CRIT_DMG = heroAttrCFG.CRIT_DMG;
         this.DODGE_RATE = heroAttrCFG.DODGE_RATE;
         this.HIT_RATE = heroAttrCFG.HIT_RATE;
