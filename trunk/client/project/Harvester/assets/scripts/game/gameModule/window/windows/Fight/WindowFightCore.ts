@@ -133,7 +133,7 @@ export class WindowFightCore extends AbstractUIWindow {
         // 订阅战场开始
         GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_START, this.onBattleStart, this);
         // 订阅订阅回合开始事件
-        // GameModules.round.on(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
+        GameModules.round.on(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
         // 订阅回合友方开始事件
         GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.onFriendRoundStart, this);
         // 订阅回合敌方开始事件
@@ -174,10 +174,17 @@ export class WindowFightCore extends AbstractUIWindow {
         }, this);
     }
 
-    // private onRoundStart(round:RoundBase):void {
-    //     console.log("onRoundStart", round);
-    //     this.refreshFightSkill();
-    // }
+    // 回合开始
+    private onRoundStart(round:RoundBase):void {
+        console.log("onRoundStart", round);
+        this.lblStep.text = "执行BUFF，等待进入友方回合阶段。";
+        // 刷新血量和能量
+        this.updateEnergy();
+        this.updateFightActor();
+        App.timerManager.registerOnce(2000, () => {     
+            GameModules.battle.battleFriendRoundStart();
+        }, this);
+    }
 
     private onFriendRoundStart(battle:BattleBase):void {
         this.refreshFightSkill()
@@ -242,7 +249,7 @@ export class WindowFightCore extends AbstractUIWindow {
         // 取消订阅回合结束事件
         GameModules.round.off(ModuleRoundEvent.ON_ROUND_END, this.onRoundEnd, this);
         // 取消订阅回合开始事件
-        // GameModules.round.off(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
+        GameModules.round.off(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
         // 取消订阅回合友方开始事件
         GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.onFriendRoundStart, this);
         // 取消订阅回合敌方开始事件

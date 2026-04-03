@@ -18,6 +18,7 @@ export class BaseBuff {
     public useActor:BaseActor;                           // 使用者
     public targetActor:BaseActor;                       // 目标角色
     public skillCFG:SkillCFG;                           // 技能配置
+    public durationTimes:number = 0;                     // BUFF持续触发次数
 
     constructor(buffVo:BuffVo, targetActor:BaseActor, useActor:BaseActor, skillCFGId:number) { 
         this.buffVo = buffVo;
@@ -60,19 +61,32 @@ export class BaseBuff {
         for (const effectId of this.startEffectList) {
             GameModules.effect.applyEffect(effectId, this.buffVo.buffID, this.targetActor, this.useActor );
         }
+        // 如果BUFF是顺发技能，则触发后立即移除
+        if(this.buffVo.buffCFG.IsDot == 0) {
+            GameModules.buff.removeBuff(this);
+        }
     }
 
     // 每个回合结束后触发一次BUFFTick
     protected onBuffTick():void {
+        // 如果BUFF是顺发，不是DOT则直接移除
+        if(this.buffVo.buffCFG.IsDot == 0) {
+            return;
+        }
         for (const effectId of this.cycleEffectList) {
-            // GameModules.effect.applyEffect(effectIds, this.targetActor);
+            GameModules.effect.applyEffect(effectId, this.buffVo.buffID, this.targetActor, this.useActor );
+        }
+        this.durationTimes++;
+        // 如果BUFF持续效果次数结束，则移除
+        if (this.buffVo.buffCFG.Duration > 0 && this.durationTimes >= this.buffVo.buffCFG.Duration) {
+            GameModules.buff.removeBuff(this);
         }
     }
 
     // BUFF移除时触发
     protected onBuffRemoved():void {
         for (const effectId of this.endEffectList) {
-            // GameModules.effect.applyEffect(effectIds, this.targetActor);
+            GameModules.effect.applyEffect(effectId, this.buffVo.buffID, this.targetActor, this.useActor );
         }
     }
 } 

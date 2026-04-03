@@ -1,3 +1,4 @@
+import { EnumSkill } from "../../core_skill/skills/EnumSkill";
 import { BattleBase } from "../battle/BattleBase";
 import { EnumBattleState } from "../battle/EnumBattleState";
 import { BattleStateBase } from "./BattleStateBase";
@@ -5,6 +6,7 @@ import { BattleStateEnd } from "./BattleStateEnd";
 import { BattleStatePreRoundStart } from "./BattleStatePreRoundStart";
 import { BattleStateRoundEnemyStart } from "./BattleStateRoundEnemyStart";
 import { BattleStateRoundFriendStart } from "./BattleStateRoundFriendStart";
+import { BattleStateRoundStart } from "./BattleStateRoundStart";
 import { BattleStateStart } from "./BattleStateStart";
 
 export class BattleStateManager {
@@ -21,6 +23,7 @@ export class BattleStateManager {
     private registerBattleState():void {
         this.battleStateDict[EnumBattleState.BATTLE_START] = new BattleStateStart(this.battle, EnumBattleState.BATTLE_START);
         this.battleStateDict[EnumBattleState.BATTLE_PRE_ROUND_START] = new BattleStatePreRoundStart(this.battle, EnumBattleState.BATTLE_PRE_ROUND_START);
+        this.battleStateDict[EnumBattleState.BATTLE_ROUND_START] = new BattleStateRoundStart(this.battle, EnumBattleState.BATTLE_ROUND_START);
         this.battleStateDict[EnumBattleState.BATTLE_ROUND_FRIEND_START] = new BattleStateRoundFriendStart(this.battle, EnumBattleState.BATTLE_ROUND_FRIEND_START);
         this.battleStateDict[EnumBattleState.BATTLE_ROUND_ENEMY_START] = new BattleStateRoundEnemyStart(this.battle, EnumBattleState.BATTLE_ROUND_ENEMY_START);
         this.battleStateDict[EnumBattleState.BATTLE_END] = new BattleStateEnd(this.battle, EnumBattleState.BATTLE_END);

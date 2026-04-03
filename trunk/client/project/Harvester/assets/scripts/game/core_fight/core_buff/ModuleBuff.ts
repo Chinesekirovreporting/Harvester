@@ -10,6 +10,7 @@ export class ModuleBuff extends AbstractModule{
 
     protected init():void {
         console.log("初始化ModuleBuff")
+        this.buffMgr = new BuffManager();
     }
 
     /**
@@ -20,10 +21,15 @@ export class ModuleBuff extends AbstractModule{
     public addBuff(buffId:number, targetActor:BaseActor, useUnit:BaseActor, skillCFGId:number):void {
         let buffVo:BuffVo = new BuffVo(buffId);
         let baseBuff:BaseBuff = new BaseBuff(buffVo, targetActor, useUnit, skillCFGId);
-        baseBuff.applyBuff();
+        this.buffMgr.addBuff(baseBuff);
     }
 
-    public removeBuff(skillId:number,buffId:number):void {
+    public removeBuff(buff:BaseBuff):void {
+        this.buffMgr.removeBuff(buff);
 
+    }
+
+    public applyBuffTick():void {
+        this.buffMgr.onBuffTick();
     }
 }

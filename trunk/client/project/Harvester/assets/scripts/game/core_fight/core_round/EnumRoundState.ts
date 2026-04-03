@@ -1,5 +1,6 @@
 export enum EnumRoundState {
     NONE = 0,
-    FRIEND_ROUND = 1,
-    ENEMY_ROUND = 2,
+    ROUND_START = 1,
+    FRIEND_ROUND = 2,
+    ENEMY_ROUND = 3,
 }

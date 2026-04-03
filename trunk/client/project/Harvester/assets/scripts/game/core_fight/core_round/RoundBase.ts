@@ -8,6 +8,7 @@ import { ModuleRoundEvent } from "./ModuleRoundEvent";
 import { BaseRoundState } from "./RoundState/BaseRoundState";
 import { RoundStateEnemy } from "./RoundState/RoundStateEnemy";
 import { RoundStateFriend } from "./RoundState/RoundStateFriend";
+import { RoundStateRoundStart } from "./RoundState/RoundStateRoundStart";
 
 export class RoundBase {
     public roundID:number;
@@ -27,6 +28,7 @@ export class RoundBase {
     }
 
     private registerRoundState():void {
+        this.roundStateDict[EnumRoundState.ROUND_START] = new RoundStateRoundStart(this);
         this.roundStateDict[EnumRoundState.FRIEND_ROUND] = new RoundStateFriend(this);
         this.roundStateDict[EnumRoundState.ENEMY_ROUND] = new RoundStateEnemy(this);
     }
@@ -36,8 +38,9 @@ export class RoundBase {
     }
 
     public roundStart():void {
-        this.friendRoundStart();
-        GameModules.round.dispatchEventWithData(ModuleRoundEvent.ON_ROUND_START, this);
+        // this.oundStart();
+        // GameModules.round.dispatchEventWithData(ModuleRoundEvent.ON_ROUND_START, this);
+        this.changeRound(EnumRoundState.ROUND_START)
     }
 
     public friendRoundStart():void { 

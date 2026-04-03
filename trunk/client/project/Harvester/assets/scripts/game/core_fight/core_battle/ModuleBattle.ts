@@ -31,6 +31,12 @@ export class ModuleBattle extends AbstractModule{
         this.curBattle.changeRound(roundBase);
     }
 
+    // 进入友方回合阶段
+    public battleFriendRoundStart():void {
+        var roundBase = this.curBattle.curRound;
+        this.curBattle.changeFriendRound(roundBase);
+    }
+
     // 进入敌方回合阶段
     public battleEnemyRoundStart():void {
         var roundBase = this.curBattle.curRound;

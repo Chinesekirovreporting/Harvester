@@ -35,6 +35,10 @@ export class BattleBase extends AbstractBattle {
     public changeRound( round:RoundBase ):void {
         this.roundList.push(round);
         this.curRound = round;
+        this.changeState(EnumBattleState.BATTLE_ROUND_START);
+    }
+
+    public changeFriendRound(round:RoundBase):void {
         this.changeState(EnumBattleState.BATTLE_ROUND_FRIEND_START);
     }
 
