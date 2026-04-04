@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_wbr" name="bg" xy="0,0" size="750,1334" type="rect" lineSize="2" lineColor="#ffffffff"/>
+    <text id="n1_wbr" name="lblTitle" xy="22,19" size="604,48" fontSize="32" color="#663333" autoSize="none" bold="true" text="战斗结算"/>
+    <component id="n2_wbr" name="btnClose" src="brw2" fileName="BtnClose.xml" xy="638,16" size="100,40"/>
+    <list id="n3_wbr" name="listReward" xy="46,120" size="658,720" overflow="scroll" lineGap="6" defaultItem="ui://brw0k001brw1" align="center" autoClearItems="true">
+      <item/>
+      <item/>
+    </list>
+    <component id="n4_wbr" name="btnConfirm" src="brw3" fileName="BtnConfirm.xml" xy="295,900" size="160,48"/>
+  </displayList>
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,88" extention="Button">
+  <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_brr" name="n0" xy="4,2" size="392,82" type="rect" fillColor="#ff333344"/>
+    <loader id="n1_brr" name="loaderIcon" xy="12,12" size="64,64" fill="scale"/>
+    <text id="n2_brr" name="lblName" xy="90,16" size="200,24" fontSize="16" bold="true" text="道具名称"/>
+    <text id="n3_brr" name="lblCount" xy="300,28" size="80,24" fontSize="16" align="right" text="x99"/>
+  </displayList>
+  <Button/>
+</component>

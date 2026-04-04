@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="brw0k001">
+  <resources>
+    <component id="brw0" name="WindowBattleReward.xml" path="/" exported="true"/>
+    <component id="brw1" name="RenderBattleReward.xml" path="/"/>
+    <component id="brw2" name="BtnClose.xml" path="/"/>
+    <component id="brw3" name="BtnConfirm.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

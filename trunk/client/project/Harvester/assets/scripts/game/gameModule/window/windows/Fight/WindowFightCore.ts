@@ -16,6 +16,7 @@ import { BaseSkill } from "../../../../core_fight/core_skill/BaseSkill";
 import { App } from "db://assets/scripts/framework/managers/App";
 import { BaseActor } from "../../../../core_fight/core_actor/BaseActor";
 import { EnumFaction } from "../../../../core_fight/core_actor/EnumFaction";
+import { BattleRewardDropItemVo } from "../../../../gameModel/data/BattleRewardDropItemVo";
 
 export class WindowFightCore extends AbstractUIWindow {
     
@@ -102,7 +103,15 @@ export class WindowFightCore extends AbstractUIWindow {
     }
 
     private onBtnEndBattleClick():void {
+        this.applyBattleOutcome(false, []);
         GameModules.battle.battleEnd();
+    }
+
+    /** 在 `battleEnd()` 之前写入，供结算窗读取 */
+    private applyBattleOutcome(victory: boolean, drops?: BattleRewardDropItemVo[]): void {
+        const vo = GameModules.battle.curBattle.battleVo;
+        vo.isVictory = victory;
+        vo.rewardDropList = drops ? drops.slice() : [];
     }
 
     private updateFightActor():void {
@@ -219,7 +228,10 @@ export class WindowFightCore extends AbstractUIWindow {
         console.log("onDamageEffect", result);
         // 如果目标被击杀，执行击杀逻辑
         if( result.target.faction == EnumFaction.ENEMY && result.beKilled ) {
-            // this.onRoundEnd(GameModules.round.curRound);
+            this.applyBattleOutcome(true, [
+                new BattleRewardDropItemVo(1, 10),
+                new BattleRewardDropItemVo(2, 1),
+            ]);
             GameModules.battle.battleEnd();
         }
         // this.loaderFight.progress = result.damage / 100;
@@ -243,6 +255,9 @@ export class WindowFightCore extends AbstractUIWindow {
     private onBattleEnd(battle:BattleBase):void {
         this.lblStep.text = "进入战场结束阶段";
         console.log("onBattleEnd", battle);
+        if (battle && battle.battleVo) {
+            GameModules.window.showWindowByName("WindowBattleReward", true, false, false, true, undefined, undefined, [battle.battleVo]);
+        }
     }
 
     private onFightCoreEventUnbind():void {

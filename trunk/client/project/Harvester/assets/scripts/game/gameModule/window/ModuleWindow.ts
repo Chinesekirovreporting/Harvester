@@ -22,6 +22,7 @@ import { WindowEquip } from "./windows/Equip/WindowEquip";
 import { WindowTalent } from "./windows/Talent/WindowTalent";
 import { WindowHero } from "./windows/Hero/WindowHero";
 import { WindowSkillStone } from "./windows/SkillStone/WindowSkillStone";
+import { WindowBattleReward } from "./windows/BattleReward/WindowBattleReward";
 
 export class ModuleWindow extends AbstractModule{
 	public static readonly SHOW_WINDOW:string = "ShowWindow";
@@ -57,6 +58,7 @@ export class ModuleWindow extends AbstractModule{
 		this._windowClassDict["WindowEquip"] = WindowEquip;
 		this._windowClassDict["WindowTalent"] = WindowTalent;
 		this._windowClassDict["WindowEquip"] = WindowEquip;
+		this._windowClassDict["WindowBattleReward"] = WindowBattleReward;
     }
 
     protected show():void {

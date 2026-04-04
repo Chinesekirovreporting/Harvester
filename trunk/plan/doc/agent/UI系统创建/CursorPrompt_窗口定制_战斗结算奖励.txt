@@ -1,0 +1,89 @@
+# 战斗结束奖励面板开发 Prompt
+
+## 角色定位
+你是一名 UI 程序设计师，负责 FairyGUI 的 UI 制作和 TypeScript 脚本编写。请基于现有表格、代码和 FGUI 项目目录，完成「战斗结束奖励」弹窗的开发，并与战斗模块的结束事件对接。
+
+---
+
+## 一、项目结构参考
+
+### 1.1 FGUI 项目目录
+- **路径**: `trunk/client/fairyGUI/Harvester/assets/`
+- **参考包**: Common、Achieve、Item/SkillBook 等同为弹窗+列表的结构（关闭按钮、GList、Render 可复用）
+- **新建包**: 建议命名 `BattleReward`（或 `BattleResult`），包含：
+  - `WindowBattleReward.xml` — 主窗口（胜利/失败标题区、奖励列表、确认按钮）
+  - `RenderBattleReward.xml` — 单条奖励（图标、名称、数量），GList 的 defaultItem
+  - `BtnClose.xml` / `BtnConfirm.xml` — 可从 Common 复用或本包内新建
+  - `package.xml`
+
+### 1.2 脚本目录
+- **窗口**: `trunk/client/project/Harvester/assets/scripts/game/gameModule/window/windows/`
+- **数据**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/`
+- **表格**: `trunk/client/project/Harvester/assets/scripts/game/gameModel/table/`（奖励若来自 ItemCFG 等表，在此说明字段）
+
+### 1.3 资源加载
+- UI 包发布到 `assets/resources/ui/`，加载路径格式：`ui/BattleReward`
+- 物品图标需引用时增加：`ui/Icon`（与现有 `GameRes` / `RenderSkillBook` 中图标加载方式一致）
+
+---
+
+## 二、战斗结束接入点（必须对齐现有代码）
+
+- 战场结束状态：`EnumBattleState.BATTLE_END`
+- 状态类：`BattleStateEnd`，进入时会派发：
+  - `ModuleBattleEvent.ON_BATTLE_END`（参数为当前 `BattleBase` / `this.battle`）
+  - 退出时：`ModuleBattleEvent.ON_BATTLE_END_EXIT`
+
+**开发要求**：
+- 在合适的监听处（例如主 UI 模块或专门的中转类）`GameModules.battle.addEventListener(ModuleBattleEvent.ON_BATTLE_END, ...)`，在回调里：
+  - 从 `BattleVo.rewardDropList` 读取奖励列表；元素类型为独立文件 `BattleRewardDropItemVo`（见 `gameModel/data/BattleRewardDropItemVo.ts`），**不要** 在 `BattleVo.ts` 内嵌声明 interface（约定见 `plan/doc/agent/CursorAgent编码规范.txt`）
+  - 调用 `GameModules.window.showWindowByName("WindowBattleReward", ...)` 并传入奖励数据（可通过窗口的 `setData` / 自定义 open 参数，遵循项目现有窗口传参方式）
+
+---
+
+## 三、奖励数据结构（请按项目实际表填充）
+
+若奖励为「道具 ID + 数量」列表，使用类 **`BattleRewardDropItemVo`**（`gameModel/data/BattleRewardDropItemVo.ts`），字段与 `ItemCFG` 展示对齐：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| itemId | number | 物品 ID，对应 `ItemCFG.ID` |
+| count | number | 数量 |
+
+展示时：`App.tableManager.getTable($Tables.ItemCFG, itemId)` 取名称、图标字段（与现有物品展示一致）。
+
+若另有经验、金币等，可增加独立控件或第二套 Render，在 Prompt 中单独列表说明。
+
+---
+
+## 四、开发规范（必须遵循）
+
+### 4.1 窗口类 `WindowBattleReward`
+- 继承 `AbstractUIWindow`
+- `getResList()` 返回 `["ui/BattleReward", "ui/Icon"]`（若需要图标包）
+- `onInit()`：`UICore.registerExtension("BattleReward", "RenderBattleReward", RenderBattleReward)`，`UICore.createObject("BattleReward", "WindowBattleReward").asCom`
+- `onInitView()`：绑定 `listReward`(GList)、关闭/确认按钮；列表 `setVirtual()` + `itemRenderer`
+- `onShow()`：根据传入数据刷新列表（胜败文案若有，一并设置）
+- `onDispose()`：解绑事件、清空引用
+
+### 4.2 列表项 `RenderBattleReward`
+- 继承 `GButton` 或 `GComponent`（参考 `RenderAchieve` / `RenderSkillBook`）
+- `setData(data: BattleRewardDropItemVo)`，从 `BattleRewardDropItemVo.ts` import
+- 图标 URL 与项目现有 `GameRes` 常量一致
+
+### 4.3 窗口注册
+- 在 `ModuleWindow.init()` 的 `_windowClassDict` 中注册：`"WindowBattleReward" = WindowBattleReward`
+
+---
+
+## 五、FGUI 设计要点
+
+- 标题：区分胜利/失败（可用控制器或两个标题控件切换）
+- `listReward`：横向或纵向滚动，条目展示图标 + 名称 + 数量
+- 底部：`btnConfirm` 点击后关闭窗口；若需返回大地图/副本，在按钮回调中派发项目已有场景切换或事件（按现有 `ModuleMainUI` / 场景管理写法）
+
+---
+
+## 六、调用示例
+
+GameModules.window.showWindowByName("WindowBattleReward", true, false, false, true);
