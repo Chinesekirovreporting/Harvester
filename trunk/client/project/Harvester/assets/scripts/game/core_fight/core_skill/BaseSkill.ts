@@ -28,13 +28,13 @@ export class BaseSkill {
         if(this.skillVo.skillCFG.TargetType == EnumTargetType.SELF){
             this.targetActor = this.useUnit;
             // 为友军添加BUFF
-            for (const buffId of this.skillVo.skillCFG.BuffIds) {
+            for (let buffId of this.skillVo.skillCFG.BuffIds) {
                 GameModules.buff.addBuff(buffId, this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
             }
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.ENEMY){
             this.targetActor = GameModules.actor.getActorEnemy(this.useUnit);  // 敌对目标
             // 为敌方添加BUFF
-            for (const buffId of this.skillVo.skillCFG.BuffIds) {
+            for (let buffId of this.skillVo.skillCFG.BuffIds) {
                 GameModules.buff.addBuff(buffId, this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
             }
             // GameModules.buff.addBuff(this.skillVo.skillCFG.BuffIds[0], this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);

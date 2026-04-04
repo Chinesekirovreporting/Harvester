@@ -61,10 +61,6 @@ export class BaseBuff {
         for (const effectId of this.startEffectList) {
             GameModules.effect.applyEffect(effectId, this.buffVo.buffID, this.targetActor, this.useActor );
         }
-        // 如果BUFF是顺发技能，则触发后立即移除
-        if(this.buffVo.buffCFG.IsDot == 0) {
-            GameModules.buff.removeBuff(this);
-        }
     }
 
     // 每个回合结束后触发一次BUFFTick

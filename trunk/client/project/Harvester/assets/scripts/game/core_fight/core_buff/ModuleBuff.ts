@@ -26,7 +26,6 @@ export class ModuleBuff extends AbstractModule{
 
     public removeBuff(buff:BaseBuff):void {
         this.buffMgr.removeBuff(buff);
-
     }
 
     public applyBuffTick():void {
