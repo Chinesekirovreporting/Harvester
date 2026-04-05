@@ -11,6 +11,7 @@ import { ModuleBuff } from "../core_fight/core_buff/ModuleBuff";
 import { ModuleEffect } from "../core_fight/core_effect/ModuleEffect";
 import { ModuleAttr } from "../core_fight/core_attr/ModuleAttr";
 import { ModuleRule } from "./rule/ModuleRule";
+import { ModuleDynamicUI } from "./dynamicUI/ModuleDynamicUI";
 
 export class GameModules {
     // 核心展示模块
@@ -28,6 +29,7 @@ export class GameModules {
     public static readonly MODULE_ATTR:string = "attr"; // 角色属性模块，包含角色的所有属性数据，提供属性计算等功能
     public static readonly MODULE_ACTOR:string = "actor"; // 角色模块，包含角色的所有数据，提供角色行为等功能
     public static readonly MODULE_RULE:string = "rule"; // 规则模块，包含游戏的所有规则数据，用于模拟战斗，特殊规则定制，等垂直切片功能
+    public static readonly MODULE_DYNAMIC_UI:string = "dynamicUI"; // 动态 UI（飘血、临时插入组件、特效容器等）
 
     public static mainUI:ModuleMainUI;
     public static window:ModuleWindow;
@@ -43,6 +45,7 @@ export class GameModules {
     public static attr:ModuleAttr;
     public static actor:ModuleActor;
     public static rule:ModuleRule;
+    public static dynamicUI:ModuleDynamicUI;
     
     // 初始化基础模块（底层模块）
     public static InitBaseModules() {
@@ -50,6 +53,8 @@ export class GameModules {
         GameModules.mainUI = new ModuleMainUI(GameModules.MODULE_MAINUI);   // 主UI部分 UICore在此处初始化 
         GameModules.window = new ModuleWindow(GameModules.MODULE_WINDOW);   // 窗口部分 
         GameModules.world = new ModuleWorld(GameModules.MODULE_WORLD);      // 主UI的世界部分
+        GameModules.dynamicUI = new ModuleDynamicUI(GameModules.MODULE_DYNAMIC_UI);
+        GameModules.dynamicUI.enterModule();
     }
     
     // 初始化战斗模块（战斗模块依赖基础模块，必须在InitBaseModules之后调用）

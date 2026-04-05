@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="100,50">
+  <displayList>
+    <graph id="n1_g4tx" name="n1" xy="0,0" size="100,50" type="rect"/>
+    <text id="n0_g4tx" name="lblBlood" xy="0,0" size="99,43" fontSize="24" autoSize="none" text="10"/>
+  </displayList>
+</component>

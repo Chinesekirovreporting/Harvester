@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334">
-  <controller name="c1" pages="0,,1," selected="1"/>
+  <controller name="c1" pages="0,,1," selected="0"/>
   <displayList>
     <graph id="n1_lrrb" name="n1" xy="-1,0" size="750,1334" group="n18_iqit" type="rect"/>
     <text id="n0_lrrb" name="n0" xy="316,53" size="76,36" group="n18_iqit" fontSize="12" text="核心战斗区域&#xA;"/>
@@ -20,6 +20,7 @@
       <item/>
     </list>
     <group id="n32_fxb0" name="n32" xy="37,983" size="615,307" group="n18_iqit"/>
+    <component id="n33_g4tx" name="comBlood" src="g4txb" fileName="ComBlood.xml" xy="520,355" group="n18_iqit"/>
     <group id="n18_iqit" name="n18" xy="-1,0" size="750,1334" advanced="true">
       <gearDisplay controller="c1" pages="0,1"/>
     </group>

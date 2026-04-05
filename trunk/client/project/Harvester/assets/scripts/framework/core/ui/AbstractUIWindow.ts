@@ -704,6 +704,11 @@ export class AbstractUIWindow implements IUIWindow {
 		
 		// 销毁子视图
 		this._disposeSubViews();
+
+		// 释放动态 UI 层（飘血、临时 GObject 等），需在 _view.dispose 之前
+		if (this._view != null && GameModules.dynamicUI != null) {
+			GameModules.dynamicUI.releaseLayer(this._view);
+		}
 		
 		// 调用销毁回调
 		this.onDispose();
@@ -813,6 +818,16 @@ export class AbstractUIWindow implements IUIWindow {
 	 */
 	protected getSubViewCount():number {
 		return this._subViewList != null ? this._subViewList.length : 0;
+	}
+
+	/**
+	 * 本窗口顶层动态 UI 容器，用于飘血、运行时插入的组件或 UI 特效等
+	 */
+	protected getDynamicLayer():GComponent {
+		if (this._view == null || GameModules.dynamicUI == null) {
+			return null;
+		}
+		return GameModules.dynamicUI.getOrCreateLayer(this._view);
 	}
 
 }

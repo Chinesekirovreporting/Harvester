@@ -1,6 +1,6 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { GButton, GComponent, GList, GLoader, GObject, GTextField } from "fairygui-cc";
+import { GButton, GComponent, GList, GLoader, GObject, GTextField, UIPackage } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -19,7 +19,7 @@ import { EnumFaction } from "../../../../core_fight/core_actor/EnumFaction";
 import { BattleRewardDropItemVo } from "../../../../gameModel/data/BattleRewardDropItemVo";
 
 export class WindowFightCore extends AbstractUIWindow {
-    
+
     private btnClose: GButton;
     private comPlayer1: GComponent;
     private comBoss1: GComponent;
@@ -113,6 +113,11 @@ export class WindowFightCore extends AbstractUIWindow {
         vo.isVictory = victory;
         vo.rewardDropList = drops ? drops.slice() : [];
     }
+    
+    /** 示例：通过动态 UI 模块挂到窗口顶层（飘血、ComBlood 等同理） */
+    private createFightCoreButton():void {
+        GameModules.dynamicUI.addFromPackage(this.view, "FightCore", "ComBlood");
+    }
 
     private updateFightActor():void {
         var battleMyActor = GameModules.battle.curBattle.friendActorList[0];
@@ -166,6 +171,8 @@ export class WindowFightCore extends AbstractUIWindow {
         GameModules.battle.battleStart();
         this.updateFightActor();
         this.updateRound();
+        // 动态创建控件
+        this.createFightCoreButton();
     }
 
     /////////////////////////////////// 游戏流程控制 /////////////////////////////////////////
