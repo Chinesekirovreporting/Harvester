@@ -39,6 +39,12 @@ export class BaseSkill {
             }
             // GameModules.buff.addBuff(this.skillVo.skillCFG.BuffIds[0], this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.ALLY){
+            this.targetActor = GameModules.actor.getActorAlly(this.useUnit);
+            if (this.targetActor) {
+                for (let buffId of this.skillVo.skillCFG.BuffIds) {
+                    GameModules.buff.addBuff(buffId, this.targetActor, this.useUnit, this.skillVo.skillCFG.ID);
+                }
+            }
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.ALL){
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.RANDOM){
         }else if(this.skillVo.skillCFG.TargetType == EnumTargetType.NEAREST){

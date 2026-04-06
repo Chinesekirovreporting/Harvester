@@ -1,5 +1,8 @@
+import { App } from "../../../framework/managers/App";
+import { $Tables } from "../../gameModel/table/$Tables";
+import { HeroAttrCFG } from "../../gameModel/table/tableClass/HeroAttrCFG";
 import { BaseActor } from "../core_actor/BaseActor";
-import { DamageResultTable } from "./FightCalcResultTables/FightCalcResourceTables";
+import { DamageResultTable, HealResultTable } from "./FightCalcResultTables/FightCalcResourceTables";
 // 魔法效果的几大要素汇总，damage计算伤害，heal计算治疗，buff计算增益，debuff计算减益。
 
 // 战斗计算器，静态函数，里面包含各种属性计算的函数，伤害计算，治疗计算，增益计算，减益计算等。
@@ -50,5 +53,22 @@ export class FightCalcFunc {
             beKilled = true;
         }
         return new DamageResultTable( false, false, attacker, defender, damage, beKilled );
+    }
+
+    /**
+     * 治疗结算：增加目标 HP，不超过英雄表中的生命上限（与 AttrVo 初始 HP 同源）。
+     */
+    public static calculateHeal(caster:BaseActor, target:BaseActor, baseHeal:number):HealResultTable {
+        var heal:number = baseHeal * caster.attrVo.MAGIC_POWER / 100;
+        if (heal <= 0) {
+            heal = baseHeal;
+        }
+        var heroAttr:HeroAttrCFG = App.tableManager.getTable($Tables.HeroAttrCFG, target.heroID) as HeroAttrCFG;
+        var maxHp:number = heroAttr.HP;
+        var before:number = target.attrVo.HP;
+        var after:number = Math.min(maxHp, before + heal);
+        var applied:number = after - before;
+        target.attrVo.HP = after;
+        return new HealResultTable(false, false, caster, target, applied);
     }
 }

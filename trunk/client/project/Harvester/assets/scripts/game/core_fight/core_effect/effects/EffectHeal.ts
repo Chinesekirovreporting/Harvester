@@ -1,11 +1,12 @@
 import { GameModules } from "../../../gameModule/GameModules";
+import { BaseActor } from "../../core_actor/BaseActor";
 import { EffectVo } from "../EffectVo";
 import { BaseEffect } from "./BaseEffect";
 import { EnumEffectType } from "./EnumEffectType";
 
 export class EffectHeal extends BaseEffect {
-    constructor(effectVo:EffectVo) {
-        super(effectVo);
+    constructor(effectVo:EffectVo, targetActor:BaseActor, useActor:BaseActor) {
+        super(effectVo, targetActor, useActor);
     }
 
     protected onEffectStart():void {
@@ -13,7 +14,6 @@ export class EffectHeal extends BaseEffect {
     }
 
     private applyHeal(effectVo:EffectVo):void {
-        // 治疗逻辑
-        GameModules.effect.executeEffect( EnumEffectType.Heal, effectVo );
+        GameModules.effect.executeEffect(EnumEffectType.Heal, effectVo, this.targetActor, this.useActor);
     }
 }

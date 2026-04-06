@@ -5,35 +5,40 @@ import { EffectCFG } from "../../gameModel/table/tableClass/EffectCFG";
 import { BaseActor } from "../core_actor/BaseActor";
 import { BaseEffect } from "./effects/BaseEffect";
 import { EffectDamage } from "./effects/EffectDamage";
+import { EffectHeal } from "./effects/EffectHeal";
 import { EnumEffectType } from "./effects/EnumEffectType";
 import { DamageEffectManager } from "./effectTableManager/DamageEffectManager";
+import { HealEffectManager } from "./effectTableManager/HealEffectManager";
 import { EffectVo } from "./EffectVo";
 
 export class ModuleEffect extends AbstractModule {
     // 魔法效果根据大类区分管理器
-    public damageEffectManager:DamageEffectManager;   // 伤害效果管理器
-    // public healTableManager:HealTableManager;   // 治疗效果管理器
+    public damageEffectManager:DamageEffectManager;
+    public healEffectManager:HealEffectManager;
     // public buffTableManager:BuffTableManager;   // 增益效果管理器
     // public debuffTableManager:DebuffTableManager;   // 减益效果管理器
 
     protected init():void {
         console.log("初始化ModuleEffect")
         this.damageEffectManager = new DamageEffectManager();
-        // this.healTableManager = new HealTableManager();
+        this.healEffectManager = new HealEffectManager();
         // this.buffTableManager = new BuffTableManager();
         // this.debuffTableManager = new DebuffTableManager();
     }
 
     public onEffectStart():void {
         this.damageEffectManager.onEffectStart();
+        this.healEffectManager.onEffectStart();
     }
 
     public onEffectTick():void {
         this.damageEffectManager.onEffectTick();
+        this.healEffectManager.onEffectTick();
     }
 
     public onEffectStop():void {
         this.damageEffectManager.onEffectStop();
+        this.healEffectManager.onEffectStop();
     }
 
     public applyEffect( effectId:number, buffId:number, targetActor:BaseActor, useActor:BaseActor ):void {
@@ -51,12 +56,9 @@ export class ModuleEffect extends AbstractModule {
         if (enumEffect == EnumEffectType.Damage) {
             var damgeEffect:EffectDamage = new EffectDamage(effectVo, targetActor, useActor);
             this.damageEffectManager.executeDamageEffect(damgeEffect);
-        // } else if (enumEffect === EnumEffect.Heal) {
-        //     this.healEffectManager.executeHealEffect();
-        // } else if (enumEffect === EnumEffect.Shield) {
-        //     this.shieldEffectManager.executeShieldEffect();
-        // } else if (enumEffect === EnumEffect.Buff) {
-        //     this.buffEffectManager.executeBuffEffect();
+        } else if (enumEffect == EnumEffectType.Heal) {
+            var healEffect:EffectHeal = new EffectHeal(effectVo, targetActor, useActor);
+            this.healEffectManager.executeHealEffect(healEffect);
         } else {
             console.error("不支持的效果类型：", enumEffect);
         }

@@ -9,6 +9,7 @@ import { BaseSkill } from "./BaseSkill";
 import { ModuleSkillEvent } from "./ModuleSkillEvent";
 import { EnumSkill } from "./skills/EnumSkill";
 import { SkillFireBall } from "./skills/SkillFireBall";
+import { SkillHeal } from "./skills/SkillHeal";
 import { SkillVo } from "./SkillVo";
 
 export class ModuleSkill extends AbstractModule{
@@ -39,6 +40,11 @@ export class ModuleSkill extends AbstractModule{
             let baseSkill:SkillFireBall = new SkillFireBall(skillVo, useUnit);
             baseSkill.spellSkill();
             GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_SKILL_CAST, baseSkill);
+        } else if (skillId == EnumSkill.SKILL_HEAL) {
+            let skillVo:SkillVo = new SkillVo(App.tableManager.getTable($Tables.SkillCFG, skillId) as SkillCFG);
+            let baseSkill:SkillHeal = new SkillHeal(skillVo, useUnit);
+            baseSkill.spellSkill();
+            GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_SKILL_CAST, baseSkill);
         }
     }
 
@@ -53,6 +59,11 @@ export class ModuleSkill extends AbstractModule{
         if (skillId == EnumSkill.SKILL_FIRE_BALL ) {
             let skillVo:SkillVo = new SkillVo(App.tableManager.getTable($Tables.SkillCFG, skillId) as SkillCFG);
             let baseSkill:SkillFireBall = new SkillFireBall(skillVo, enemyActor);
+            baseSkill.spellSkill();
+            GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_ENEMY_SKILL_CAST, baseSkill);
+        } else if (skillId == EnumSkill.SKILL_HEAL) {
+            let skillVo:SkillVo = new SkillVo(App.tableManager.getTable($Tables.SkillCFG, skillId) as SkillCFG);
+            let baseSkill:SkillHeal = new SkillHeal(skillVo, enemyActor);
             baseSkill.spellSkill();
             GameModules.skill.dispatchEventWithData(ModuleSkillEvent.ON_ENEMY_SKILL_CAST, baseSkill);
         }

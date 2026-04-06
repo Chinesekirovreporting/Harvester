@@ -30,11 +30,20 @@ export class DamageResultTable extends ResultTable {
 }
 
 export class HealResultTable extends ResultTable {
-    public isCrit:boolean;  // 是否暴击
-    public isMiss:boolean;  // 是否未命中
-    public caster:number;  // 施法者
-    public target:number;  // 目标单位
-    public heal:number;  // 治疗值
+    public isCrit:boolean;
+    public isMiss:boolean;
+    public caster:BaseActor;
+    public target:BaseActor;
+    public heal:number;
+
+    constructor(isCrit:boolean, isMiss:boolean, caster:BaseActor, target:BaseActor, heal:number) {
+        super();
+        this.isCrit = isCrit;
+        this.isMiss = isMiss;
+        this.caster = caster;
+        this.target = target;
+        this.heal = heal;
+    }
 }
 
 export class ShieldResultTable extends ResultTable {
