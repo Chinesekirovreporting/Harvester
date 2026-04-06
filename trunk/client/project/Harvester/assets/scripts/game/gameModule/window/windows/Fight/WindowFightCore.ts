@@ -1,6 +1,6 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { GButton, GComponent, GList, GLoader, GObject, GTextField, UIPackage } from "fairygui-cc";
+import { GButton, GComponent, GList, GLoader, GObject, GTextField } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -10,13 +10,13 @@ import { BattleBase } from "../../../../core_fight/core_battle/battle/BattleBase
 import { ModuleRoundEvent } from "../../../../core_fight/core_round/ModuleRoundEvent";
 import { RoundBase } from "../../../../core_fight/core_round/RoundBase";
 import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
-import { Tween } from "cc";
 import { ModuleSkillEvent } from "../../../../core_fight/core_skill/ModuleSkillEvent";
 import { BaseSkill } from "../../../../core_fight/core_skill/BaseSkill";
 import { App } from "db://assets/scripts/framework/managers/App";
 import { BaseActor } from "../../../../core_fight/core_actor/BaseActor";
 import { EnumFaction } from "../../../../core_fight/core_actor/EnumFaction";
 import { BattleRewardDropItemVo } from "../../../../gameModel/data/BattleRewardDropItemVo";
+import { FightBloodFloatEffect } from "./FightBloodFloatEffect";
 
 export class WindowFightCore extends AbstractUIWindow {
 
@@ -114,11 +114,6 @@ export class WindowFightCore extends AbstractUIWindow {
         vo.rewardDropList = drops ? drops.slice() : [];
     }
     
-    /** 示例：通过动态 UI 模块挂到窗口顶层（飘血、ComBlood 等同理） */
-    private createFightCoreButton():void {
-        GameModules.dynamicUI.addFromPackage(this.view, "FightCore", "ComBlood",100,100);
-    }
-
     private updateFightActor():void {
         var battleMyActor = GameModules.battle.curBattle.friendActorList[0];
         var battleEnemyActor = GameModules.battle.curBattle.enemyActorList[0];
@@ -171,8 +166,6 @@ export class WindowFightCore extends AbstractUIWindow {
         GameModules.battle.battleStart();
         this.updateFightActor();
         this.updateRound();
-        // 动态创建控件
-        this.createFightCoreButton();
     }
 
     /////////////////////////////////// 游戏流程控制 /////////////////////////////////////////
@@ -233,6 +226,9 @@ export class WindowFightCore extends AbstractUIWindow {
 
     private onDamageEffect(result:DamageResultTable):void {
         console.log("onDamageEffect", result);
+        if (result.target.faction === EnumFaction.ENEMY) {
+            FightBloodFloatEffect.spawn(this.view, this.comBoss1, result);
+        }
         // 如果目标被击杀，执行击杀逻辑
         if( result.target.faction == EnumFaction.ENEMY && result.beKilled ) {
             this.applyBattleOutcome(true, [
