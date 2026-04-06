@@ -35,6 +35,7 @@ export class SceneMain extends AbstractScene {
 		this.addModule(GameModules.effect);
 		this.addModule(GameModules.attr);
 		this.addModule(GameModules.actor);
+		this.addModule(GameModules.dynamicUI);
 		// this.addModule(GameModules.viewUI);
 		// this.addModule(GameModules.notice);
 		// this.addModule(GameModules.guide);

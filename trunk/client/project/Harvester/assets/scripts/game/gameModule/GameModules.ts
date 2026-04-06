@@ -54,7 +54,6 @@ export class GameModules {
         GameModules.window = new ModuleWindow(GameModules.MODULE_WINDOW);   // 窗口部分 
         GameModules.world = new ModuleWorld(GameModules.MODULE_WORLD);      // 主UI的世界部分
         GameModules.dynamicUI = new ModuleDynamicUI(GameModules.MODULE_DYNAMIC_UI);
-        GameModules.dynamicUI.enterModule();
     }
     
     // 初始化战斗模块（战斗模块依赖基础模块，必须在InitBaseModules之后调用）

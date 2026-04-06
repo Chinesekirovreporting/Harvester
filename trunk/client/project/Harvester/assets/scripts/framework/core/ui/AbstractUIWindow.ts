@@ -552,6 +552,9 @@ export class AbstractUIWindow implements IUIWindow {
 	private _doClose(closeType?:string):void {
 		// 移除模态遮罩
 		this._removeModalLayer();
+
+		// 释放本窗口 view 上的动态 UI 层（与 ModuleDynamicUI 成对；不依赖业务窗口手写）
+		this._releaseDynamicUILayer();
 		
 		// 从根容器移除
 		GameModules.window.closeWindow(this);
@@ -682,6 +685,13 @@ export class AbstractUIWindow implements IUIWindow {
 		}
 	}
 
+	/** 释放 ModuleDynamicUI 挂在 view 上的动态层；须在 _view.dispose 之前调用，可重复调用 */
+	private _releaseDynamicUILayer():void {
+		if (this._view != null && GameModules.dynamicUI != null) {
+			GameModules.dynamicUI.releaseLayer(this._view);
+		}
+	}
+
     /**
      * 销毁
      */
@@ -705,10 +715,8 @@ export class AbstractUIWindow implements IUIWindow {
 		// 销毁子视图
 		this._disposeSubViews();
 
-		// 释放动态 UI 层（飘血、临时 GObject 等），需在 _view.dispose 之前
-		if (this._view != null && GameModules.dynamicUI != null) {
-			GameModules.dynamicUI.releaseLayer(this._view);
-		}
+		// 关闭流程里已 release 时此处为幂等；若直接 dispose 未经过 close，此处补释放
+		this._releaseDynamicUILayer();
 		
 		// 调用销毁回调
 		this.onDispose();

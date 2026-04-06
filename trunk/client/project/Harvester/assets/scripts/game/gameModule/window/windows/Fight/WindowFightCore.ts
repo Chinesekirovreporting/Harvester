@@ -116,7 +116,7 @@ export class WindowFightCore extends AbstractUIWindow {
     
     /** 示例：通过动态 UI 模块挂到窗口顶层（飘血、ComBlood 等同理） */
     private createFightCoreButton():void {
-        GameModules.dynamicUI.addFromPackage(this.view, "FightCore", "ComBlood");
+        GameModules.dynamicUI.addFromPackage(this.view, "FightCore", "ComBlood",100,100);
     }
 
     private updateFightActor():void {
