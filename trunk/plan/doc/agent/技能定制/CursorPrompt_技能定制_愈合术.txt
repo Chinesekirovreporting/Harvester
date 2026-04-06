@@ -1,0 +1,16 @@
+Prompt：愈合术（基于现有伤害技能体系）
+角色：你是本仓库的编码 Agent，在 d:\HarvesterSvn\trunk\client\project\Harvester 内实现「愈合术」，与现有火球术（伤害 Buff + Effect 管线）对称，尽量少改无关文件。
+背景：
+技能枚举已有 EnumSkill.SKILL_HEAL = 2。
+表数据已存在：$SkillCFGSource ID=2「愈合术」，TargetType 对应友军 EnumTargetType.ALLY，BuffIds: [3, 4]；$BuffCFGSource Buff 3 瞬时治疗（StartEffs: [201]），Buff 4 持续治疗 DOT（CycleEffs: [202]，Duration: 3）；$EffectCFGSource 效果 201/202 的 EffectType 为 EnumEffectType.Heal（2）。
+伤害链路参考：ModuleSkill.useSkill → SkillFireBall → BaseSkill.onSpellStart（ENEMY）→ addBuff → BaseBuff → ModuleEffect.applyEffect → executeEffect(Damage) → EffectDamage → DamageEffectManager → ModuleAttr.calcByDamageEffect → FightCalcFunc.calculateAttackPowerDamage。
+必须完成：
+友方目标：在 ModuleActor（或等价模块）增加获取友方 BaseActor 的 API（至少满足当前战斗：如 friendActorList[0] 或与 getActorEnemy 对称）。在 BaseSkill.onSpellStart 中实现 EnumTargetType.ALLY 分支：设置 this.targetActor，并对 skillVo.skillCFG.BuffIds 调用 GameModules.buff.addBuff(...)，与 ENEMY/SELF 分支风格一致。
+治疗管线：在 ModuleEffect.executeEffect 中实现 EnumEffectType.Heal 分支；修正 EffectHeal：构造函数与 BaseEffect(effectVo, targetActor, useActor) 一致，applyHeal 中调用 executeEffect 时传入完整参数。
+结算：参照 DamageEffectManager + ModuleAttr.calcByDamageEffect，新增 HealEffectManager（或等价最小实现）与 ModuleAttr.calcByHealEffect；在 FightCalcFunc 中实现治疗结算（增加目标 HP，不超过合理上限若项目已有 MaxHP 字段则使用，否则与现有 AttrVo 约定一致），并构造/使用 HealResultTable（见 FightCalcResourceTables.ts）。
+技能入口：新增 SkillHeal.ts（可仿 SkillFireBall，onSpellStart 内 super.onSpellStart()）；在 ModuleSkill.useSkill 与 enemyUseSkill 中为 EnumSkill.SKILL_HEAL 增加分支，与火球术对称（能量扣除逻辑保持一致）。
+边界：不修改标注为自动生成的表源文件内容（$*Source.ts），除非用户明确要求；若 EffectHeal 当前调用 executeEffect 参数个数错误，必须一并修复。保持与现有命名、模块引用风格一致。
+验收：
+玩家使用 SKILL_HEAL 时扣费、对友方施加 Buff 3/4，瞬时效果 201 与 DOT 效果 202 能走治疗结算且不再出现「不支持的效果类型」日志。
+无新增与愈合术无关的大范围重构。
+若表文案要求「随机友军」：在 Buff 的周期 tick 或效果应用前按需随机选择友方；若范围过大可先做「固定友方第一人」并在代码注释标明 TODO。
