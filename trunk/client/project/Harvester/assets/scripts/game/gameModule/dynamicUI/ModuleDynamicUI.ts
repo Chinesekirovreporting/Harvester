@@ -122,6 +122,7 @@ export class ModuleDynamicUI extends AbstractModule {
         this._layerByHost.delete(host);
         if (layer != null && !layer.isDisposed) {
             if (layer.parent != null) {
+                // 第二个参数为true，自动执行dispose方法
                 layer.parent.removeChild(layer, true);
             } else {
                 layer.dispose();
