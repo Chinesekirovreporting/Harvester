@@ -15,7 +15,7 @@
     <component id="n8_ia6v" name="btnTravel" src="ia6v1" fileName="Button1.xml" xy="569,86" size="137,48">
       <Button title="出游"/>
     </component>
-    <loader id="n9_ia6v" name="loaderHero" xy="33,224" size="431,422" url="ui://ncp1c1kslrrb3" fill="scale"/>
+    <loader id="n9_ia6v" name="loaderHero" xy="30,224" size="431,422" url="ui://ncp1c1kslrrb3" fill="scale"/>
     <text id="n10_ia6v" name="n10" xy="34,150" size="425,84" fontSize="24" autoSize="none" text="此处展示主体。墨战英雄传脱离等级限制，直接设为满级状态，开放大环境"/>
     <component id="n11_ia6v" name="btnEquip" src="ia6v1" fileName="Button1.xml" xy="520,287" size="133,47">
       <Button title="装备附魔"/>

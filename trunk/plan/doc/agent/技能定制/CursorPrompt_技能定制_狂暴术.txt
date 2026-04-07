@@ -1,0 +1,23 @@
+狂暴术（完善技能）— 实现 Prompt
+背景与约束
+项目战斗技能在 core_fight 下：ModuleSkill.useSkill / enemyUseSkill 根据 EnumSkill 分支创建具体技能类，调用 spellSkill()；SkillHeal、SkillFireBall 仅在 onSpellStart 里打日志后 super.onSpellStart()。
+通用施法逻辑在 BaseSkill：onSpellStart 根据 SkillCFG.TargetType 解析 targetActor，并遍历 SkillCFG.BuffIds 调用 GameModules.buff.addBuff(buffId, targetActor, useUnit, skillCFGId)。
+Buff 由表驱动：BuffCFG 的 StartEffs / CycleEffs / EndEffs、Duration、IsDot、BuffType；BuffManager 对 IsDot == 0 的 Buff 在添加后立即 removeBuff（会先走 onBuffCreated 再 onBuffRemoved）。
+效果在 ModuleEffect.applyEffect → executeEffect：当前仅实现 EnumEffectType.Damage 与 Heal（见 EnumEffectType）。
+EnumSkill 中已有 SKILL_BERSERK = 3（注释为狂暴），需在代码与配置里贯通，而不是再新建重复枚举值。
+技能设计目标（狂暴术）
+定位：短时自我增益（典型：提升攻击/物攻相关输出；可选：受击加深、每回合自伤等，由表 BaseValue/ValueScale 与后续扩展承担）。
+目标类型：对自身释放 Buff，即 SkillCFG.TargetType 应为 EnumTargetType.SELF（与 BaseSkill 中 SELF 分支一致）。
+表数据：在 SkillCFG 中为 ID 3（与 SKILL_BERSERK 一致）配置 Name、Desc、Cost、BuffIds 等；在 BuffCFG 中配置对应 Buff 的 BuffType（建议使用已有 EnumBuffType.ADD_ATTACK_POWER 或团队约定的增益类型）、IsDot、Duration、StartEffs/CycleEffs/EndEffs。
+若仅需“持续多回合”的 Buff：IsDot 需按现有 BaseBuff.onBuffTick + BuffManager 语义设为会留在列表里并参与回合 Tick 的配置（与当前 IsDot == 0 瞬发移除区分），Duration 与回合推进需与 ModuleBuff.applyBuffTick / 战斗回合流程一致。
+若 Buff 的实质效果不仅是伤害/治疗：在沿用表 ID 的前提下，评估是否需新增 EnumEffectType、对应 EffectXxx 子类、以及在 ModuleEffect.executeEffect 中分发；属性结算与 ModuleAttr / BaseActor 属性模块的协作方式需与现有 EffectDamage/EffectHeal 一致。
+代码任务清单
+新增 SkillBerserk.ts（路径与 SkillHeal.ts、SkillFireBall.ts 同级），继承 BaseSkill，构造函数与两个参考技能一致；onSpellStart 可先 console.log 再 super.onSpellStart()，除非有必须覆写的目标选择逻辑。
+在 ModuleSkill.ts 的 useSkill 与 enemyUseSkill 中，为 EnumSkill.SKILL_BERSERK 增加与火球/治疗相同的分支：构造 SkillVo、new SkillBerserk(skillVo, useUnit|enemyActor)、spellSkill()，并派发 ON_SKILL_CAST / ON_ENEMY_SKILL_CAST（能量消耗规则与现有技能保持一致或按策划说明调整）。
+在 ModuleSkill.ts 顶部补充 SkillBerserk 的 import。
+为 Cocos 资源系统补充 SkillBerserk.ts.meta（若项目要求与其它技能脚本一致）。
+不要改动自动生成的 $SkillCFG / $BuffCFG / $EffectCFG 类；配置变更放在表数据源或策划导表流程中，并保证运行时 App.tableManager.getTable 能取到 ID 3 的技能行。
+验收标准
+战斗中调用 useSkill(EnumSkill.SKILL_BERSERK, hero) 能走完施法链，Buff 按表挂载，ModuleEffect 对表中配置的伤害/治疗效果不报错。
+若配置了持续类狂暴，回合结束时 Buff Tick 与持续时间耗尽移除行为符合 BaseBuff 现有逻辑。
+无新增与 SKILL_BERSERK = 3 冲突的技能 ID。

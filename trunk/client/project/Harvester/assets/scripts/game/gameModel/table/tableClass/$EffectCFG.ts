@@ -5,6 +5,7 @@ export class $EffectCFG {
     public ID:number;
     public Name:string;
     public EffectType:number;
+    public TargetAttr:number;
     public BaseValue:number;
     public ValueScale:number;
     public Desc:string;

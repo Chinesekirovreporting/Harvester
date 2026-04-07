@@ -1,9 +1,10 @@
 import { AbstractModule } from "../../../framework/managers/scene/AbstractModule";
 import { BaseActor } from "../core_actor/BaseActor";
+import { EffectAttrModify } from "../core_effect/effects/EffectAttrModify";
 import { EffectDamage } from "../core_effect/effects/EffectDamage";
 import { EffectHeal } from "../core_effect/effects/EffectHeal";
 import { FightCalcFunc } from "./FightCalcFunc";
-import { DamageResultTable, HealResultTable, ResultTable } from "./FightCalcResultTables/FightCalcResourceTables";
+import { AttrModifyResultTable, DamageResultTable, HealResultTable, ResultTable } from "./FightCalcResultTables/FightCalcResourceTables";
 
 // 属性模块负责封装复杂属性的逻辑运算，与ModuleEffect模块协同工作。
 export class ModuleAttr extends AbstractModule {
@@ -19,6 +20,10 @@ export class ModuleAttr extends AbstractModule {
 
     public calcByHealEffect(effectHeal:EffectHeal):ResultTable {
         return FightCalcFunc.calculateHeal(effectHeal.useActor, effectHeal.targetActor, effectHeal.effectVo.effectCFG.BaseValue);
+    }
+
+    public calcByAttrModifyEffect(effectAttrModify:EffectAttrModify):ResultTable {
+        return FightCalcFunc.calculateAttrModify(effectAttrModify.useActor, effectAttrModify.targetActor, effectAttrModify.effectVo.effectCFG.TargetAttr, effectAttrModify.effectVo.effectCFG.BaseValue);
     }
 
     // 进攻属性计算,包含命中概率,暴击概率,闪避概率,命中率等。命中率计算包含闪避概率。

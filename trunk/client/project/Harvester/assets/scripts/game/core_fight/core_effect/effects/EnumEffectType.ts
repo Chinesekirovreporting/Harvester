@@ -6,8 +6,6 @@ export enum EnumEffectType {
     Heal = 2,
     // 护盾
     Shield = 3,
-    // 增益
-    Buff = 4,
-    // 减益
-    Debuff = 5,
+    // 属性增益
+    AttrModify = 4,
 }

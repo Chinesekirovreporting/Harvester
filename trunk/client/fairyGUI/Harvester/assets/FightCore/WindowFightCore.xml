@@ -20,8 +20,8 @@
       <item/>
     </list>
     <group id="n32_fxb0" name="n32" xy="37,983" size="615,307" group="n18_iqit"/>
-    <component id="n33_g4tx" name="comBlood" src="g4txb" fileName="ComBlood.xml" xy="520,355" group="n18_iqit"/>
-    <group id="n18_iqit" name="n18" xy="-1,0" size="750,1334" advanced="true">
+    <component id="n33_g4tx" name="comBlood" src="g4txb" fileName="ComBlood.xml" xy="699,522" group="n18_iqit"/>
+    <group id="n18_iqit" name="n18" xy="-1,0" size="800,1334" advanced="true">
       <gearDisplay controller="c1" pages="0,1"/>
     </group>
     <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="-1,15" size="750,1334">

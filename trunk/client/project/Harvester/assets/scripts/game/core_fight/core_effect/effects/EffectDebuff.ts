@@ -1,19 +1,32 @@
-import { GameModules } from "../../../gameModule/GameModules";
-import { EffectVo } from "../EffectVo";
-import { BaseEffect } from "./BaseEffect";
-import { EnumEffectType } from "./EnumEffectType";
+// import { GameModules } from "../../../gameModule/GameModules";
+// import { BaseActor } from "../../core_actor/BaseActor";
 
-export class EffectDebuff extends BaseEffect{
-    constructor(effectVo:EffectVo) {
-        super(effectVo);
-    }
+// import { EnumEffectType } from "./EnumEffectType";
+// import { EffectVo } from "../EffectVo";
+// export class EffectDebuff extends BaseEffect{
+//     constructor(effectVo:EffectVo) {
+//         super(effectVo);
 
-    protected onEffectStart():void {
-        this.applyDebuff(this.effectVo);
-    }
 
-    private applyDebuff(effectVo:EffectVo):void {
-        // 减益逻辑
-        GameModules.effect.executeEffect( EnumEffectType.Debuff, effectVo );
-    }
-}
+// export class EffectDebuff extends BaseEffect {
+//         this.applyDebuff(this.effectVo);
+//     }
+
+//     private applyDebuff(effectVo:EffectVo):void {
+//         // 减益逻辑
+//         GameModules.effect.executeEffect( EnumEffectType.Debuff, effectVo );
+//     constructor(effectVo:EffectVo, targetActor:BaseActor, useActor:BaseActor) {
+
+
+//     }
+
+
+
+//     protected onEffectStart():void {
+
+//         GameModules.attr.applyDebuffAttrEffect(this.effectVo, this.targetActor);
+
+//     }
+
+// }
+

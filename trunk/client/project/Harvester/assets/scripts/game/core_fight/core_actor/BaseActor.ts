@@ -1,6 +1,7 @@
 import { App } from "../../../framework/managers/App";
 import { $Tables } from "../../gameModel/table/$Tables";
 import { AttrVo } from "../core_attr/AttrVo";
+import { EnumAttr } from "../core_attr/EnumAttr";
 import { BaseSkill } from "../core_skill/BaseSkill";
 import { EnumFaction } from "./EnumFaction";
 // 战斗单位基类。属性构成：配置基础属性+装备属性。
@@ -21,6 +22,14 @@ export class BaseActor {
     // 初始化属性结构体
     private initAttrVo():void {
         this.attrVo = new AttrVo(this);
+    }
+
+    public getAttr(attrType:EnumAttr):number {
+        return this.attrVo.getAttr(attrType);
+    }
+
+    public setAttr(attrType:EnumAttr, value:number):void {
+        this.attrVo.setAttr(attrType, value);
     }
 
     // 添加装备属性

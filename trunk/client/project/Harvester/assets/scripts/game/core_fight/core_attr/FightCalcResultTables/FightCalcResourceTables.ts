@@ -1,4 +1,5 @@
 import { BaseActor } from "../../core_actor/BaseActor";
+import { EnumAttr } from "../EnumAttr";
 
 export class ResultTable {
     constructor() {
@@ -54,26 +55,36 @@ export class ShieldResultTable extends ResultTable {
     public shield:number;  // 护盾值
 }
 
-export class BuffResultTable extends ResultTable {
-    public buffId:number;
-    public buffType:number;
-    public buffValue:number;
-    public buffDuration:number;
-    public buffIcon:string;
-    public buffName:string;
-    public buffDescription:string;
-    public buffTarget:number;
-    public buffSource:number;
-} 
-
-export class DebuffResultTable extends ResultTable {
-    public debuffId:number;
-    public debuffType:number;
-    public debuffValue:number;
-    public debuffDuration:number;
-    public debuffIcon:string;
-    public debuffName:string;
-    public debuffDescription:string;
-    public debuffTarget:number;
-    public debuffSource:number;
+export class AttrModifyResultTable extends ResultTable {
+    public attrModifyType:EnumAttr;
+    public attrModifyValue:number;
+    constructor(attrModifyType:EnumAttr, attrModifyValue:number) {
+        super();
+        this.attrModifyType = attrModifyType;
+        this.attrModifyValue = attrModifyValue;
+    }
 }
+
+// export class BuffResultTable extends ResultTable {
+//     public buffId:number;
+//     public buffType:number;
+//     public buffValue:number;
+//     public buffDuration:number;
+//     public buffIcon:string;
+//     public buffName:string;
+//     public buffDescription:string;
+//     public buffTarget:number;
+//     public buffSource:number;
+// } 
+
+// export class DebuffResultTable extends ResultTable {
+//     public debuffId:number;
+//     public debuffType:number;
+//     public debuffValue:number;
+//     public debuffDuration:number;
+//     public debuffIcon:string;
+//     public debuffName:string;
+//     public debuffDescription:string;
+//     public debuffTarget:number;
+//     public debuffSource:number;
+// }

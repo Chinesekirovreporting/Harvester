@@ -2,7 +2,9 @@ import { App } from "../../../framework/managers/App";
 import { $Tables } from "../../gameModel/table/$Tables";
 import { HeroAttrCFG } from "../../gameModel/table/tableClass/HeroAttrCFG";
 import { BaseActor } from "../core_actor/BaseActor";
-import { DamageResultTable, HealResultTable } from "./FightCalcResultTables/FightCalcResourceTables";
+import { EnumEffectType } from "../core_effect/effects/EnumEffectType";
+import { EnumAttr } from "./EnumAttr";
+import { AttrModifyResultTable, DamageResultTable, HealResultTable } from "./FightCalcResultTables/FightCalcResourceTables";
 // 魔法效果的几大要素汇总，damage计算伤害，heal计算治疗，buff计算增益，debuff计算减益。
 
 // 战斗计算器，静态函数，里面包含各种属性计算的函数，伤害计算，治疗计算，增益计算，减益计算等。
@@ -70,5 +72,11 @@ export class FightCalcFunc {
         var applied:number = after - before;
         target.attrVo.HP = after;
         return new HealResultTable(false, false, caster, target, applied);
+    }
+
+    public static calculateAttrModify(caster:BaseActor, target:BaseActor, attrType:EnumAttr, baseAttrModify:number):AttrModifyResultTable {
+        var attrModify:number = baseAttrModify;
+        target.setAttr(attrType, target.getAttr(attrType) + attrModify);
+        return new AttrModifyResultTable(attrType, attrModify);
     }
 }

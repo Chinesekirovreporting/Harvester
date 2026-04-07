@@ -4,9 +4,11 @@ import { $Tables } from "../../gameModel/table/$Tables";
 import { EffectCFG } from "../../gameModel/table/tableClass/EffectCFG";
 import { BaseActor } from "../core_actor/BaseActor";
 import { BaseEffect } from "./effects/BaseEffect";
+import { EffectAttrModify } from "./effects/EffectAttrModify";
 import { EffectDamage } from "./effects/EffectDamage";
 import { EffectHeal } from "./effects/EffectHeal";
 import { EnumEffectType } from "./effects/EnumEffectType";
+import { AttrModifyEffectManager } from "./effectTableManager/AttrModifyEffectManager";
 import { DamageEffectManager } from "./effectTableManager/DamageEffectManager";
 import { HealEffectManager } from "./effectTableManager/HealEffectManager";
 import { EffectVo } from "./EffectVo";
@@ -15,6 +17,7 @@ export class ModuleEffect extends AbstractModule {
     // 魔法效果根据大类区分管理器
     public damageEffectManager:DamageEffectManager;
     public healEffectManager:HealEffectManager;
+    public attrModifyEffectManager:AttrModifyEffectManager;
     // public buffTableManager:BuffTableManager;   // 增益效果管理器
     // public debuffTableManager:DebuffTableManager;   // 减益效果管理器
 
@@ -22,6 +25,7 @@ export class ModuleEffect extends AbstractModule {
         console.log("初始化ModuleEffect")
         this.damageEffectManager = new DamageEffectManager();
         this.healEffectManager = new HealEffectManager();
+        this.attrModifyEffectManager = new AttrModifyEffectManager();
         // this.buffTableManager = new BuffTableManager();
         // this.debuffTableManager = new DebuffTableManager();
     }
@@ -29,27 +33,25 @@ export class ModuleEffect extends AbstractModule {
     public onEffectStart():void {
         this.damageEffectManager.onEffectStart();
         this.healEffectManager.onEffectStart();
+        this.attrModifyEffectManager.onEffectStart();
     }
 
     public onEffectTick():void {
         this.damageEffectManager.onEffectTick();
         this.healEffectManager.onEffectTick();
+        this.attrModifyEffectManager.onEffectTick();
     }
 
     public onEffectStop():void {
         this.damageEffectManager.onEffectStop();
         this.healEffectManager.onEffectStop();
+        this.attrModifyEffectManager.onEffectStop();
     }
 
     public applyEffect( effectId:number, buffId:number, targetActor:BaseActor, useActor:BaseActor ):void {
         var effectCFG:EffectCFG = App.tableManager.getTable($Tables.EffectCFG, effectId) as EffectCFG;
         var effectVo:EffectVo = new EffectVo(effectId, buffId);
         this.executeEffect(effectCFG.EffectType, effectVo, targetActor, useActor);
-        // if (effectCFG.EffectType == EnumEffectType.Damage) {
-        //     this.damageEffectManager.applyDamageEffect(targetActor, useActor);
-        // } else {
-        //     console.error("不支持的效果类型：", effectCFG.EffectType);
-        // }
     }
     
     public executeEffect( enumEffect:EnumEffectType, effectVo:EffectVo, targetActor:BaseActor, useActor:BaseActor ):void {
@@ -59,6 +61,9 @@ export class ModuleEffect extends AbstractModule {
         } else if (enumEffect == EnumEffectType.Heal) {
             var healEffect:EffectHeal = new EffectHeal(effectVo, targetActor, useActor);
             this.healEffectManager.executeHealEffect(healEffect);
+        } else if (enumEffect == EnumEffectType.AttrModify) {
+            var attrModifyEffect:EffectAttrModify = new EffectAttrModify(effectVo, targetActor, useActor);
+            this.attrModifyEffectManager.executeAttrModifyEffect(attrModifyEffect);
         } else {
             console.error("不支持的效果类型：", enumEffect);
         }

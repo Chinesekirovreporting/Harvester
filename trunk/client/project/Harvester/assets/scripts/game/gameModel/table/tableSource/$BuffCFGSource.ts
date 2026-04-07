@@ -10,7 +10,7 @@ export class $BuffCFGSource {
         IsDebuff: [0, 1, 0, 0, 0],
         StartEffs: [[101], [], [201], [], [301303]],
         CycleEffs: [[], [102], [], [202], []],
-        Duration: [0, 3, 0, 3, 0],
+        Duration: [0, 3, 0, 3, 3],
         EndEffs: [[], [], [], [], [302304]],
         BuffType: [0, 0, 0, 0, 0],
         Level: [1, 1, 1, 1, 1],
