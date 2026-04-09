@@ -10,6 +10,8 @@
     <component id="jz056" name="RenderFightCoreLog.xml" path="/"/>
     <component id="ottwa" name="BtnEndRound.xml" path="/"/>
     <component id="g4txb" name="ComBlood.xml" path="/" exported="true"/>
+    <component id="g4txd" name="RenderEvoBuff.xml" path="/"/>
+    <component id="g4txe" name="RenderActorBuff.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

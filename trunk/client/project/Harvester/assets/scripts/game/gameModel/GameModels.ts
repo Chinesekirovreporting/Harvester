@@ -10,6 +10,7 @@ import { ModelTec } from "./ModelTec";
 import { ModelTree } from "./ModelTree";
 import { ModelSetting } from "./ModelSetting";
 import { ModelTalent } from "./ModelTalent";
+import { ModelFightCoreLog } from "./ModelFightCoreLog";
 
 export class GameModels {
     public static role:ModelRole;           // 角色战队
@@ -24,6 +25,7 @@ export class GameModels {
     public static equip:ModelEquip;         // 英雄装备
     public static talent:ModelTalent;       // 天赋树
     public static setting:ModelSetting;     // 设置
+    public static fightLog:ModelFightCoreLog;   // 战斗日志
 
     public static init() {
         GameModels.role = new ModelRole();
@@ -47,5 +49,7 @@ export class GameModels {
         GameModels.itemBook = new ModelItemBook();
         // 加载背包数据
         GameModels.itemBag = new ModelItemBag();
+        // 加载战斗日志
+        GameModels.fightLog = new ModelFightCoreLog();
     }
 }
