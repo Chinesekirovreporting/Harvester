@@ -7,6 +7,11 @@
     <component id="lrrb3" name="WindowFight.xml" path="/" exported="true"/>
     <component id="lrrb5" name="WindowReadyFight.xml" path="/" exported="true"/>
     <component id="lrrb6" name="Button1.xml" path="/"/>
+    <image id="g4tx7" name="Demo_Skill.png" path="/" exported="true"/>
+    <image id="g4tx8" name="Demo_Role.jpeg" path="/" exported="true"/>
+    <component id="g4tx9" name="ProgressBar1.xml" path="/" exported="true"/>
+    <image id="g4txb" name="UI_BackGround.png" path="/" exported="true" scale="9grid" scale9grid="212,186,1632,1683"/>
+    <image id="g4txd" name="IMAGE_FIGHT_BG.png" path="/" exported="true"/>
   </resources>
   <publish name=""/>
 </packageDescription>

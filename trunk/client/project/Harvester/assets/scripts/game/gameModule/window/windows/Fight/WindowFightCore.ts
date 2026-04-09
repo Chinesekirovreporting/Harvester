@@ -1,6 +1,6 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { GButton, GComponent, GList, GLoader, GObject, GTextField } from "fairygui-cc";
+import { Controller, GButton, GComponent, GList, GLoader, GObject, GTextField } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -31,9 +31,10 @@ export class WindowFightCore extends AbstractUIWindow {
     private btnEndRound:GButton;
     private btnEndBattle:GButton;
     private nButtonCount:number = 6;
+    private controllerStep:Controller;
 
     protected getResList(): Array<string> {
-        return ["ui/FightCore"];
+        return ["ui/FightCore","ui/Common"];
     }
 
     protected onInit(): void {
@@ -78,6 +79,11 @@ export class WindowFightCore extends AbstractUIWindow {
                 btn.visible = true;
             } 
         } 
+        this.controllerStep = this.comFightCore.getController("controllerStep");
+        this.controllerStep.setSelectedIndex(0);
+        this.controllerStep.onChanged((index:number) => {
+            console.log("onChanged", index);
+        });
     } 
 
     private onFightCoreButtonClick(index:number):void {
@@ -119,23 +125,26 @@ export class WindowFightCore extends AbstractUIWindow {
         var battleEnemyActor = GameModules.battle.curBattle.enemyActorList[0];
         if (battleMyActor == null || battleEnemyActor == null) return;
         this.comPlayer1.getChild("lblName").text = battleMyActor.name;
-        this.comPlayer1.getChild("lblLevel").text = battleMyActor.name;
-        this.comPlayer1.getChild("lblFight").text = battleMyActor.name;
-        this.comPlayer1.getChild("lblHp").text = battleMyActor.attrVo.HP.toString();
-        this.comPlayer1.getChild("lblMp").text = battleMyActor.attrVo.MP.toString();
+        // this.comPlayer1.getChild("lblLevel").text = battleMyActor.name;
+        // this.comPlayer1.getChild("lblFight").text = battleMyActor.name;
+        // this.comPlayer1.getChild("lblHp").text = battleMyActor.attrVo.HP.toString();
+        // this.comPlayer1.getChild("lblMp").text = battleMyActor.attrVo.MP.toString();
         this.comBoss1.getChild("lblName").text = battleEnemyActor.name;
-        this.comBoss1.getChild("lblLevel").text = battleEnemyActor.name;
-        this.comBoss1.getChild("lblFight").text = battleEnemyActor.name;
-        this.comBoss1.getChild("lblHp").text = battleEnemyActor.attrVo.HP.toString();
-        this.comBoss1.getChild("lblMp").text = battleEnemyActor.attrVo.MP.toString();
+        // this.comBoss1.getChild("lblLevel").text = battleEnemyActor.name;
+        // this.comBoss1.getChild("lblFight").text = battleEnemyActor.name;
+        // this.comBoss1.getChild("lblHp").text = battleEnemyActor.attrVo.HP.toString();
+        // this.comBoss1.getChild("lblMp").text = battleEnemyActor.attrVo.MP.toString();
     }
 
     private updateEnergy():void {
         this.lblEnergy.text = GameModules.round.curRound.getRoundEnergy().toString();
     }
 
-    private updateRound():void {
-
+    private updateFightCoreLog(clear:boolean = false):void {
+        if (clear == true) {
+            this.listFightCoreLog.removeChildren();
+            return;
+        }
     }
 
     private onFightCoreEventBind():void {
@@ -165,20 +174,57 @@ export class WindowFightCore extends AbstractUIWindow {
         // 游戏流程控制，准备 ~ 开始战斗！(战场开启阶段)
         GameModules.battle.battleStart();
         this.updateFightActor();
-        this.updateRound();
+        this.updateFightCoreLog(true);
     }
 
     /////////////////////////////////// 游戏流程控制 /////////////////////////////////////////
+    private setStep(index:number):void {
+        switch (index) {
+            case 0:
+                this.lblStep.text = "进入战场阶段";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 1:
+                this.lblStep.text = "进入回合开始前准备阶段";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 2:
+                this.lblStep.text = "进入回合循环阶段";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 3:
+                this.lblStep.text = "执行回合BUFF";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 4:
+                this.lblStep.text = "友方回合阶段";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 5:
+                this.lblStep.text = "敌方回合阶段";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 6:
+                this.lblStep.text = "当前回合结束";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+            case 7:
+                this.lblStep.text = "进入战场结束阶段";
+                this.controllerStep.setSelectedIndex(index);
+                break;
+        }
+    }
+
     private onBattleStart(battle:BattleBase):void {
         console.log("onBattleStart", battle);
-        this.lblStep.text = "进入战场阶段";
+        this.setStep(0);
         // 进入游戏回合开始前准备阶段(回合开始前准备阶段)
         App.timerManager.registerOnce(3000, () => {
-            this.lblStep.text = "进入回合开始前准备阶段";
+            this.setStep(1);
             GameModules.battle.battlePreRoundStart();
         }, this);
         App.timerManager.registerOnce(6000, () => {
-            this.lblStep.text = "进入回合循环阶段";
+            this.setStep(2);
             GameModules.battle.battleRoundStart();
         }, this);
     }
@@ -186,7 +232,7 @@ export class WindowFightCore extends AbstractUIWindow {
     // 回合开始
     private onRoundStart(round:RoundBase):void {
         console.log("onRoundStart", round);
-        this.lblStep.text = "执行BUFF，等待进入友方回合阶段。";
+        this.setStep(3);
         // 刷新血量和能量
         this.updateEnergy();
         this.updateFightActor();
@@ -197,13 +243,13 @@ export class WindowFightCore extends AbstractUIWindow {
 
     private onFriendRoundStart(battle:BattleBase):void {
         this.refreshFightSkill()
-        this.lblStep.text = "进入友方回合阶段";
+        this.setStep(4);
         this.lblEnergy.text = GameModules.round.curRound.energy.toString();
         console.log("onFriendRoundStart", battle);
     }
 
     private onEnemyRoundStart(battle:BattleBase):void {
-        this.lblStep.text = "进入敌方回合阶段";
+        this.setStep(5);
         console.log("onEnemyRoundStart", battle);
     }
 
@@ -241,7 +287,7 @@ export class WindowFightCore extends AbstractUIWindow {
     }
 
     private onRoundEnd(round:RoundBase):void {
-        this.lblStep.text = "当前回合结束";
+        this.setStep(6);
         this.updateEnergy();
         this.updateFightActor();
         // 先做好当前回合结束的表现，判断是否需要进入下一回合，敌方阵亡或友方阵亡则结束游戏
@@ -256,7 +302,7 @@ export class WindowFightCore extends AbstractUIWindow {
     }
 
     private onBattleEnd(battle:BattleBase):void {
-        this.lblStep.text = "进入战场结束阶段";
+        this.setStep(7);
         console.log("onBattleEnd", battle);
         if (battle && battle.battleVo) {
             GameModules.window.showWindowByName("WindowBattleReward", true, false, false, true, undefined, undefined, [battle.battleVo]);

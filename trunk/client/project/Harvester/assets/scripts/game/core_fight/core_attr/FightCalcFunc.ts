@@ -74,9 +74,20 @@ export class FightCalcFunc {
         return new HealResultTable(false, false, caster, target, applied);
     }
 
-    public static calculateAttrModify(caster:BaseActor, target:BaseActor, attrType:EnumAttr, baseAttrModify:number):AttrModifyResultTable {
-        var attrModify:number = baseAttrModify;
-        target.setAttr(attrType, target.getAttr(attrType) + attrModify);
-        return new AttrModifyResultTable(attrType, attrModify);
+    /**
+     * 属性修改器
+     * @param caster 施法者
+     * @param target 目标
+     * @param attrType 属性类型
+     * @param baseValue 基础属性修改值
+     * @param effectType 效果类型
+     * @returns 
+     */
+    public static calculateAttrModify(caster:BaseActor, target:BaseActor, attrType:EnumAttr, baseValue:number, valueScale:number):AttrModifyResultTable {
+        var baseAttr:number = target.getAttr(attrType);   // 原属性 
+        var valueAttr:number = baseAttr * valueScale + baseValue;   // 修正后属性
+        target.setAttr(attrType, valueAttr); // 乘法修正+加法修正
+        var resultAttr:number = baseAttr + valueAttr;   // 修正后属性 = 原属性 + 修正后属性
+        return new AttrModifyResultTable(attrType, resultAttr);
     }
 }

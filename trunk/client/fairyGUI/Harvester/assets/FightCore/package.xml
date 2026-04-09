@@ -8,9 +8,8 @@
     <component id="iqit4" name="ComFightSkillLayer.xml" path="/"/>
     <component id="iqit5" name="ComFightSkill.xml" path="/"/>
     <component id="jz056" name="RenderFightCoreLog.xml" path="/"/>
-    <image id="jz059" name="n1.png" path="/"/>
     <component id="ottwa" name="BtnEndRound.xml" path="/"/>
-    <component id="g4txb" name="ComBlood.xml" path="/"/>
+    <component id="g4txb" name="ComBlood.xml" path="/" exported="true"/>
   </resources>
   <publish name=""/>
 </packageDescription>

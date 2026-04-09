@@ -5,7 +5,6 @@ import { EnumFaction } from "./EnumFaction";
 
 export class ModuleActor extends AbstractModule {
 
-
     protected init():void {
         console.log("初始化ModuleActor模块");
     }

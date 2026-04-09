@@ -2,15 +2,12 @@
 <component size="200,300">
   <displayList>
     <graph id="n0_lrrb" name="n0" xy="0,0" size="200,300" type="rect"/>
-    <text id="n1_lrrb" name="name" xy="8,9" size="84,29" fontSize="20" text="角色名字"/>
-    <text id="n2_lrrb" name="level" xy="9,50" size="44,29" fontSize="20" text="等级"/>
-    <text id="n3_lrrb" name="fight" xy="9,94" size="64,29" fontSize="20" text="战斗力"/>
-    <text id="n4_lrrb" name="lblHp" xy="112,140" size="72,29" fontSize="20" autoSize="none" text="200"/>
-    <text id="n5_fxb0" name="lblName" xy="112,9" size="84,29" fontSize="20" text="神力恩泽"/>
-    <text id="n6_fxb0" name="lblLevel" xy="112,50" size="26,29" fontSize="20" text="80"/>
-    <text id="n7_fxb0" name="lblFight" xy="112,94" size="37,29" fontSize="20" text="999"/>
-    <text id="n8_fxb0" name="n8" xy="10,139" size="90,29" fontSize="20" autoSize="none" text="血量"/>
-    <text id="n9_fxb0" name="n9" xy="9,187" size="90,29" fontSize="20" autoSize="none" text="能量"/>
-    <text id="n10_fxb0" name="lblMp" xy="112,186" size="72,29" fontSize="20" autoSize="none" text="5"/>
+    <loader id="n11_g4tx" name="loaderActor" xy="0,45" size="200,254" url="ui://17w83934g4tx8" fill="scale"/>
+    <text id="n5_fxb0" name="lblName" xy="53,-38" size="84,29" fontSize="20" text="神力恩泽"/>
+    <text id="n9_fxb0" name="n9" xy="7,257" size="90,29" fontSize="20" autoSize="none" text="能量"/>
+    <text id="n10_fxb0" name="lblMp" xy="111,257" size="72,29" fontSize="20" autoSize="none" text="5"/>
+    <component id="n12_g4tx" name="hpBar" src="g4tx9" fileName="ProgressBar1.xml" pkg="17w83934" xy="9,15" size="178,21">
+      <ProgressBar value="50" max="100"/>
+    </component>
   </displayList>
 </component>

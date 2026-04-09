@@ -2,30 +2,27 @@
 <component size="750,1334">
   <controller name="c1" pages="0,,1," selected="0"/>
   <displayList>
-    <graph id="n1_lrrb" name="n1" xy="-1,0" size="750,1334" group="n18_iqit" type="rect"/>
-    <text id="n0_lrrb" name="n0" xy="316,53" size="76,36" group="n18_iqit" fontSize="12" text="核心战斗区域&#xA;"/>
-    <component id="n4_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="642,31" size="101,40" group="n18_iqit"/>
-    <component id="n9_109dk" name="comPlayer1" src="lrrb1" fileName="ActorCom.xml" xy="61,110" group="n18_iqit"/>
-    <component id="n10_109dk" name="comBoss1" src="lrrb1" fileName="ActorCom.xml" xy="504,117" group="n18_iqit"/>
-    <loader id="n15_itde" name="loaderFight" xy="491,4" size="143,108" group="n18_iqit" url="ui://a7jwbx4sitde3" fill="scale" color="#669999"/>
-    <text id="n16_iqit" name="n16" xy="198,871" size="171,19" group="n18_iqit" fontSize="12" text="核心战斗为一个Tick的气泡点击"/>
-    <text id="n17_iqit" name="n17" xy="198,899" size="172,19" group="n18_iqit" fontSize="12" text="玩法类似于实体点击的泡泡游戏"/>
-    <graph id="n28_fxb0" name="n28" xy="42,983" size="256,53" group="n32_fxb0" type="rect"/>
-    <graph id="n29_fxb0" name="n29" xy="39,1056" size="613,232" group="n32_fxb0" type="rect"/>
-    <text id="n30_fxb0" name="n30" xy="92,991" size="124,42" group="n32_fxb0" fontSize="30" text="战斗日志"/>
-    <list id="n31_fxb0" name="listFightCoreLog" xy="37,1058" size="600,232" group="n32_fxb0" overflow="scroll" defaultItem="ui://a7jwbx4sjz056">
+    <loader id="n34_g4tx" name="loaderBg" xy="0,0" size="750,1334" url="ui://17w83934g4txd" fill="scale"/>
+    <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="-2,2" size="750,1334">
+      <gearDisplay controller="c1" pages="0"/>
+    </component>
+    <component id="n4_lrrb" name="btnClose" src="lrrb2" fileName="BtnClose.xml" xy="524,28" size="143,35" group="n18_iqit"/>
+    <component id="n9_109dk" name="comPlayer1" src="lrrb1" fileName="ActorCom.xml" xy="33,451" size="204,303" group="n18_iqit"/>
+    <component id="n10_109dk" name="comBoss1" src="lrrb1" fileName="ActorCom.xml" xy="512,454" size="205,305" group="n18_iqit"/>
+    <loader id="n15_itde" name="loaderFight" xy="273,-9" size="180,172" group="n18_iqit" url="ui://a7jwbx4sitde3" fill="scale" color="#669999"/>
+    <text id="n16_iqit" name="n16" xy="80,868" size="171,19" group="n18_iqit" fontSize="12" color="#ff0000" text="核心战斗为一个Tick的气泡点击"/>
+    <text id="n17_iqit" name="n17" xy="80,896" size="172,19" group="n18_iqit" fontSize="12" color="#ff0000" text="玩法类似于实体点击的泡泡游戏"/>
+    <image id="n36_g4tx" name="n36" src="g4txb" fileName="UI_BackGround.png" pkg="17w83934" xy="5,1030" size="735,301" group="n32_fxb0"/>
+    <text id="n30_fxb0" name="n30" xy="18,960" size="124,42" group="n32_fxb0" fontSize="30" text="战斗日志"/>
+    <list id="n31_fxb0" name="listFightCoreLog" xy="7,1030" size="727,307" group="n32_fxb0" overflow="scroll" defaultItem="ui://a7jwbx4sjz056">
       <item/>
       <item/>
       <item/>
       <item/>
     </list>
-    <group id="n32_fxb0" name="n32" xy="37,983" size="615,307" group="n18_iqit"/>
-    <component id="n33_g4tx" name="comBlood" src="g4txb" fileName="ComBlood.xml" xy="699,522" group="n18_iqit"/>
-    <group id="n18_iqit" name="n18" xy="-1,0" size="800,1334" advanced="true">
+    <group id="n32_fxb0" name="n32" xy="5,960" size="735,377" group="n18_iqit"/>
+    <group id="n18_iqit" name="n18" xy="5,-9" size="735,1346" advanced="true">
       <gearDisplay controller="c1" pages="0,1"/>
     </group>
-    <component id="n21_jz05" name="comFightCore" src="iqit4" fileName="ComFightSkillLayer.xml" xy="-1,15" size="750,1334">
-      <gearDisplay controller="c1" pages="0"/>
-    </component>
   </displayList>
 </component>

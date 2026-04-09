@@ -5,7 +5,8 @@
     <graph id="n0_iqit" name="n0" xy="-1,-2" size="50,50" type="rect">
       <gearDisplay controller="button" pages=""/>
     </graph>
-    <text id="n1_jz05" name="title" xy="2,3" size="40,42" fontSize="30" text=""/>
+    <loader id="n2_g4tx" name="loaderSkill" xy="0,0" size="50,50" touchable="false" url="ui://17w83934g4tx7" fill="scaleNoBorder"/>
+    <text id="n1_jz05" name="lblSkillName" xy="4,0" size="40,19" fontSize="12" color="#cc0000" autoSize="none" text="炎爆术"/>
   </displayList>
   <Button downEffect="scale" downEffectValue="0.8"/>
 </component>

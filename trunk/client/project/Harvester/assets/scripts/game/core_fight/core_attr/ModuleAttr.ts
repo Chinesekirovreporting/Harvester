@@ -23,7 +23,8 @@ export class ModuleAttr extends AbstractModule {
     }
 
     public calcByAttrModifyEffect(effectAttrModify:EffectAttrModify):ResultTable {
-        return FightCalcFunc.calculateAttrModify(effectAttrModify.useActor, effectAttrModify.targetActor, effectAttrModify.effectVo.effectCFG.TargetAttr, effectAttrModify.effectVo.effectCFG.BaseValue);
+        return FightCalcFunc.calculateAttrModify(effectAttrModify.useActor, effectAttrModify.targetActor, effectAttrModify.effectVo.effectCFG.TargetAttr, 
+            effectAttrModify.effectVo.effectCFG.BaseValue, effectAttrModify.effectVo.effectCFG.ValueScale);
     }
 
     // 进攻属性计算,包含命中概率,暴击概率,闪避概率,命中率等。命中率计算包含闪避概率。

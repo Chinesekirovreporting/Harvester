@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334" opaque="false" bgColorEnabled="true">
-  <controller name="c1" pages="0,,1," selected="0"/>
+  <controller name="c1" pages="0,,1," selected="1"/>
+  <controller name="controllerStep" pages="0,进入战场,1,回合前准备,2,开始回合循环,3,执行回合BUFF,4,友方回合,5,敌方回合,6,回合 结束,7,战场结束" selected="3">
+    <remark page="3" value="回合循环1"/>
+    <remark page="4" value="回合循环2"/>
+    <remark page="5" value="回合循环3"/>
+    <remark page="6" value="回合循环4"/>
+  </controller>
   <displayList>
-    <image id="n20_jz05" name="n20" src="jz059" fileName="n1.png" xy="-2,270" size="755,635" alpha="0.638"/>
-    <component id="n5_iqit" name="btnPop1" src="iqit5" fileName="ComFightSkill.xml" xy="128,517">
+    <component id="n5_iqit" name="btnPop1" src="iqit5" fileName="ComFightSkill.xml" xy="109,333">
       <Button title="P1"/>
     </component>
-    <component id="n7_iqit" name="btnPop2" src="iqit5" fileName="ComFightSkill.xml" xy="217,518">
+    <component id="n7_iqit" name="btnPop2" src="iqit5" fileName="ComFightSkill.xml" xy="233,318">
       <Button title="P2"/>
     </component>
-    <component id="n8_iqit" name="btnPop3" src="iqit5" fileName="ComFightSkill.xml" xy="311,519">
+    <component id="n8_iqit" name="btnPop3" src="iqit5" fileName="ComFightSkill.xml" xy="315,381">
       <Button title="P3"/>
     </component>
-    <component id="n9_iqit" name="btnPop5" src="iqit5" fileName="ComFightSkill.xml" xy="513,518">
+    <component id="n9_iqit" name="btnPop5" src="iqit5" fileName="ComFightSkill.xml" xy="365,498">
       <Button title="P5"/>
     </component>
-    <component id="n10_iqit" name="btnPop4" src="iqit5" fileName="ComFightSkill.xml" xy="410,518">
+    <component id="n10_iqit" name="btnPop4" src="iqit5" fileName="ComFightSkill.xml" xy="389,307">
       <Button title="P4"/>
     </component>
-    <text id="n15_jz05" name="n15" xy="490,748" size="124,42" fontSize="30" text="能量数量"/>
-    <text id="n16_jz05" name="lblEnergy" xy="491,811" size="120,42" fontSize="30" autoSize="none" text="5/5"/>
-    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="602,518">
+    <text id="n15_jz05" name="n15" xy="489,748" size="124,42" fontSize="30" color="#ff0000" text="能量数量"/>
+    <text id="n16_jz05" name="lblEnergy" xy="491,811" size="120,42" fontSize="30" color="#ff0000" autoSize="none" text="5/5"/>
+    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="485,313">
       <Button title="P6"/>
     </component>
-    <text id="n1_iqit" name="n1" xy="26,78" size="408,28" group="n22_jz05" fontSize="15" autoSize="none" text="这里是战斗的核心图层"/>
-    <text id="n2_iqit" name="n2" xy="24,107" size="697,35" group="n22_jz05" fontSize="15" autoSize="none" text="战斗的核心思路：每一个Tick回合会产生一定数量的缓动气泡，每个回合有能量，每点击一个气泡Skill会消耗一点能量并施加技能效果"/>
-    <text id="n3_iqit" name="n3" xy="24,142" size="409,35" group="n22_jz05" fontSize="15" autoSize="none" text="随着回合的进展，可设计气泡的数量髓回合数增加，能量也随之增加，时间缩减"/>
-    <text id="n4_iqit" name="n4" xy="26,178" size="469,23" group="n22_jz05" fontSize="15" text="可设计出不同的牌型，基础牌，技能牌，状态牌，诅咒牌，敌对技能牌"/>
-    <group id="n22_jz05" name="n22" xy="24,78" size="697,123" advanced="true">
+    <text id="n1_iqit" name="n1" xy="22,127" size="408,28" group="n22_jz05" fontSize="15" color="#ff0000" autoSize="none" text="这里是战斗的核心图层"/>
+    <text id="n2_iqit" name="n2" xy="20,157" size="697,35" group="n22_jz05" fontSize="15" color="#ff0000" autoSize="none" text="战斗的核心思路：每一个Tick回合会产生一定数量的缓动气泡，每个回合有能量，每点击一个气泡Skill会消耗一点能量并施加技能效果"/>
+    <text id="n3_iqit" name="n3" xy="20,192" size="409,35" group="n22_jz05" fontSize="15" color="#ff0000" autoSize="none" text="随着回合的进展，可设计气泡的数量髓回合数增加，能量也随之增加，时间缩减"/>
+    <text id="n4_iqit" name="n4" xy="22,228" size="469,23" group="n22_jz05" fontSize="15" color="#ff0000" text="可设计出不同的牌型，基础牌，技能牌，状态牌，诅咒牌，敌对技能牌"/>
+    <group id="n22_jz05" name="n22" xy="20,127" size="697,124" advanced="true">
       <gearDisplay controller="c1" pages="1"/>
     </group>
-    <text id="n23_jz05" name="lblStep" xy="221,63" size="304,59" fontSize="30" align="center" autoSize="none" text="准备阶段"/>
-    <component id="n24_jz05" name="btnEndRound" src="ottwa" fileName="BtnEndRound.xml" xy="263,763"/>
-    <component id="n25_fxb0" name="btnEndBattle" src="ottwa" fileName="BtnEndRound.xml" xy="377,763">
+    <text id="n23_jz05" name="lblStep" xy="221,63" size="304,59" fontSize="30" color="#ff0000" align="center" autoSize="none" text="准备阶段"/>
+    <component id="n24_jz05" name="btnEndRound" src="ottwa" fileName="BtnEndRound.xml" xy="158,835">
+      <gearDisplay controller="controllerStep" pages="3,4,5,6"/>
+    </component>
+    <component id="n25_fxb0" name="btnEndBattle" src="ottwa" fileName="BtnEndRound.xml" xy="325,837">
+      <gearDisplay controller="controllerStep" pages="3,4,5,6"/>
       <Button title="强制战斗结束"/>
     </component>
   </displayList>
