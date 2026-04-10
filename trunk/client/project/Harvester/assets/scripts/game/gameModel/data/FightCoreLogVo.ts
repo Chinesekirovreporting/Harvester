@@ -6,4 +6,8 @@ export class FightCoreLogVo {
     public constructor(logType:EnumFightCoreLogType, logData:any) {
 
     }
+
+    public getFightCoreLogString():string {
+        return "战斗日志详情"
+    }
 }

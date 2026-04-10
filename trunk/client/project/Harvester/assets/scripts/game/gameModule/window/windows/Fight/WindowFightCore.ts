@@ -17,6 +17,8 @@ import { BaseActor } from "../../../../core_fight/core_actor/BaseActor";
 import { EnumFaction } from "../../../../core_fight/core_actor/EnumFaction";
 import { BattleRewardDropItemVo } from "../../../../gameModel/data/BattleRewardDropItemVo";
 import { FightBloodFloatEffect } from "./FightBloodFloatEffect";
+import { RenderFightCoreLog } from "./RenderFightCoreLog";
+import { GameModels } from "../../../../gameModel/GameModels";
 
 export class WindowFightCore extends AbstractUIWindow {
 
@@ -40,6 +42,7 @@ export class WindowFightCore extends AbstractUIWindow {
     protected onInit(): void {
         // UICore.registerExtension("StoryWindow", "StoryRender", RenderGushi);
         // 资源已经在 loadRes() 中加载完成，直接创建视图
+        UICore.registerExtension("FightCore", "RenderFightCoreLog", RenderFightCoreLog);
         let view = UICore.createObject("FightCore", "WindowFightCore").asCom;
         if (view) {
             this._view = view;
@@ -65,6 +68,9 @@ export class WindowFightCore extends AbstractUIWindow {
         this.loaderFight = this.view.asCom.getChild("loaderFight") as GLoader;
         this.comFightCore = this.view.asCom.getChild("comFightCore") as GComponent;
         this.listFightCoreLog = this.view.asCom.getChild("listFightCoreLog") as GList;
+        this.listFightCoreLog.itemRenderer = this.listFightCoreLogRender.bind(this);
+        this.listFightCoreLog.setVirtual();
+        this.listFightCoreLog.refreshVirtualList();
         this.lblEnergy = this.comFightCore.getChild("lblEnergy") as GTextField;
         this.lblStep = this.comFightCore.getChild("lblStep") as GTextField;
         this.btnEndRound = this.comFightCore.getChild("btnEndRound") as GButton;
@@ -85,6 +91,11 @@ export class WindowFightCore extends AbstractUIWindow {
             console.log("onChanged", index);
         });
     } 
+
+    private listFightCoreLogRender(index: number, item: RenderFightCoreLog): void {
+        const list = GameModels.fightLog.getFightLogList();
+        item.setData(list[index]);
+    }
 
     private onFightCoreButtonClick(index:number):void {
         console.log("onFightCoreButtonClick", index);
@@ -142,7 +153,7 @@ export class WindowFightCore extends AbstractUIWindow {
 
     private updateFightCoreLog(clear:boolean = false):void {
         if (clear == true) {
-            this.listFightCoreLog.removeChildren();
+            this.listFightCoreLog.numItems = GameModels.fightLog.getFightLogList().length;
             return;
         }
     }
