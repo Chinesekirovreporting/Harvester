@@ -24,7 +24,7 @@ export class GameEngine{
     }
 
     public static InitGameModels() {
-        GameRes.init();
+        // GameRes.init();
         GameModels.init();
     }
 

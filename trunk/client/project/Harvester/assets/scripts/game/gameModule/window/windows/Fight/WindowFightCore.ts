@@ -19,6 +19,7 @@ import { BattleRewardDropItemVo } from "../../../../gameModel/data/BattleRewardD
 import { FightBloodFloatEffect } from "./FightBloodFloatEffect";
 import { RenderFightCoreLog } from "./RenderFightCoreLog";
 import { GameModels } from "../../../../gameModel/GameModels";
+import { GameRes } from "../../../../gameModel/setting/GameRes";
 
 export class WindowFightCore extends AbstractUIWindow {
 
@@ -32,7 +33,7 @@ export class WindowFightCore extends AbstractUIWindow {
     private lblStep:GTextField;
     private btnEndRound:GButton;
     private btnEndBattle:GButton;
-    private nButtonCount:number = 6;
+    // private nButtonCount:number = 6;
     private controllerStep:Controller;
 
     protected getResList(): Array<string> {
@@ -77,14 +78,15 @@ export class WindowFightCore extends AbstractUIWindow {
         this.btnEndRound.onClick(this.onBtnEndRoundClick, this);
         this.btnEndBattle = this.comFightCore.getChild("btnEndBattle") as GButton;
         this.btnEndBattle.onClick(this.onBtnEndBattleClick, this);
-        for (let i = 1; i <= this.nButtonCount; i++) {
-            let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
-            if (btn) {
-                btn.onClick(this.onFightCoreButtonClick.bind(this, i), this); 
-                btn.touchable = true;
-                btn.visible = true;
-            } 
-        } 
+        // 遗弃代码
+        // for (let i = 1; i <= this.nButtonCount; i++) {
+        //     let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
+        //     if (btn) {
+        //         btn.onClick(this.onFightCoreButtonClick.bind(this, i), this); 
+        //         btn.touchable = true;
+        //         btn.visible = true;
+        //     } 
+        // } 
         this.controllerStep = this.comFightCore.getController("controllerStep");
         this.controllerStep.setSelectedIndex(0);
         this.controllerStep.onChanged((index:number) => {
@@ -97,18 +99,18 @@ export class WindowFightCore extends AbstractUIWindow {
         item.setData(list[index]);
     }
 
-    private onFightCoreButtonClick(index:number):void {
-        console.log("onFightCoreButtonClick", index);
-        // 执行技能函数，根据index 执行对应的技能
-        var skillId = 1;    // 技能表 //GameModules.round.curRound.getSkillIdBySkillIndex(index);
-        var useUnit:BaseActor = GameModules.battle.curBattle.friendActorList[0]
-        GameModules.skill.useSkill( skillId, useUnit );
-        this.comFightCore.getChild("btnPop" + index).touchable = false;
-        // 更新UI 隐藏当前按钮，并显示下一个按钮
-        TweenUtil.fadeOut(this.comFightCore.getChild("btnPop" + index) as GObject,0.3,() => {
-            this.comFightCore.getChild("btnPop" + index).visible = false;
-        });
-    }
+    // private onFightCoreButtonClick(index:number):void {
+    //     console.log("onFightCoreButtonClick", index);
+    //     // 执行技能函数，根据index 执行对应的技能
+    //     var skillId = 1;    // 技能表 //GameModules.round.curRound.getSkillIdBySkillIndex(index);
+    //     var useUnit:BaseActor = GameModules.battle.curBattle.friendActorList[0]
+    //     GameModules.skill.useSkill( skillId, useUnit );
+    //     this.comFightCore.getChild("btnPop" + index).touchable = false;
+    //     // 更新UI 隐藏当前按钮，并显示下一个按钮
+    //     TweenUtil.fadeOut(this.comFightCore.getChild("btnPop" + index) as GObject,0.3,() => {
+    //         this.comFightCore.getChild("btnPop" + index).visible = false;
+    //     });
+    // }
 
     private onCloseClick():void {
         this.close();
@@ -253,10 +255,15 @@ export class WindowFightCore extends AbstractUIWindow {
     }
 
     private onFriendRoundStart(battle:BattleBase):void {
-        this.refreshFightSkill()
+        // this.refreshFightSkill()
         this.setStep(4);
         this.lblEnergy.text = GameModules.round.curRound.energy.toString();
         console.log("onFriendRoundStart", battle);
+        // 测试动态创建按钮
+        for (let i = 1; i <= 5; i++) {
+            this.createFightSkillPop(this.fightSkillPopIndex, 1);
+            this.fightSkillPopIndex++;
+        }
     }
 
     private onEnemyRoundStart(battle:BattleBase):void {
@@ -264,17 +271,50 @@ export class WindowFightCore extends AbstractUIWindow {
         console.log("onEnemyRoundStart", battle);
     }
 
-    private refreshFightSkill():void {
-        for (let i = 1; i <= this.nButtonCount; i++) {
-            let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
-            if (btn) {
-                btn.touchable = true;
-                btn.visible = true;
-                btn.alpha = 1;
-            }
-        }
+    // private refreshFightSkill():void {
+    //     for (let i = 1; i <= this.nButtonCount; i++) {
+    //         let btn = this.comFightCore.getChild("btnPop" + i) as GButton;
+    //         if (btn) {
+    //             btn.touchable = true;
+    //             btn.visible = true;
+    //             btn.alpha = 1;
+    //         }
+    //     }
+    // }
+
+    //////////////// 动态创建技能按钮 //////////////////////////////////////
+    public fightSkillPopDict:Record<number, GButton> = {};
+    public fightSkillPopIndex:number = 0;
+    // 动态创建按钮技能
+    private createFightSkillPop(index:number,skillId:number):void {
+        var button:GButton = GameModules.dynamicUI.addFromPackage(this.view, GameRes.PACKAGE_FIGHT_CORE, "ComFightSkill") as GButton;
+        this.fightSkillPopDict[index] = button;
+        button.onClick(this.onFightSkillButtonClick.bind(this, index), this);
     }
 
+    // 动态删除按钮功能
+    private removeFightSkillPop(index:number):void {
+        var button:GButton = this.fightSkillPopDict[index];
+        button.clearClick();    // 清除点击事件
+        GameModules.dynamicUI.removeChild(button, true);
+        delete this.fightSkillPopDict[index];
+    }
+    
+    // 点击按钮技能释放
+    private onFightSkillButtonClick(index:number, button:GButton):void {
+        console.log("onFightSkillButtonClick", index);
+        // 执行技能函数，根据index 执行对应的技能
+        var skillId = 1;    // 技能表 //GameModules.round.curRound.getSkillIdBySkillIndex(index);
+        var useUnit:BaseActor = GameModules.battle.curBattle.friendActorList[0]
+        GameModules.skill.useSkill( skillId, useUnit );
+        this.fightSkillPopDict[index].touchable = false;
+        // 更新UI 隐藏当前按钮，并显示下一个按钮
+        TweenUtil.fadeOut(this.fightSkillPopDict[index] as GObject,0.3,() => {
+            this.removeFightSkillPop(index);
+        });
+    }
+
+    //////////////// 动态创建技能按钮 结束//////////////////////////////////////
     private onSkillCast(skill:BaseSkill):void {
         console.log("onSkillCast", skill.skillVo.skillCFG.Name);
         this.updateEnergy();

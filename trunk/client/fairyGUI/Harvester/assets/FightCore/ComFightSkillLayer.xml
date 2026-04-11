@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334" opaque="false" bgColorEnabled="true">
   <controller name="c1" pages="0,,1," selected="1"/>
-  <controller name="controllerStep" pages="0,进入战场,1,回合前准备,2,开始回合循环,3,执行回合BUFF,4,友方回合,5,敌方回合,6,回合 结束,7,战场结束" selected="3">
+  <controller name="controllerStep" pages="0,进入战场,1,回合前准备,2,开始回合循环,3,执行回合BUFF,4,友方回合,5,敌方回合,6,回合 结束,7,战场结束" selected="0">
     <remark page="3" value="回合循环1"/>
     <remark page="4" value="回合循环2"/>
     <remark page="5" value="回合循环3"/>
     <remark page="6" value="回合循环4"/>
   </controller>
   <displayList>
-    <component id="n5_iqit" name="btnPop1" src="iqit5" fileName="ComFightSkill.xml" xy="109,333">
+    <component id="n5_iqit" name="btnPop1" src="iqit5" fileName="ComFightSkill.xml" xy="123,333" visible="false">
       <Button title="P1"/>
     </component>
-    <component id="n7_iqit" name="btnPop2" src="iqit5" fileName="ComFightSkill.xml" xy="233,318">
+    <component id="n7_iqit" name="btnPop2" src="iqit5" fileName="ComFightSkill.xml" xy="247,318" visible="false">
       <Button title="P2"/>
     </component>
-    <component id="n8_iqit" name="btnPop3" src="iqit5" fileName="ComFightSkill.xml" xy="315,381">
+    <component id="n8_iqit" name="btnPop3" src="iqit5" fileName="ComFightSkill.xml" xy="315,381" visible="false">
       <Button title="P3"/>
     </component>
-    <component id="n9_iqit" name="btnPop5" src="iqit5" fileName="ComFightSkill.xml" xy="365,498">
+    <component id="n9_iqit" name="btnPop5" src="iqit5" fileName="ComFightSkill.xml" xy="365,498" visible="false">
       <Button title="P5"/>
     </component>
-    <component id="n10_iqit" name="btnPop4" src="iqit5" fileName="ComFightSkill.xml" xy="389,307">
+    <component id="n10_iqit" name="btnPop4" src="iqit5" fileName="ComFightSkill.xml" xy="403,307" visible="false">
       <Button title="P4"/>
     </component>
     <text id="n15_jz05" name="n15" xy="489,748" size="124,42" fontSize="30" color="#ff0000" text="能量数量"/>
     <text id="n16_jz05" name="lblEnergy" xy="491,811" size="120,42" fontSize="30" color="#ff0000" autoSize="none" text="5/5"/>
-    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="485,313">
+    <component id="n17_jz05" name="btnPop6" src="iqit5" fileName="ComFightSkill.xml" xy="484,313" visible="false">
       <Button title="P6"/>
     </component>
     <text id="n1_iqit" name="n1" xy="22,127" size="408,28" group="n22_jz05" fontSize="15" color="#ff0000" autoSize="none" text="这里是战斗的核心图层"/>

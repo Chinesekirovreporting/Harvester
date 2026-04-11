@@ -33,7 +33,7 @@ export class ModuleDynamicUI extends AbstractModule {
      * 获取或创建挂在 host **最上层** 的动态层（与 host 同宽高，RelationType.Size 随 host 变化）。
      * @param touchThrough true：动态层不拦截触摸，事件落到下层（如战斗按钮）；false：层可点击
      */
-    public getOrCreateLayer(host: GComponent, touchThrough: boolean = true): GComponent {
+    public getOrCreateLayer(host: GComponent, touchThrough: boolean = false): GComponent {
         if (host == null) {
             return null;
         }
