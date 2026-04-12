@@ -1,39 +1,36 @@
 import { AbstractUIWindow } from "db://assets/scripts/framework/core/ui/AbstractUIWindow";
 import { UICore } from "db://assets/scripts/framework/core/ui/UICore";
-import { Controller, GButton, GComponent, GList, GLoader, GObject, GTextField } from "fairygui-cc";
+import { Controller, GButton, GComponent, GList, GLoader, GTextField } from "fairygui-cc";
 import { GameModules } from "../../../GameModules";
 import { ModuleEffectEvent } from "../../../../core_fight/core_effect/ModuleEffectEvent";
 import { DamageResultTable } from "../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { ModuleBattleEvent } from "../../../../core_fight/core_battle/ModuleBattleEvent";
-import { ModuleRound } from "../../../../core_fight/core_round/ModuleRound";
 import { BattleBase } from "../../../../core_fight/core_battle/battle/BattleBase";
 import { ModuleRoundEvent } from "../../../../core_fight/core_round/ModuleRoundEvent";
 import { RoundBase } from "../../../../core_fight/core_round/RoundBase";
-import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
 import { ModuleSkillEvent } from "../../../../core_fight/core_skill/ModuleSkillEvent";
 import { BaseSkill } from "../../../../core_fight/core_skill/BaseSkill";
 import { App } from "db://assets/scripts/framework/managers/App";
-import { BaseActor } from "../../../../core_fight/core_actor/BaseActor";
 import { EnumFaction } from "../../../../core_fight/core_actor/EnumFaction";
 import { BattleRewardDropItemVo } from "../../../../gameModel/data/BattleRewardDropItemVo";
-import { FightBloodFloatEffect } from "./FightBloodFloatEffect";
 import { RenderFightCoreLog } from "./RenderFightCoreLog";
 import { GameModels } from "../../../../gameModel/GameModels";
-import { GameRes } from "../../../../gameModel/setting/GameRes";
+import { UIComFightSkill } from "./Components/UIComFightSkill";
+import { UIComFightActor } from "./Components/UIComFightActor";
 
 export class WindowFightCore extends AbstractUIWindow {
 
     private btnClose: GButton;
-    private comPlayer1: GComponent;
-    private comBoss1: GComponent;
     private loaderFight:GLoader;
     private comFightCore:GComponent
     private listFightCoreLog:GList;
-    private lblEnergy:GTextField;
+    // private lblEnergy:GTextField;
     private lblStep:GTextField;
     private btnEndRound:GButton;
     private btnEndBattle:GButton
     private controllerStep:Controller;
+    private _fightSkillUI: UIComFightSkill;
+    private _fightActorUI: UIComFightActor;
 
     protected getResList(): Array<string> {
         return ["ui/FightCore","ui/Common"];
@@ -56,21 +53,13 @@ export class WindowFightCore extends AbstractUIWindow {
             this.btnClose = btnClose as GButton;
             this.btnClose.onClick(this.onCloseClick, this);
         }
-        let comPlayer = this.view.asCom.getChild("comPlayer1");
-        if (comPlayer) {
-            this.comPlayer1 = comPlayer as GComponent;
-        }
-        let comBoss = this.view.asCom.getChild("comBoss1");
-        if (comBoss) {
-            this.comBoss1 = comBoss as GComponent;
-        }
         this.loaderFight = this.view.asCom.getChild("loaderFight") as GLoader;
         this.comFightCore = this.view.asCom.getChild("comFightCore") as GComponent;
         this.listFightCoreLog = this.view.asCom.getChild("listFightCoreLog") as GList;
         this.listFightCoreLog.itemRenderer = this.listFightCoreLogRender.bind(this);
         this.listFightCoreLog.setVirtual();
         this.listFightCoreLog.refreshVirtualList();
-        this.lblEnergy = this.comFightCore.getChild("lblEnergy") as GTextField;
+        // this.lblEnergy = this.comFightCore.getChild("lblEnergy") as GTextField;
         this.lblStep = this.comFightCore.getChild("lblStep") as GTextField;
         this.btnEndRound = this.comFightCore.getChild("btnEndRound") as GButton;
         this.btnEndRound.onClick(this.onBtnEndRoundClick, this);
@@ -81,6 +70,8 @@ export class WindowFightCore extends AbstractUIWindow {
         this.controllerStep.onChanged((index:number) => {
             console.log("onChanged", index);
         });
+        this._fightSkillUI = new UIComFightSkill(this.view);
+        this._fightActorUI = new UIComFightActor(this.view);
     } 
 
     private listFightCoreLogRender(index: number, item: RenderFightCoreLog): void {
@@ -109,16 +100,8 @@ export class WindowFightCore extends AbstractUIWindow {
         vo.rewardDropList = drops ? drops.slice() : [];
     }
     
-    private updateFightActor():void {
-        var battleMyActor = GameModules.battle.curBattle.friendActorList[0];
-        var battleEnemyActor = GameModules.battle.curBattle.enemyActorList[0];
-        if (battleMyActor == null || battleEnemyActor == null) return;
-        this.comPlayer1.getChild("lblName").text = battleMyActor.name;
-        this.comBoss1.getChild("lblName").text = battleEnemyActor.name;
-    }
-
     private updateEnergy():void {
-        this.lblEnergy.text = GameModules.round.curRound.getRoundEnergy().toString();
+        // this.lblEnergy.text = GameModules.round.curRound.getRoundEnergy().toString();
     }
 
     private updateFightCoreLog(clear:boolean = false):void {
@@ -150,11 +133,11 @@ export class WindowFightCore extends AbstractUIWindow {
     }
 
     protected onShow(...args: Array<any>): void {
-        TweenUtil.floatEffectLoop(this.comBoss1)
         this.onFightCoreEventBind();
         // 游戏流程控制，准备 ~ 开始战斗！(战场开启阶段)
         GameModules.battle.battleStart();
-        this.updateFightActor();
+        this._fightActorUI.startBossFloatLoop();
+        this._fightActorUI.updateFightActor();
         this.updateFightCoreLog(true);
     }
 
@@ -216,7 +199,7 @@ export class WindowFightCore extends AbstractUIWindow {
         this.setStep(3);
         // 刷新血量和能量
         this.updateEnergy();
-        this.updateFightActor();
+        this._fightActorUI.updateFightActor();
         App.timerManager.registerOnce(2000, () => {     
             GameModules.battle.battleFriendRoundStart();
         }, this);
@@ -225,12 +208,10 @@ export class WindowFightCore extends AbstractUIWindow {
     private onFriendRoundStart(battle:BattleBase):void {
         // this.refreshFightSkill()
         this.setStep(4);
-        this.lblEnergy.text = GameModules.round.curRound.energy.toString();
+        // this.lblEnergy.text = GameModules.round.curRound.energy.toString();
         console.log("onFriendRoundStart", battle);
-        // 测试动态创建按钮
         for (let i = 1; i <= 5; i++) {
-            this.createFightSkillPop(this.fightSkillPopIndex, 1);
-            this.fightSkillPopIndex++;
+            this._fightSkillUI.createNextFightSkillPop(1);
         }
     }
 
@@ -239,50 +220,15 @@ export class WindowFightCore extends AbstractUIWindow {
         console.log("onEnemyRoundStart", battle);
     }
 
-    //////////////// 动态创建技能按钮 //////////////////////////////////////
-    public fightSkillPopDict:Record<number, GButton> = {};
-    public fightSkillPopIndex:number = 0;
-    // 动态创建按钮技能
-    private createFightSkillPop(index:number,skillId:number):void {
-        var button:GButton = GameModules.dynamicUI.addFromPackage(this.view, GameRes.PACKAGE_FIGHT_CORE, "ComFightSkill") as GButton;
-        this.fightSkillPopDict[index] = button;
-        button.onClick(this.onFightSkillButtonClick.bind(this, index), this);
-    }
-
-    // 动态删除按钮功能
-    private removeFightSkillPop(index:number):void {
-        var button:GButton = this.fightSkillPopDict[index];
-        button.clearClick();    // 清除点击事件
-        GameModules.dynamicUI.removeChild(button, true);
-        delete this.fightSkillPopDict[index];
-    }
-    
-    // 点击按钮技能释放
-    private onFightSkillButtonClick(index:number, button:GButton):void {
-        console.log("onFightSkillButtonClick", index);
-        // 执行技能函数，根据index 执行对应的技能
-        var skillId = 1;    // 技能表 //GameModules.round.curRound.getSkillIdBySkillIndex(index);
-        var useUnit:BaseActor = GameModules.battle.curBattle.friendActorList[0]
-        GameModules.skill.useSkill( skillId, useUnit );
-        this.fightSkillPopDict[index].touchable = false;
-        // 更新UI 隐藏当前按钮，并显示下一个按钮
-        TweenUtil.fadeOut(this.fightSkillPopDict[index] as GObject,0.3,() => {
-            this.removeFightSkillPop(index);
-        });
-    }
-
-    //////////////// 动态创建技能按钮 结束//////////////////////////////////////
     private onSkillCast(skill:BaseSkill):void {
         console.log("onSkillCast", skill.skillVo.skillCFG.Name);
         this.updateEnergy();
-        this.updateFightActor();
+        this._fightActorUI.updateFightActor();
     }
 
     private onDamageEffect(result:DamageResultTable):void {
         console.log("onDamageEffect", result);
-        if (result.target.faction === EnumFaction.ENEMY) {
-            FightBloodFloatEffect.spawn(this.view, this.comBoss1, result);
-        }
+        this._fightActorUI.trySpawnEnemyDamageFloat(result);
         // 如果目标被击杀，执行击杀逻辑
         if( result.target.faction == EnumFaction.ENEMY && result.beKilled ) {
             this.applyBattleOutcome(true, [
@@ -297,7 +243,7 @@ export class WindowFightCore extends AbstractUIWindow {
     private onRoundEnd(round:RoundBase):void {
         this.setStep(6);
         this.updateEnergy();
-        this.updateFightActor();
+        this._fightActorUI.updateFightActor();
         // 先做好当前回合结束的表现，判断是否需要进入下一回合，敌方阵亡或友方阵亡则结束游戏
         App.timerManager.registerOnce(2000, () => {     
             var bIsNextRound = true;
@@ -340,5 +286,19 @@ export class WindowFightCore extends AbstractUIWindow {
 
     protected onClose(): void {
         this.onFightCoreEventUnbind();
+        if (this._fightSkillUI != null) {
+            this._fightSkillUI.clearAll();
+        }
+    }
+
+    protected onDispose(): void {
+        if (this._fightActorUI != null) {
+            this._fightActorUI.dispose();
+            this._fightActorUI = null;
+        }
+        if (this._fightSkillUI != null) {
+            this._fightSkillUI.dispose();
+            this._fightSkillUI = null;
+        }
     }
 }

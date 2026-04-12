@@ -1,0 +1,63 @@
+import { AbstractUIComponent } from "db://assets/scripts/framework/core/ui/AbstractUIComponent";
+import { GComponent } from "fairygui-cc";
+import { GameModules } from "../../../../GameModules";
+import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
+import { DamageResultTable } from "../../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
+import { FightBloodFloatEffect } from "../FightBloodFloatEffect";
+import { EnumFaction } from "../../../../../core_fight/core_actor/EnumFaction";
+
+/**
+ * 战斗窗口内：友方 / 敌方角色位（comPlayer1、comBoss1）的展示与受击飘血，逻辑从 WindowFightCore 拆分。
+ */
+export class UIComFightActor extends AbstractUIComponent {
+
+	private comPlayer1: GComponent;
+	private comBoss1: GComponent;
+    public name:string = "初始化"
+
+	public constructor(hostView: GComponent) {
+		super(hostView);
+        this.initView();
+	}
+
+	protected initView(): void {
+		const comPlayer = this.view.getChild("comPlayer1");
+		if (comPlayer) {
+			this.comPlayer1 = comPlayer as GComponent;
+		}
+		const comBoss = this.view.getChild("comBoss1");
+		if (comBoss) {
+			this.comBoss1 = comBoss as GComponent;
+            this.name = "已知道"
+		}
+	}
+
+	public updateFightActor(): void {
+		const battleMyActor = GameModules.battle.curBattle.friendActorList[0];
+		const battleEnemyActor = GameModules.battle.curBattle.enemyActorList[0];
+		if (battleMyActor == null || battleEnemyActor == null) {
+			return;
+		}
+		if (this.comPlayer1 != null) {
+			this.comPlayer1.getChild("lblName").text = battleMyActor.name;
+		}
+		if (this.comBoss1 != null) {
+			this.comBoss1.getChild("lblName").text = battleEnemyActor.name;
+		}
+	}
+
+	/** 战斗界面展示时：Boss 位浮动循环效果 */
+	public startBossFloatLoop(): void {
+		if (this.comBoss1 != null) {
+			TweenUtil.floatEffectLoop(this.comBoss1);
+		}
+	}
+
+	/** 敌方受击时在 Boss 锚点飘血 */
+	public trySpawnEnemyDamageFloat(result: DamageResultTable): void {
+		if (result.target.faction !== EnumFaction.ENEMY) {
+			return;
+		}
+		FightBloodFloatEffect.spawn(this.view, this.comBoss1, result);
+	}
+}
