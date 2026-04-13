@@ -13,14 +13,13 @@ export class UIComFightActor extends AbstractUIComponent {
 
 	private comPlayer1: GComponent;
 	private comBoss1: GComponent;
-    public name:string = "初始化"
 
 	public constructor(hostView: GComponent) {
 		super(hostView);
         this.initView();
 	}
 
-	protected initView(): void {
+	private initView(): void {
 		const comPlayer = this.view.getChild("comPlayer1");
 		if (comPlayer) {
 			this.comPlayer1 = comPlayer as GComponent;
@@ -28,7 +27,6 @@ export class UIComFightActor extends AbstractUIComponent {
 		const comBoss = this.view.getChild("comBoss1");
 		if (comBoss) {
 			this.comBoss1 = comBoss as GComponent;
-            this.name = "已知道"
 		}
 	}
 

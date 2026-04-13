@@ -40,20 +40,22 @@ export class FightBloodFloatEffect {
             });
     }
 
+    // 血条飘血效果，更新血条文本
     private static applyText(root: GObject, text: string): void {
-        if (root instanceof GTextField) {
-            root.text = text;
-            return;
-        }
-        if (root instanceof GComponent) {
-            const names = ["lblDamage", "lblTitle", "title", "n0", "txt"];
-            for (const n of names) {
-                const ch = root.getChild(n);
-                if (ch instanceof GTextField) {
-                    ch.text = text;
-                    return;
-                }
-            }
-        }
+        (root as GComponent).getChild("lblBlood").text = text;
+        // if (root instanceof GTextField) {
+        //     root.text = text;
+        //     return;
+        // }
+        // if (root instanceof GComponent) {
+        //     const names = ["lblDamage", "lblTitle", "title", "n0", "txt"];
+        //     for (const n of names) {
+        //         const ch = root.getChild(n);
+        //         if (ch instanceof GTextField) {
+        //             ch.text = text;
+        //             return;
+        //         }
+        //     }
+        // }
     }
 }
