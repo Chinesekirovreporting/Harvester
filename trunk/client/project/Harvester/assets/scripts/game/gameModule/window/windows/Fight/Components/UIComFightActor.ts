@@ -5,6 +5,7 @@ import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
 import { DamageResultTable } from "../../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { FightBloodFloatEffect } from "../FightBloodFloatEffect";
 import { EnumFaction } from "../../../../../core_fight/core_actor/EnumFaction";
+import { EnumAttr } from "db://assets/scripts/game/core_fight/core_attr/EnumAttr";
 
 /**
  * 战斗窗口内：友方 / 敌方角色位（comPlayer1、comBoss1）的展示与受击飘血，逻辑从 WindowFightCore 拆分。
@@ -38,9 +39,13 @@ export class UIComFightActor extends AbstractUIComponent {
 		}
 		if (this.comPlayer1 != null) {
 			this.comPlayer1.getChild("lblName").text = battleMyActor.name;
+			this.comPlayer1.getChild("lblMp").text =  GameModules.round.curRound != null ? GameModules.round.curRound.getRoundEnergy().toString() : "0";
+			this.comPlayer1.getChild("lblBlood").text = battleMyActor.getAttr(EnumAttr.HP).toString();
 		}
 		if (this.comBoss1 != null) {
 			this.comBoss1.getChild("lblName").text = battleEnemyActor.name;
+			this.comBoss1.getChild("lblMp").text = "";
+			this.comBoss1.getChild("lblBlood").text = battleEnemyActor.getAttr(EnumAttr.HP).toString();
 		}
 	}
 
