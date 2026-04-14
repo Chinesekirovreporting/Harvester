@@ -38,20 +38,20 @@ export class FightCalcFunc {
             damage = 1000;
         }
         // 优先扣除护盾 
-        if (defender.attrVo.SHIELD > 0) {
-            if (damage > defender.attrVo.SHIELD) {
-                damage -= defender.attrVo.SHIELD;
-                defender.attrVo.SHIELD = 0;
+        if (defender.shield > 0) {
+            if (damage > defender.shield) {
+                damage -= defender.shield;
+                defender.shield = 0;
             } else {
-                defender.attrVo.SHIELD -= damage;
+                defender.shield -= damage;
                 damage = 0;
             }
         }
         // 扣除护盾后，再扣除血量,血量归零则阵亡
-        defender.attrVo.HP -= damage;
+        defender.hp -= damage;
         var beKilled = false;
-        if (defender.attrVo.HP <= 0) {
-            defender.attrVo.HP = 0;
+        if (defender.hp <= 0) {
+            defender.hp = 0;
             beKilled = true;
         }
         return new DamageResultTable( false, false, attacker, defender, damage, beKilled );
@@ -66,11 +66,11 @@ export class FightCalcFunc {
             heal = baseHeal;
         }
         var heroAttr:HeroAttrCFG = App.tableManager.getTable($Tables.HeroAttrCFG, target.heroID) as HeroAttrCFG;
-        var maxHp:number = heroAttr.HP;
-        var before:number = target.attrVo.HP;
+        var maxHp:number = target.attrVo.HP;
+        var before:number = target.hp;
         var after:number = Math.min(maxHp, before + heal);
         var applied:number = after - before;
-        target.attrVo.HP = after;
+        target.hp = after;
         return new HealResultTable(false, false, caster, target, applied);
     }
 

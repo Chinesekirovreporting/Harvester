@@ -1,5 +1,5 @@
 import { AbstractUIComponent } from "db://assets/scripts/framework/core/ui/AbstractUIComponent";
-import { GComponent } from "fairygui-cc";
+import { GComponent, GProgressBar } from "fairygui-cc";
 import { GameModules } from "../../../../GameModules";
 import { TweenUtil } from "db://assets/scripts/framework/utils/TweenUtil";
 import { DamageResultTable } from "../../../../../core_fight/core_attr/FightCalcResultTables/FightCalcResourceTables";
@@ -14,6 +14,8 @@ export class UIComFightActor extends AbstractUIComponent {
 
 	private comPlayer1: GComponent;
 	private comBoss1: GComponent;
+	private playerHpBar:GProgressBar;
+	private bossHpBar:GProgressBar;
 
 	public constructor(hostView: GComponent) {
 		super(hostView);
@@ -29,6 +31,8 @@ export class UIComFightActor extends AbstractUIComponent {
 		if (comBoss) {
 			this.comBoss1 = comBoss as GComponent;
 		}
+		this.playerHpBar = this.comPlayer1.getChild("hpBar") as GProgressBar;
+		this.bossHpBar = this.comBoss1.getChild("hpBar") as GProgressBar;
 	}
 
 	public updateFightActor(): void {
@@ -40,12 +44,14 @@ export class UIComFightActor extends AbstractUIComponent {
 		if (this.comPlayer1 != null) {
 			this.comPlayer1.getChild("lblName").text = battleMyActor.name;
 			this.comPlayer1.getChild("lblMp").text =  GameModules.round.curRound != null ? GameModules.round.curRound.getRoundEnergy().toString() : "0";
-			this.comPlayer1.getChild("lblBlood").text = battleMyActor.getAttr(EnumAttr.HP).toString();
+			this.comPlayer1.getChild("lblBlood").text = battleMyActor.hp + "/" + battleMyActor.getAttr(EnumAttr.HP).toString();
+			this.playerHpBar.value = battleMyActor.hp / battleMyActor.getAttr(EnumAttr.HP) * 100;
 		}
 		if (this.comBoss1 != null) {
 			this.comBoss1.getChild("lblName").text = battleEnemyActor.name;
 			this.comBoss1.getChild("lblMp").text = "";
-			this.comBoss1.getChild("lblBlood").text = battleEnemyActor.getAttr(EnumAttr.HP).toString();
+			this.comBoss1.getChild("lblBlood").text = battleEnemyActor.hp + "/" + battleEnemyActor.getAttr(EnumAttr.HP).toString();
+			this.bossHpBar.value = battleEnemyActor.hp / battleEnemyActor.getAttr(EnumAttr.HP) * 100;
 		}
 	}
 

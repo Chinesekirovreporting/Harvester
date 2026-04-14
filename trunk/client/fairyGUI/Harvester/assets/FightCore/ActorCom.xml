@@ -9,6 +9,6 @@
     <component id="n12_g4tx" name="hpBar" src="g4tx9" fileName="ProgressBar1.xml" pkg="17w83934" xy="9,15" size="178,21">
       <ProgressBar value="50" max="100"/>
     </component>
-    <text id="n13_g4tx" name="lblBlood" xy="10,17" size="175,19" fontSize="12" align="center" autoSize="none" text="9999/1000"/>
+    <text id="n13_g4tx" name="lblBlood" xy="10,17" size="175,19" fontSize="12" align="center" autoSize="none" text="1000/9999"/>
   </displayList>
 </component>

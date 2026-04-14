@@ -68,8 +68,7 @@ export class WindowFightCore extends AbstractUIWindow {
         });
         this._fightSkillUI = new UIComFightSkill(this.view);
         this._fightActorUI = new UIComFightActor(this.view);
-        this._fightCoreLogUI = new UIComFightCoreLog(this.view);
-        
+        this._fightCoreLogUI = new UIComFightCoreLog(this.view);  
     } 
 
     private onCloseClick():void {
