@@ -31,4 +31,12 @@ export class ModuleBuff extends AbstractModule{
     public applyBuffTick():void {
         this.buffMgr.onBuffTick();
     }
+    
+    // 注释
+    // 状态分类
+    // 属性修改型：如“+20%攻击力”、“-30%移动速度”
+    // 行为限制型：如“眩晕”（禁用行动）、“沉默”（禁用技能）
+    // 持续效果型：如“每秒掉血”、“每回合回蓝”
+    // 触发器型：如“受到攻击时反击”、“生命低于30%时释放护盾”
+    // 形态转换型：如“变身巨兽”、“进入隐身”
 }

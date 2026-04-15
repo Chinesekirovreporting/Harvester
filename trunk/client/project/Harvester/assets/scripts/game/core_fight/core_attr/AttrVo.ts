@@ -2,13 +2,16 @@ import { App } from "../../../framework/managers/App";
 import { $Tables } from "../../gameModel/table/$Tables";
 import { HeroAttrCFG } from "../../gameModel/table/tableClass/HeroAttrCFG";
 import { BaseActor } from "../core_actor/BaseActor";
+import { EnumEffectType } from "../core_effect/effects/EnumEffectType";
 import { EnumAttr } from "./EnumAttr";
 
 // 属性结构体 
 export class AttrVo {
     public owner:BaseActor;
     public HP:number;
+    public CUR_HP:number;
     public MP:number;
+    public CUR_MP:number;
     public ATTACK_POWER:number;
     public MAGIC_POWER:number;
     public ARMOR:number;
@@ -24,12 +27,16 @@ export class AttrVo {
     public SPI:number;
     public END:number;
     public WIS:number;
+    public STUN:number;
+    public SILENCE:number;
 
     constructor(owner:BaseActor) {
         this.owner = owner;
         var heroAttrCFG:HeroAttrCFG = App.tableManager.getTable($Tables.HeroAttrCFG, owner.heroID);
         this.HP = heroAttrCFG.HP;
+        this.CUR_HP = this.HP;  // 当前血量初始值与基础血量相同
         this.MP = heroAttrCFG.MP;
+        this.CUR_MP = this.MP;
         this.ATTACK_POWER = heroAttrCFG.AttackPower;
         this.MAGIC_POWER = heroAttrCFG.MagicPower;
         this.ARMOR = heroAttrCFG.Armor;
@@ -45,14 +52,20 @@ export class AttrVo {
         this.SPI = heroAttrCFG.SPI;
         this.END = heroAttrCFG.END;
         this.WIS = heroAttrCFG.WIS;
+        this.STUN = 0;
+        this.SILENCE = 0;
     }
 
     public getAttr(attrType:EnumAttr):number {
         switch (attrType) {
             case EnumAttr.HP:
                 return this.HP;
+            case EnumAttr.CUR_HP:
+                return this.CUR_HP;
             case EnumAttr.MP:
                 return this.MP;
+            case EnumAttr.CUR_MP:
+                return this.CUR_MP;
             case EnumAttr.ATTACK_POWER:
                 return this.ATTACK_POWER;
             case EnumAttr.MAGIC_POWER:
@@ -83,6 +96,10 @@ export class AttrVo {
                 return this.END;
             case EnumAttr.WIS:
                 return this.WIS;
+            case EnumAttr.STUN:
+                return this.STUN;
+            case EnumAttr.SILENCE:
+                return this.SILENCE;
             default:
                 return 0;
         }
@@ -93,8 +110,14 @@ export class AttrVo {
             case EnumAttr.HP:
                 this.HP = value;
                 break;
+            case EnumAttr.CUR_HP:
+                this.CUR_HP = value;
+                break;
             case EnumAttr.MP:
                 this.MP = value;
+                break;
+            case EnumAttr.CUR_MP:
+                this.CUR_MP = value;
                 break;
             case EnumAttr.ATTACK_POWER:
                 this.ATTACK_POWER = value;
@@ -140,6 +163,23 @@ export class AttrVo {
                 break;
             case EnumAttr.WIS:
                 this.WIS = value;
+                break;
+            case EnumAttr.STUN:
+                this.STUN = value;
+                break;
+            case EnumAttr.SILENCE:
+                this.SILENCE = value;
+                break;
+        }
+    }
+
+    public reduceEffect(effectType:EnumAttr):void {
+        switch (effectType) {
+            case EnumAttr.STUN:
+                this.STUN -= 1;
+                break;
+            case EnumAttr.SILENCE:
+                this.SILENCE -= 1;
                 break;
         }
     }

@@ -8,4 +8,6 @@ export enum EnumEffectType {
     Shield = 3,
     // 属性增益
     AttrModify = 4,
+    // 特殊效果（用于一些特殊限制类效果，如眩晕、沉默、恐惧等）
+    SpecialEffect = 5,
 }

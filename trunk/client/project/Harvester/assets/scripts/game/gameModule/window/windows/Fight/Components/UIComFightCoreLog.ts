@@ -30,7 +30,8 @@ export class UIComFightCoreLog extends AbstractUIComponent {
 
 	public updateFightCoreLog(clear: boolean = false): void {
 		if (clear == true) {
-			this.listFightCoreLog.numItems = GameModels.fightLog.getFightLogList().length;
+			// this.listFightCoreLog.numItems = GameModels.fightLog.getFightLogList().length;
+			this.listFightCoreLog.numItems = 3;
 			return;
 		}
 	}

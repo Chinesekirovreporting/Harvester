@@ -6,7 +6,7 @@ import { IScene } from "./IScene";
  * 模块抽象类
  */
 export class AbstractModule extends EventTarget implements IModule {
-
+    
     protected _moduleName:string;
     protected _inited:boolean = false;
     protected _scene:IScene;

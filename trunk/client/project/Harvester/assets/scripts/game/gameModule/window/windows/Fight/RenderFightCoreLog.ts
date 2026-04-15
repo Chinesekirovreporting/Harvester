@@ -10,6 +10,8 @@ export class RenderFightCoreLog extends GComponent {
     }
 
     public setData(log:FightCoreLogVo):void {
-        this.lblLog.text = log.logData;
+        if(log != null) {
+            this.lblLog.text = log.logData;
+        }
     }
 }

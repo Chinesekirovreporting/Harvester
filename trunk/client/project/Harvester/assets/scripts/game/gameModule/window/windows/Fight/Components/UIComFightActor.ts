@@ -6,6 +6,10 @@ import { DamageResultTable } from "../../../../../core_fight/core_attr/FightCalc
 import { FightBloodFloatEffect } from "../FightBloodFloatEffect";
 import { EnumFaction } from "../../../../../core_fight/core_actor/EnumFaction";
 import { EnumAttr } from "db://assets/scripts/game/core_fight/core_attr/EnumAttr";
+import { ModuleBattleEvent } from "db://assets/scripts/game/core_fight/core_battle/ModuleBattleEvent";
+import { ModuleRoundEvent } from "db://assets/scripts/game/core_fight/core_round/ModuleRoundEvent";
+import { ModuleSkillEvent } from "db://assets/scripts/game/core_fight/core_skill/ModuleSkillEvent";
+import { ModuleEffectEvent } from "db://assets/scripts/game/core_fight/core_effect/ModuleEffectEvent";
 
 /**
  * 战斗窗口内：友方 / 敌方角色位（comPlayer1、comBoss1）的展示与受击飘血，逻辑从 WindowFightCore 拆分。
@@ -44,14 +48,14 @@ export class UIComFightActor extends AbstractUIComponent {
 		if (this.comPlayer1 != null) {
 			this.comPlayer1.getChild("lblName").text = battleMyActor.name;
 			this.comPlayer1.getChild("lblMp").text =  GameModules.round.curRound != null ? GameModules.round.curRound.getRoundEnergy().toString() : "0";
-			this.comPlayer1.getChild("lblBlood").text = battleMyActor.hp + "/" + battleMyActor.getAttr(EnumAttr.HP).toString();
-			this.playerHpBar.value = battleMyActor.hp / battleMyActor.getAttr(EnumAttr.HP) * 100;
+			this.comPlayer1.getChild("lblBlood").text = battleMyActor.attrVo.CUR_HP + "/" + battleMyActor.getAttr(EnumAttr.HP).toString();
+			this.playerHpBar.value = battleMyActor.attrVo.CUR_HP / battleMyActor.getAttr(EnumAttr.HP) * 100;
 		}
 		if (this.comBoss1 != null) {
 			this.comBoss1.getChild("lblName").text = battleEnemyActor.name;
 			this.comBoss1.getChild("lblMp").text = "";
-			this.comBoss1.getChild("lblBlood").text = battleEnemyActor.hp + "/" + battleEnemyActor.getAttr(EnumAttr.HP).toString();
-			this.bossHpBar.value = battleEnemyActor.hp / battleEnemyActor.getAttr(EnumAttr.HP) * 100;
+			this.comBoss1.getChild("lblBlood").text = battleEnemyActor.attrVo.CUR_HP + "/" + battleEnemyActor.getAttr(EnumAttr.HP).toString();
+			this.bossHpBar.value = battleEnemyActor.attrVo.CUR_HP / battleEnemyActor.getAttr(EnumAttr.HP) * 100;
 		}
 	}
 
@@ -68,5 +72,13 @@ export class UIComFightActor extends AbstractUIComponent {
 			return;
 		}
 		FightBloodFloatEffect.spawn(this.view, this.comBoss1, result);
+	}
+
+	protected onShow(): void {
+		
+	}
+
+	protected onClose(): void {
+		
 	}
 }

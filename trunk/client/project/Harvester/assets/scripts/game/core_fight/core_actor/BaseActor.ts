@@ -6,23 +6,23 @@ import { BaseSkill } from "../core_skill/BaseSkill";
 import { EnumFaction } from "./EnumFaction";
 // 战斗单位基类。属性构成：配置基础属性+装备属性。
 export class BaseActor {
-    public name:string;                 // 名称
-    public faction:EnumFaction;         // 阵营
-    public heroID:number;               // 英雄ID
-    public skillList:BaseSkill[]        // 技能列表
-    public attrVo:AttrVo;               // 属性结构体
-    public hp:number;                   // 当前血量
-    public shield:number;               // 当前护盾
-    public mp:number;                   // 当前法力
+    public name:string;                     // 名称
+    public faction:EnumFaction;             // 阵营
+    public heroID:number;                   // 英雄ID
+    public skillList:BaseSkill[]            // 技能列表
+    public attrVo:AttrVo;                   // 属性结构体
+    // public hp:number;                    // 当前血量
+    // public shield:number;                // 当前护盾
+    // public mp:number;                    // 当前法力
 
     constructor(heroID:number, faction:EnumFaction) {
         this.heroID = heroID;
         this.faction = faction;
         this.name = App.tableManager.getTable($Tables.HeroBookCFG, heroID).Name;
         this.initAttrVo();
-        this.hp = this.attrVo.HP;
-        this.shield = this.attrVo.SHIELD;
-        this.mp = this.attrVo.MP;
+        // this.hp = this.attrVo.HP;
+        // this.shield = this.attrVo.SHIELD;
+        // this.mp = this.attrVo.MP;
     }
 
     // 初始化属性结构体
@@ -36,6 +36,10 @@ export class BaseActor {
 
     public setAttr(attrType:EnumAttr, value:number):void {
         this.attrVo.setAttr(attrType, value);
+    }
+
+    public reduceEffect(effectType:EnumAttr):void {
+        this.attrVo.reduceEffect(effectType);
     }
 
     // 添加装备属性

@@ -124,6 +124,7 @@ export class WindowFightCore extends AbstractUIWindow {
         GameModules.battle.battleStart();
         this._fightActorUI.startBossFloatLoop();
         this._fightActorUI.updateFightActor();
+        this._fightActorUI.show();
         this._fightCoreLogUI.updateFightCoreLog(true);
     }
 
@@ -275,6 +276,12 @@ export class WindowFightCore extends AbstractUIWindow {
         this.onFightCoreEventUnbind();
         if (this._fightSkillUI != null) {
             this._fightSkillUI.clearAll();
+        }
+        if (this._fightActorUI != null) {
+            this._fightActorUI.close();
+        }
+        if (this._fightCoreLogUI != null) {
+            this._fightCoreLogUI.close();
         }
     }
 
