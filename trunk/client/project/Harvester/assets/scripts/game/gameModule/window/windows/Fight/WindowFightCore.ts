@@ -94,6 +94,9 @@ export class WindowFightCore extends AbstractUIWindow {
     
     private updateEnergy():void {
         // this.lblEnergy.text = GameModules.round.curRound.getRoundEnergy().toString();
+        if (this._fightSkillUI != null) {
+            this._fightSkillUI.refreshAllSkillEnergyStates();
+        }
     }
 
     ///////////////////////////////// 事件订阅 /////////////////////////////////////////
@@ -104,6 +107,8 @@ export class WindowFightCore extends AbstractUIWindow {
         GameModules.round.on(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
         // 订阅回合友方开始事件
         GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.onFriendRoundStart, this);
+        // 友方回合阶段退出（进入敌方回合等）：清掉未使用仍留在界面上的技能按钮，避免带入下一回合
+        GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START_EXIT, this.onFriendRoundExit, this);
         // 订阅回合敌方开始事件
         GameModules.battle.on(ModuleBattleEvent.ON_BATTLE_ENEMY_ROUND_START, this.onEnemyRoundStart, this);
         // 订阅技能释放事件
@@ -198,8 +203,18 @@ export class WindowFightCore extends AbstractUIWindow {
         this.setStep(4);
         // this.lblEnergy.text = GameModules.round.curRound.energy.toString();
         console.log("onFriendRoundStart", battle);
+        if (this._fightSkillUI != null) {
+            this._fightSkillUI.clearAll();
+        }
         for (let i = 1; i <= 5; i++) {
             this._fightSkillUI.createNextFightSkillPop(1);
+        }
+    }
+
+    /** 友方回合状态结束：销毁本回合未点选仍残留的技能按钮（已施放的会在动画回调里自行移除） */
+    private onFriendRoundExit(battle: BattleBase): void {
+        if (this._fightSkillUI != null) {
+            this._fightSkillUI.clearAll();
         }
     }
 
@@ -259,6 +274,7 @@ export class WindowFightCore extends AbstractUIWindow {
         GameModules.round.off(ModuleRoundEvent.ON_ROUND_START, this.onRoundStart, this);
         // 取消订阅回合友方开始事件
         GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START, this.onFriendRoundStart, this);
+        GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_FRIEND_ROUND_START_EXIT, this.onFriendRoundExit, this);
         // 取消订阅回合敌方开始事件
         GameModules.battle.off(ModuleBattleEvent.ON_BATTLE_ENEMY_ROUND_START, this.onEnemyRoundStart, this);
         // 取消订阅敌方技能释放事件
