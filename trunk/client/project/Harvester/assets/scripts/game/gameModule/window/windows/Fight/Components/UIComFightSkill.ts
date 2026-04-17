@@ -10,6 +10,19 @@ import { BaseActor } from "../../../../../core_fight/core_actor/BaseActor";
  */
 export class UIComFightSkill extends AbstractUIComponent {
 
+	/** 技能按钮落点：锚在友方人物 `comPlayer1` 头顶上方横向排布，满列换行，不沉底 */
+	private static readonly SKILL_SLOT_COLS = 4;
+	private static readonly SKILL_SLOT_STEP_X = 92;
+	private static readonly SKILL_SLOT_STEP_Y = 92;
+	/** 人物顶边与最底一行技能按钮之间的间距 */
+	private static readonly SKILL_SLOT_MARGIN_ABOVE_ACTOR = 16;
+	/** 相对当前锚点再向右、向上微调（FairyGUI y 向下为正，故“往上”为减小 ty） */
+	private static readonly SKILL_SLOT_NUDGE_X = 36;
+	private static readonly SKILL_SLOT_NUDGE_UP = 32;
+	/** 未布局前 width/height 可能为 0，用于估算槽位 */
+	private static readonly SKILL_SLOT_FALLBACK_W = 80;
+	private static readonly SKILL_SLOT_FALLBACK_H = 80;
+
 	private fightSkillPopDict: Record<number, GButton> = {};
 	public fightSkillPopIndex: number = 0;
 
@@ -28,9 +41,43 @@ export class UIComFightSkill extends AbstractUIComponent {
 	public createFightSkillPop(index: number, skillId: number): void {
 		var button: GButton = GameModules.dynamicUI.addFromPackage(this.view, GameRes.PACKAGE_FIGHT_CORE, "ComFightSkill") as GButton;
 		this.fightSkillPopDict[index] = button;
+		this.moveSkillInit(index);
 		button.onClick(this.onFightSkillButtonClick.bind(this, index), this);
 	}
 
+	// 将生成好的缓动到指定位置
+	private moveSkillInit(index: number): void {
+		const button: GButton = this.fightSkillPopDict[index];
+		if (button == null) {
+			return;
+		}
+		button.x = 0;
+		button.y = 0;
+		const col = index % UIComFightSkill.SKILL_SLOT_COLS;
+		const row = Math.floor(index / UIComFightSkill.SKILL_SLOT_COLS);
+		const slotW = button.width > 1 ? button.width : UIComFightSkill.SKILL_SLOT_FALLBACK_W;
+		const slotH = button.height > 1 ? button.height : UIComFightSkill.SKILL_SLOT_FALLBACK_H;
+		const cols = UIComFightSkill.SKILL_SLOT_COLS;
+		const gridW = (cols - 1) * UIComFightSkill.SKILL_SLOT_STEP_X + slotW;
+		const comPlayer = this.view.getChild("comPlayer1") as GComponent | null;
+		let anchorCenterX: number;
+		let anchorTopY: number;
+		const viewCx = this.view.width * 0.5;
+		if (comPlayer != null && comPlayer.width > 0) {
+			const playerCx = comPlayer.x + comPlayer.width * 0.5;
+			// 人物中心与窗口水平中心取中点，技能条更贴屏幕视觉中心
+			anchorCenterX = (playerCx + viewCx) * 0.5;
+			anchorTopY = comPlayer.y;
+		} else {
+			anchorCenterX = viewCx;
+			anchorTopY = this.view.height * 0.42;
+		}
+		const baseX = anchorCenterX - gridW * 0.5;
+		const tx = baseX + col * UIComFightSkill.SKILL_SLOT_STEP_X + UIComFightSkill.SKILL_SLOT_NUDGE_X;
+		const ty = anchorTopY - UIComFightSkill.SKILL_SLOT_MARGIN_ABOVE_ACTOR - slotH - row * UIComFightSkill.SKILL_SLOT_STEP_Y - UIComFightSkill.SKILL_SLOT_NUDGE_UP;
+		TweenUtil.flyTo(button as GObject, tx, ty, 0.3);
+	}
+	
 	public removeFightSkillPop(index: number): void {
 		var button: GButton = this.fightSkillPopDict[index];
 		if (button == null) {
