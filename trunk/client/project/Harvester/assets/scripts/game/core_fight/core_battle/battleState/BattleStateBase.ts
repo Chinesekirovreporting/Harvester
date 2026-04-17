@@ -4,6 +4,7 @@ import { EnumBattleState } from "../battle/EnumBattleState";
 export class BattleStateBase {
     public battle:BattleBase;
     public state:EnumBattleState;
+    
     constructor(battle:BattleBase, state:EnumBattleState) {
         this.battle = battle;
         this.state = state;

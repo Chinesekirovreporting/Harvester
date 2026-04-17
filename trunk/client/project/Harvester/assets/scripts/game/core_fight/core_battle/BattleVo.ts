@@ -22,4 +22,12 @@ export class BattleVo {
         this.isVictory = true;
         this.rewardDropList = [];
     }
+
+    public getBattleSceneName():string {
+        return "试炼林地";
+    }
+
+    public getBattleTargetName():string {
+        return this.battleTarget.name;
+    }
 }

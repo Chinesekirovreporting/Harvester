@@ -1,3 +1,7 @@
+import { EnumAttr } from "../../core_attr/EnumAttr";
+import { FightCoreLogHealLineVo } from "../../../gameModel/data/FightCoreLog/FightCoreLogHealLineVo";
+import { EnumFightCoreLogType } from "../../../gameModel/enum/EnumFightCoreLogType";
+import { GameModels } from "../../../gameModel/GameModels";
 import { GameModules } from "../../../gameModule/GameModules";
 import { HealResultTable, ResultTable } from "../../core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { BattleLogManager } from "../../core_battle/BattleLog";
@@ -20,6 +24,11 @@ export class HealEffectManager {
         console.log("HealEffectManager执行治疗效果", effectHeal);
         let result:ResultTable = GameModules.attr.calcByHealEffect(effectHeal);
         this.healResultList.push(result as HealResultTable);
+        const hr = result as HealResultTable;
+        GameModels.fightLog.showLogByType(
+            EnumFightCoreLogType.EFFECT_HEAL,
+            new FightCoreLogHealLineVo(hr.target.name, hr.caster.name, true, hr.heal, hr.target.getAttr(EnumAttr.CUR_HP), "生命值")
+        );
     }
 
     public onEffectStart():void {

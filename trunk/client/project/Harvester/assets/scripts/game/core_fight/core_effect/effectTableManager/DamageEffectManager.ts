@@ -1,3 +1,7 @@
+import { EnumAttr } from "../../core_attr/EnumAttr";
+import { FightCoreLogDamageLineVo } from "../../../gameModel/data/FightCoreLog/FightCoreLogDamageLineVo";
+import { EnumFightCoreLogType } from "../../../gameModel/enum/EnumFightCoreLogType";
+import { GameModels } from "../../../gameModel/GameModels";
 import { GameModules } from "../../../gameModule/GameModules";
 import { DamageResultTable, ResultTable } from "../../core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { BattleLogManager } from "../../core_battle/BattleLog";
@@ -21,6 +25,20 @@ export class DamageEffectManager {
         // 将数据丢给属性模块进行数据运算
         let result:ResultTable = GameModules.attr.calcByDamageEffect(effectDamage);
         this.damageResultList.push(result as DamageResultTable);
+        // 记录日志
+        const dr = result as DamageResultTable;
+        GameModels.fightLog.showLogByType(
+            EnumFightCoreLogType.EFFECT_DAMAGE,
+            new FightCoreLogDamageLineVo(
+                dr.target.name,
+                dr.caster.name,
+                true,
+                dr.damage,
+                dr.target.getAttr(EnumAttr.CUR_HP),
+                "生命值",
+                false
+            )
+        );
     }
 
     public onEffectStart():void {

@@ -1,4 +1,8 @@
+import { FightCoreLogAttrChangeVo } from "../../../gameModel/data/FightCoreLog/FightCoreLogAttrChangeVo";
+import { EnumFightCoreLogType } from "../../../gameModel/enum/EnumFightCoreLogType";
+import { GameModels } from "../../../gameModel/GameModels";
 import { GameModules } from "../../../gameModule/GameModules";
+import { fightCoreLogAttrLabel } from "../../core_attr/FightCoreLogAttrLabel";
 import { AttrModifyResultTable, ResultTable } from "../../core_attr/FightCalcResultTables/FightCalcResourceTables";
 import { BattleLogManager } from "../../core_battle/BattleLog";
 import { EffectAttrModify } from "../effects/EffectAttrModify";
@@ -20,6 +24,12 @@ export class AttrModifyEffectManager {
         console.log("AttrModifyEffectManager执行属性增益效果", effectAttrModify);
         let result:ResultTable = GameModules.attr.calcByAttrModifyEffect(effectAttrModify);
         this.attrModifyResultList.push(result as AttrModifyResultTable);
+        // 记录日志
+        const ar = result as AttrModifyResultTable;
+        GameModels.fightLog.showLogByType(
+            EnumFightCoreLogType.ATTR_CHANGE,
+            new FightCoreLogAttrChangeVo(effectAttrModify.targetActor.name, fightCoreLogAttrLabel(ar.attrModifyType), ar.attrModifyValue)
+        );
     }
 
     public onEffectStart():void {

@@ -125,7 +125,8 @@ export class WindowFightCore extends AbstractUIWindow {
         this._fightActorUI.startBossFloatLoop();
         this._fightActorUI.updateFightActor();
         this._fightActorUI.show();
-        this._fightCoreLogUI.updateFightCoreLog(true);
+        // this._fightCoreLogUI.updateFightCoreLog(true);
+        this._fightCoreLogUI.show();
     }
 
     /////////////////////////////////// 游戏流程控制 /////////////////////////////////////////

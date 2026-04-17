@@ -1,3 +1,6 @@
+import { FightCoreLogSkillCastVo } from "../../gameModel/data/FightCoreLog/FightCoreLogSkillCastVo";
+import { EnumFightCoreLogType } from "../../gameModel/enum/EnumFightCoreLogType";
+import { GameModels } from "../../gameModel/GameModels";
 import { GameModules } from "../../gameModule/GameModules";
 import { BaseActor } from "../core_actor/BaseActor";
 import { BaseBuff } from "../core_buff/BaseBuff";
@@ -17,6 +20,8 @@ export class BaseSkill {
     }
     
     public spellSkill():void {
+        // 技能施法 记录日志
+        GameModels.fightLog.showLogByType(EnumFightCoreLogType.BATTLE_SKILL_CAST, new FightCoreLogSkillCastVo(this.useUnit.name, this.skillVo.skillCFG.Name, this.targetActor?.name || ""));
         this.onSpellStart();
     }
 

@@ -22,7 +22,7 @@ export class AbstractUIWindow implements IUIWindow {
 	protected _isLoaded:boolean = false;					// 是否已加载
 	protected _isInited:boolean = false;					// 是否已初始化
 	protected _isShow:boolean = false;						// 是否显示
-	protected _isShowCenter:boolean = true;					// 是否居中显示	
+	protected _isShowCenter:boolean = false;				// 是否居中显示	
 	protected _windowData:any;								// 窗体数据
 	protected _needShowAction:boolean = false;				// 是否需要显示动画	
 	protected _autoDispose:boolean = true;					// 是否自动销毁

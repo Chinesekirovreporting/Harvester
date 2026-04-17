@@ -38,7 +38,6 @@ export class GameModels {
         GameModels.heroBook = new ModelHeroBook();
         // 加载技能图鉴数据
         GameModels.skill = new ModelSkill();
-        
         // // 加载英雄装备数据
         GameModels.equip = new ModelEquip();
         // // 加载天赋数据

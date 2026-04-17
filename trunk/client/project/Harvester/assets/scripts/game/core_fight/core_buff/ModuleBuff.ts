@@ -1,9 +1,14 @@
 import { AbstractModule } from "../../../framework/managers/scene/AbstractModule";
+import { EnumAttr } from "../core_attr/EnumAttr";
+import { FightCoreLogDamageLineVo } from "../../gameModel/data/FightCoreLog/FightCoreLogDamageLineVo";
+import { EnumFightCoreLogType } from "../../gameModel/enum/EnumFightCoreLogType";
+import { GameModels } from "../../gameModel/GameModels";
 import { SkillCFG } from "../../gameModel/table/tableClass/SkillCFG";
 import { BaseActor } from "../core_actor/BaseActor";
 import { BaseBuff } from "./BaseBuff";
 import { BuffManager } from "./BuffManager";
 import { BuffVo } from "./BuffVo";
+import { FightCoreLogStatusDebuffVo } from "../../gameModel/data/FightCoreLog/FightCoreLogStatusDebuffVo";
 
 export class ModuleBuff extends AbstractModule{
     public buffMgr:BuffManager;
@@ -22,6 +27,10 @@ export class ModuleBuff extends AbstractModule{
         let buffVo:BuffVo = new BuffVo(buffId);
         let baseBuff:BaseBuff = new BaseBuff(buffVo, targetActor, useUnit, skillCFGId);
         this.buffMgr.addBuff(baseBuff);
+        // 记录日志
+        if (buffVo.buffCFG.IsDot == 1) {
+            GameModels.fightLog.showLogByType(EnumFightCoreLogType.STATUS_DEBUFF_APPLY, new FightCoreLogStatusDebuffVo(targetActor.name, buffVo.buffCFG.Name));
+        }
     }
 
     public removeBuff(buff:BaseBuff):void {

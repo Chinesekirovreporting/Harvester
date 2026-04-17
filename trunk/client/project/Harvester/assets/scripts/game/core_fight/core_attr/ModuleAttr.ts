@@ -12,7 +12,7 @@ export class ModuleAttr extends AbstractModule {
     protected init():void {
         console.log("初始化ModuleAttr")
     }
-
+    
     public calcByDamageEffect(effectDamage:EffectDamage):ResultTable {
         console.log("ModuleAttr计算伤害效果", effectDamage)
         return this.attackPowerCalc(effectDamage.useActor, effectDamage.targetActor, effectDamage.effectVo.effectCFG.BaseValue);

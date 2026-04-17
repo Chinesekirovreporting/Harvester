@@ -48,9 +48,9 @@ export class ModuleEffect extends AbstractModule {
         this.attrModifyEffectManager.onEffectStop();
     }
 
-    public applyEffect( effectId:number, buffId:number, targetActor:BaseActor, useActor:BaseActor ):void {
+    public applyEffect( effectId:number, buffId:number, targetActor:BaseActor, useActor:BaseActor, bByBuffTick:boolean = false ):void {
         var effectCFG:EffectCFG = App.tableManager.getTable($Tables.EffectCFG, effectId) as EffectCFG;
-        var effectVo:EffectVo = new EffectVo(effectId, buffId);
+        var effectVo:EffectVo = new EffectVo(effectId, buffId, bByBuffTick);
         this.executeEffect(effectCFG.EffectType, effectVo, targetActor, useActor);
     }
     

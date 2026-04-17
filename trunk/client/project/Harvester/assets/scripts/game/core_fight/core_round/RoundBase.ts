@@ -1,4 +1,7 @@
 // 回合基类，每个回合包含当前回合，所有角色的所有动作，所有的BUFF生效等
+import { FightCoreLogRoundEndVo } from "../../gameModel/data/FightCoreLog/FightCoreLogRoundEndVo";
+import { EnumFightCoreLogType } from "../../gameModel/enum/EnumFightCoreLogType";
+import { GameModels } from "../../gameModel/GameModels";
 import { GameModules } from "../../gameModule/GameModules";
 import { RoundActionBase } from "../core_action/RoundActionBase";
 import { BaseActor } from "../core_actor/BaseActor";
@@ -66,6 +69,8 @@ export class RoundBase {
         }else if(this.curRoundState == EnumRoundState.ENEMY_ROUND){
             this.roundStateDict[this.curRoundState].exitState();
         }
+        // 回合结束 记录日志
+        GameModels.fightLog.showLogByType(EnumFightCoreLogType.ROUND_END, new FightCoreLogRoundEndVo());
         // 判断是否需要进入下一回合，敌方阵亡或友方阵亡则结束游戏
         GameModules.round.dispatchEventWithData(ModuleRoundEvent.ON_ROUND_END, this);
     }

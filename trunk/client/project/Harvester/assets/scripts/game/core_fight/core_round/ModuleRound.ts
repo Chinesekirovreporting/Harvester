@@ -18,7 +18,7 @@ export class ModuleRound extends AbstractModule {
         return round;
     }
 
-    // 回合开始
+    // 回合开始 
     public roundStart(roundBase:RoundBase):void {
         this.curRound = roundBase;
         this.curRound.roundStart();

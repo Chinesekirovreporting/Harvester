@@ -12,13 +12,13 @@ import { EnumBuffType } from "./EnumBuffType";
 export class BaseBuff {
     public buffVo:BuffVo;                               // BUFF元数据
     public buffType:EnumBuffType;                       // BUFF类型
-    public startEffectList:number[] = [];           // BUFF开始时触发的效果列表
-    public cycleEffectList:number[] = [];            // BUFF每个回合结束后触发的效果列表
-    public endEffectList:number[] = [];          // BUFF移除时触发的效果列表
-    public useActor:BaseActor;                           // 使用者
+    public startEffectList:number[] = [];               // BUFF开始时触发的效果列表
+    public cycleEffectList:number[] = [];               // BUFF每个回合结束后触发的效果列表
+    public endEffectList:number[] = [];                 // BUFF移除时触发的效果列表
+    public useActor:BaseActor;                          // 使用者
     public targetActor:BaseActor;                       // 目标角色
     public skillCFG:SkillCFG;                           // 技能配置
-    public durationTimes:number = 0;                     // BUFF持续触发次数
+    public durationTimes:number = 0;                    // BUFF持续触发次数
 
     constructor(buffVo:BuffVo, targetActor:BaseActor, useActor:BaseActor, skillCFGId:number) { 
         this.buffVo = buffVo;

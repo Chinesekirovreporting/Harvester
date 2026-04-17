@@ -14,7 +14,7 @@
     <text id="n17_iqit" name="n17" xy="82,893" size="172,19" group="n18_iqit" fontSize="12" color="#ff0000" text="玩法类似于实体点击的泡泡游戏"/>
     <image id="n36_g4tx" name="n36" src="g4txb" fileName="UI_BackGround.png" pkg="17w83934" xy="7,1027" size="735,301" group="n32_fxb0"/>
     <text id="n30_fxb0" name="n30" xy="20,957" size="124,42" group="n32_fxb0" fontSize="30" text="战斗日志"/>
-    <list id="n31_fxb0" name="listFightCoreLog" xy="9,1027" size="727,307" group="n32_fxb0" overflow="scroll" defaultItem="ui://a7jwbx4sjz056">
+    <list id="n31_fxb0" name="listFightCoreLog" xy="238,1027" size="498,307" group="n32_fxb0" overflow="scroll" defaultItem="ui://a7jwbx4sjz056">
       <item/>
       <item/>
       <item/>

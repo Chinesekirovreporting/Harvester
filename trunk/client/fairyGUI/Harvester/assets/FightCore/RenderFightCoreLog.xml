@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="500,50">
+<component size="500,23">
   <displayList>
-    <richtext id="n0_jz05" name="lblLog" xy="0,0" size="500,50" fontSize="30" color="#ff0000" align="right" autoSize="none" text="这里显示战斗日志"/>
+    <richtext id="n0_jz05" name="lblLog" xy="0,0" size="500,23" fontSize="15" color="#ff0000" align="right" autoSize="none" text="这里显示战斗日志"/>
   </displayList>
 </component>
